@@ -60,11 +60,11 @@ http://18.180.168.239/
 - has_one :delivery_destination
 - has_many :images
 - belongs_to :catergory
-- belongs_to :conditions
+- belongs_to :condition
 - belongs_to :delivery_fee
 - belongs_to :prefectures
 - belongs_to :delivery_days
-- belongs_to :statuses
+- belongs_to :status
 - belongs_to :user
 
 ## imagesテーブル
