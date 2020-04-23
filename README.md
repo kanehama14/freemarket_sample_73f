@@ -36,7 +36,7 @@ http://18.180.168.239/
 
 ### Association
 - has_many :cards
-- has_many :products
+- has_many :items
 - has_many :delivery_destinations
 
 ## itemsテーブル
@@ -120,9 +120,9 @@ http://18.180.168.239/
 ## cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
 |user|references|null: false,foreign_key: true|
-|card|references|null: false,foreign_key: true|
+|customer_id|integer|null: false|
+|card_id|integer|null: false|
 
 ### Association
 - belongs_to :user
