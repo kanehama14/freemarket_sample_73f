@@ -42,7 +42,6 @@ http://18.180.168.239/
 ## itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|image|references|null: false,foreign_key: true|
 |name|string|null: false,index|
 |explanation|string|null: false,index|
 |category|references|null: false,foreign_key: true|
@@ -50,7 +49,7 @@ http://18.180.168.239/
 |brand_name|string|index|
 |condition|references|null: false,foreign_key: true|
 |delivery_fee|references|null: false,foreign_key: true|
-|prefecture|references|null: false,foreign_key: true|
+|prefecture_id|integer|null: false|
 |delivery_days|references|null: false,foreign_key: true|
 |price|integer|null: false|
 |status|references|null: false,foreign_key: true|
@@ -59,10 +58,10 @@ http://18.180.168.239/
 ### Association
 - has_one :delivery_destination
 - has_many :images
-- belongs_to :catergory
+- belongs_to :category
 - belongs_to :condition
 - belongs_to :delivery_fee
-- belongs_to :prefectures
+- belongs_to_active_hash :prefecture
 - belongs_to :delivery_days
 - belongs_to :status
 - belongs_to :user
@@ -71,39 +70,20 @@ http://18.180.168.239/
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false|
+|items|references|null: false,foreign_key: true|
 
 ### Association
 - belongs_to :item
 
-## catergoriesテーブル
+## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-
-### Association
-- has_many :subcatergories
-- has_many :items
-
-## subcatergoriesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-|catergory|references|null: false,foreign_key: true|
-
-### Association
-- has_many :subsubcatergories
-- has_many :items
-- belongs_to :category
-
-## subsubcatergoriesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-|subcatergory|references|null: false,foreign_key: true|
+|ancestry|string|null: false|
 
 ### Association
 - has_many :items
-- belongs_to :subcatergory
+- has_ancestry
 
 ## conditionsテーブル
 |Column|Type|Options|
@@ -120,15 +100,6 @@ http://18.180.168.239/
 
 ### Association
 - has_many :items
-
-## prefecturesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :items
-- belongs_to :delivery_destination
 
 ## delivery_daysテーブル
 |Column|Type|Options|
@@ -164,12 +135,12 @@ http://18.180.168.239/
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |postal_code|integer|null: false|
-|prefecture|references|null: false,foreign_key: true|
+|prefecture_id|integer|null: false|
 |city|string|null: false|
 |house_number|string|null: false|
 |house_name|string|
 
 ### Association
 - has_many :items
-- has_many :prefectures
+- belongs_to_active_hash :prefecture
 - belongs_to :user
