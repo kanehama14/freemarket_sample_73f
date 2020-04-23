@@ -37,7 +37,7 @@ http://18.180.168.239/
 ### Association
 - has_many :cards
 - has_many :products
-- has_many :delivery_destination
+- has_many :delivery_destinations
 
 ## itemsテーブル
 |Column|Type|Options|
@@ -59,12 +59,12 @@ http://18.180.168.239/
 ### Association
 - has_one :delivery_destination
 - has_many :images
-- has_many :categories1
-- has_many :condition
-- has_many :delivery_fee
-- has_many :prefectures
-- has_many :delivery_days
-- has_many :status
+- belongs_to :catergory
+- belongs_to :conditions
+- belongs_to :delivery_fee
+- belongs_to :prefectures
+- belongs_to :delivery_days
+- belongs_to :statuses
 - belongs_to :user
 
 ## imagesテーブル
@@ -75,51 +75,51 @@ http://18.180.168.239/
 ### Association
 - belongs_to :item
 
-## categories1テーブル
+## catergoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
 
 ### Association
-- has_many :categories2
-- belongs_to :item
+- has_many :subcatergories
+- has_many :items
 
-## categories2テーブル
+## subcatergoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|categories1|references|null: false,foreign_key: true|
+|catergory|references|null: false,foreign_key: true|
 
 ### Association
-- has_many :categories3
-- belongs_to :item
-- belongs_to :categories1
+- has_many :subsubcatergories
+- has_many :items
+- belongs_to :category
 
-## categories3テーブル
+## subsubcatergoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|categories2|references|null: false,foreign_key: true|
+|subcatergory|references|null: false,foreign_key: true|
 
 ### Association
-- belongs_to :item
-- belongs_to :categories2
+- has_many :items
+- belongs_to :subcatergory
 
-## conditionテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- belongs_to :item
-
-## delivery_feeテーブル
+## conditionsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
 
 ### Association
-- belongs_to :item
+- has_many :items
+
+## delivery_feesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+
+### Association
+- has_many :items
 
 ## prefecturesテーブル
 |Column|Type|Options|
@@ -127,7 +127,7 @@ http://18.180.168.239/
 |name|string|null: false|
 
 ### Association
-- belongs_to :item
+- has_many :items
 - belongs_to :delivery_destination
 
 ## delivery_daysテーブル
@@ -136,15 +136,15 @@ http://18.180.168.239/
 |name|string|null: false|
 
 ### Association
-- belongs_to :item
+- has_many :items
 
-## statusテーブル
+## statusesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
 
 ### Association
-- belongs_to :item
+- has_many :items
 
 ## cardsテーブル
 |Column|Type|Options|
@@ -156,7 +156,7 @@ http://18.180.168.239/
 ### Association
 - belongs_to :user
 
-## delivery_destinationテーブル
+## delivery_destinationsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |first_name|string|null: false|
@@ -170,6 +170,6 @@ http://18.180.168.239/
 |house_name|string|
 
 ### Association
+- has_many :items
 - has_many :prefectures
 - belongs_to :user
-- belongs_to :item
