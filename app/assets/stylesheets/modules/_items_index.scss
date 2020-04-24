@@ -1,10 +1,21 @@
-body{
+html{
   //必要なGEM　gem 'font-awesome-sass'
   // メルカリ全体のベース背景色
-  background-color: rgb(245, 245, 245); 
-  width: 70%;
-  margin: 0 auto;
+  // background-color: rgb(245, 245, 245); 
+  // width: 70%;
+  // margin: 0 auto;
+
+  margin: 40px auto 0;
+  width: 1020px;
+  background-color: #f5f5f5;
+  //  background: #f5f5f5; 
+  // font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif; 
+  // font-size: 14px;
+  font-size: 14px;
+   color: #333;
 }
+
+
 .salebtn{
   width: 170px;
   height: 170px;
@@ -20,14 +31,14 @@ body{
     left: 0px;
   }
   &-icon{
-
+    
   }
 }
 
 .ctnheader{
   height: 100%;
   width: 100%;
-  background-color: rgb(100, 255, 255);
+  // background-color: rgb(100, 255, 255);
   &-ttl{
     margin-bottom: 16px;
     text-align: center;
@@ -37,6 +48,10 @@ body{
     ul{
       li{
         display: inline;
+        border: 1px solid;
+        background-color: rgb(239, 239, 239);
+        margin: 10px 0px 10px 10px;
+        border-radius: 20%;
       }
     }
   }
@@ -45,6 +60,15 @@ body{
   background-color: burlywood;
   &-hdr{
     background-color: cadetblue;
+    position: relative;
+    &_ttl{
+
+    }
+    .seemore{
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
   }
   &-list{
     ul{
