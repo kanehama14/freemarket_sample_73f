@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4em;
+}
+
+span {
+  margin-left: 8px;
+}
+
+p {
+  margin-top: 16px;
+}
+
+.div1 {
+  max-width: 700px
+}
+
+.div2 {
+  position: relative;
+}
+
+.div3 {
+  padding: 40px;
+}
+.div4 {
+  margin: 0;
+}
+.div6 {
+  margin-top: 16px;
+}
+.div7 {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -8px -4px 0px;
+}
+.div8 { 
+  height: 150px;
+}
+.div9 { 
+  height: 150px;
+}
+.div10 { 
+  text-align: center;
+  width: 100%;
+}

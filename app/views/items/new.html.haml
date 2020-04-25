@@ -1,0 +1,21 @@
+.div1
+  .div2
+    .div3
+      .div4
+        .div5
+          %label 出品画像
+          %span 必須
+        %p 最大10枚までアップロードできます
+        .div6
+          .div7
+            .div8
+              = icon('fas', 'image', class: 'div9')
+              %p.div10 クリックしてファイルをアップロード
+  .div2
+    .div3
+      .div4
+        %label 商品名
+        %span 必須
+      = text_field :content, autofocus: true, placeholder: "40文字まで", class: 'item-input-text'
+      .div4-4
+        商品の説明
