@@ -1,0 +1,116 @@
+.main
+  .content
+    .left
+    .right
+      .top
+        .item
+          %h2.item-name
+            ソースカツ丼
+          .item-body
+            %ul
+              %li
+                -# %img
+                = image_tag src="https://www.ashikagagourmet.com/wp-content/uploads/2013/05/cc5990f7bf95e48d9eeb9f9d6629728e-550x400.jpg"
+                %ul
+                  %li
+                    = image_tag src="https://tyoumiryouuriba.up.seesaa.net/image/IMG_4686.JPG", size: "75x75"
+                  %li
+                    = image_tag src="https://www.ashikaga-kankou.jp/files/topics/276_ext_08_0.jpg", size: "75x75"
+                  %li
+                    = image_tag src="https://media-cdn.tripadvisor.com/media/photo-s/0e/77/86/65/caption.jpg", size: "75x75"
+          .item-price
+            %span
+              ¥20000
+            .item-price_detail
+              %span
+                (税込)
+              %span
+                送料込み
+          .idetail
+            私の地元栃木県足利市が誇る至高のB級グルメ！！
+          .table
+            %table
+              %tbody
+                %tr
+                  %th
+                    出品者
+                  %td
+                    大岡孝行
+                %tr
+                  %th
+                    カテゴリー
+                  %td
+                    %a
+                      = link_to "メンズ", '#'
+                    %br
+                    %a
+                    = link_to "ジャケット/アウター", '#'
+                    %br
+                    %a
+                    = link_to "ノーカラージャケット", '#'
+                %tr
+                  %th
+                    ブランド
+                  %td
+                    足利ブランド
+                %tr
+                  %th
+                    商品のサイズ
+                  %td
+                    並盛
+                %tr
+                  %th
+                    商品の状態
+                  %td
+                    出来立てほやほや
+                %tr
+                  %th
+                    配送料の負担
+                  %td
+                    着払い（購入者負担）
+                %tr
+                  %th
+                    配送元の地域
+                  %td
+                    %a
+                      = link_to "栃木県", '#'
+                %tr
+                  %th
+                    発送日の目安
+                  %td
+                    1~2日で発送
+          .option
+            %ul
+              %li.opbtn.libtn
+                %i.fa.fa-star
+                  お気に入り 9973               
+            %ul.optional
+              %li.opbtn
+                = link_to '#' do
+                  =fa_icon "flag"
+                  不適切な商品の通報
+        .comment
+          %ul.ccontents
+          %form.ncomment
+            %textarea
+            %p.notice
+              相手のことを考え丁寧なコメントを心がけましょう。
+              %br
+              不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            %br
+            %button.cobtn
+              %i.fa.fa-comment
+                コメントする
+      %ul.links
+        %li.leftli
+          = link_to '#' do
+            =fa_icon "angle-left"
+            前の商品
+        %li.rightli
+          = link_to '#' do
+            後ろの商品
+            =fa_icon "angle-right"
+      .related
+        %a
+          = link_to "メンズをもっと見る", '#'
+        .productli
