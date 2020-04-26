@@ -69,7 +69,6 @@
               margin: 0 10px 0 0;
             }
             &_detail {
-              // font-size: 16px;
               margin: 0;
               padding: 0;
               span {
@@ -132,14 +131,12 @@
               margin: 10px 0 0;
               display: flex;
               list-style: none;
-              // font-weight: bold;
               .libtn {
                 margin-right: auto;
                 padding: 6px 10px;
                 border-radius: 40px;
                 color: #3CCACE;
                 border: 1px solid #ffb340;
-                // font-weight: bold;
                 .fa {
                   display: inline-block;
                   font: normal normal normal 14px/1 FontAwesome;
