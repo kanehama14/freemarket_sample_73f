@@ -1,0 +1,33 @@
+%body
+  .container
+    .header
+      %h1
+        = link_to image_tag("http://furima.tokyo/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg"), '#'
+    .main
+      .login
+        .noaclogin
+          %p
+            アカウントをお持ちでない方はこちら
+            =link_to "新規会員登録", '#'
+        %form
+          .inlogin
+            .guform
+              %input.intexlogin.definput{:name => "email", :placeholder => "メールアドレス", :type => "email", :value => ""}
+            .guform
+              %input.intexlogin.definput{:name => "password", :placeholder => "パスワード", :type => "password", :value => ""}
+            %button.logsubmit.defbtn.redbtn
+              =link_to "ログイン", '#', class: "mslogin"
+            =link_to "パスワードをお忘れの方", '#', class: "forget"
+    .footer
+      %nav
+        %ul
+          %li
+            =link_to "プライバシーポリシー", '#'
+          %li
+            =link_to "利用規約", '#'
+          %li
+            =link_to "特定商取引に関する表記", '#'
+        = link_to image_tag("http://furima.tokyo/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg"), '#'
+      %p
+        %small
+          © FURIMA, Inc.
