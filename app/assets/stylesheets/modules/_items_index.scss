@@ -1,0 +1,281 @@
+//コンテンツマージンオート
+@mixin ctnmarginauto() {
+  // コンテンツ幅
+  width: 1020px;
+  //「margin: 0 auto」がなぜか効かないため計算して中央寄せ
+  margin-left: calc((100vw - 1020px)/2);
+}
+
+.mctnarea{
+  margin: 0 auto;
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+}
+
+
+.salebtn{
+  width: 130px;
+  height: 130px;
+  border-radius: 10%;
+  text-align: center;
+  background-color: #3CCACE;
+  color: #ffffff;
+  cursor: pointer;
+  cursor: hand;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+  &-name{
+    font-size: 20px;
+    left: 0px;
+  }
+  &-icon{
+    
+  }
+}
+.salebtn:hover {
+  opacity: 0.6;
+}
+
+.mainvisual{
+  width: 100vw;
+  height: 560px;
+  background-image: url(bg-mainVisual-pict_pc.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  .mcontent{
+    &-title{
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+      font-size: 60px;
+      line-height: 1.2;
+      color: #fff;
+      margin: 0 60px;
+    }
+    &-text{
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+      font-size: 18px;
+      color: #fff;
+      line-height: 1.77778;
+      margin: 16px 0 0 60px;
+    }
+    &-btn{
+      margin: 0 60px;
+      img{
+        width: 200px;
+      }
+      .appdl{
+      }
+      .appdl:hover{
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+.usagelists{
+  @include ctnmarginauto();
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 20px;
+  .list{
+    position: relative;
+    &-pic{
+      .number{
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 4%;
+        font-size: 30px;
+        text-align: center;
+        margin: 0 5px 0 0;
+        padding: 10px 20px;
+        background-color: #3CCACE;
+        color: #fff;
+      }
+      img{
+        width: 90%;
+      }
+    }
+    &-text{
+      margin: 16px 0 0 ;
+    }
+    &-description{
+
+    }
+  }
+}
+
+.topfeature{
+  @include ctnmarginauto();
+  display: flex;
+  justify-content: space-between;
+  .list{
+    position: relative;
+    padding: 0 20px;
+    &-pic{
+      img{
+        width: 70%;
+      }
+    }
+    &-text{
+      margin: 38px 0 10px;
+      font-size: 19px;
+      font-weight: bold;
+    }
+    &-description{
+      margin: 0 0 40px;
+      font-size: 17px;
+      font-weight: 200;
+      text-align: left;
+    }
+  }
+}
+
+.topmiddledl{
+  background-image: url(bg-topMiddleDl-pict.jpg);
+  background-size: 100%;
+  width: 100vw;
+  height: 50vh;
+  object-fit: contain;
+  .mcontent{
+    margin: 0 auto;
+    width: 1040px;
+    &-title{
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+      font-size: 27px;
+      line-height: 1.2;
+      color: #fff;
+      margin: 0 60px;
+    }
+    &-text{
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+      font-size: 18px;
+      color: #fff;
+      line-height: 1.77778;
+      margin: 16px 0 0 60px;
+    }
+    &-btn{
+      margin: 0 60px;
+      img{
+        width: 200px;
+      }
+      .appdl{
+      }
+      .appdl:hover{
+        opacity: 0.6;
+      }
+    }
+  } 
+}
+
+.subtitle{
+  width: 100vw;
+  font-size: 27px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 25px;
+  padding: 80px 0 0;
+}
+
+.ctnheader{
+  @include ctnmarginauto();
+  height: 100%;
+  width: 100%;
+  &-ttl{
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  &-menu{
+    text-align: center;
+    ul{
+      li{
+        display: inline;
+        color: #000000;
+        background-color:#ffffff;
+        padding: 5px;
+        margin: 10px 0px 10px 10px;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+.ctnarea{
+  @include ctnmarginauto();
+  &-hdr{
+    position: relative;
+    &_ttl{
+
+    }
+    .seemore{
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+  &-list{
+    margin: 0 auto;
+    ul{
+      display: grid;
+      grid-template-columns: 20% 20% 20% 20% 20%;
+      li{
+        grid-column-end: auto;
+        height: 250px;
+        margin: 10px;
+        background-color: #ffffff;
+        .ctnlist-item{
+          &_img{
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+          }
+        }
+      }
+    }  
+  }
+}
+
+.appbanner{
+  background-image: url(bg-appBanner-pict.jpg);
+  background-size: 100%;
+  width: 100vw;
+  height: 300px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color:#ffffff;
+  .inner{
+    text-align: center;
+    &-title{
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+    &-text{
+      font-size: 35px;
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+      margin: 16px 0 0 60px;
+    }
+    &-icon{
+      margin: 0 60px;
+      img{
+        width: 200px;
+      }
+      .appdl{
+      }
+      .appdl:hover{
+        opacity: 0.6;
+      }
+    }
+  }
+}
