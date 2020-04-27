@@ -12,9 +12,9 @@
         %form
           .inlogin
             .guform
-              %input.intexlogin.definput{:name => "email", :placeholder => "メールアドレス", :type => "email", :value => ""}
+              %input.intexlogin.definput{name: "email", placeholder: "メールアドレス", type: "email", value: ""}
             .guform
-              %input.intexlogin.definput{:name => "password", :placeholder => "パスワード", :type => "password", :value => ""}
+              %input.intexlogin.definput{name: "password", placeholder: "パスワード", type: "password", value: ""}
             %button.logsubmit.defbtn.redbtn
               =link_to "ログイン", '#', class: "mslogin"
             =link_to "パスワードをお忘れの方", '#', class: "forget"
