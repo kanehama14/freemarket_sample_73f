@@ -1,10 +1,102 @@
--# %h1 Items#index
--# %p Find me in app/views/items/index.html.erb
-.salebtn
-  .salebtn-name
-    出品
-  .salebtn-icon
-    = icon('fa', 'camera fa-4x')
+= link_to '#' do
+  .salebtn
+    .salebtn-name
+      出品
+    .salebtn-icon
+      = icon('fa', 'camera fa-4x')
+
+.mainvisual
+  .mcontent
+    .mcontent-title
+      人生を変えるフリマアプリ
+    .mcontent-text
+      FURIMAはだれでもかんたんに出品・購入できる
+      %br
+      フリマアプリです
+    .mcontent-btn
+      = link_to '#' do
+        = image_tag 'appDL.svg', class: 'appdl'
+      = link_to '#' do
+        = image_tag 'gglDL.svg', class: 'appdl'
+
+.subtitle
+  FURIMAが選ばれる3つの理由
+
+%ul.usagelists
+  %li.list
+    .list-pic
+      .number
+        %span
+          １
+      = image_tag 'pict-reason-01.jpg'
+    %h3.list-text
+      3分ですぐに出品
+    .list-description
+      スマホで入力するだけで簡単に出品できる！
+  %li.list
+    .list-pic
+      .number
+        %span
+          ２
+      = image_tag 'pict-reason-02.jpg'
+    %h3.list-text
+      3分ですぐに出品
+    .list-description
+      スマホで入力するだけで簡単に出品できる！
+  %li.list
+    .list-pic
+      .number
+        %span
+          ３
+      = image_tag 'pict-reason-03.jpg'
+    %h3.list-text
+      3分ですぐに出品
+    .list-description
+      スマホで入力するだけで簡単に出品できる！
+
+.topmiddledl
+  .mcontent
+    .mcontent-title
+      会員数日本一位
+    .mcontent-text
+      FURIMAは、フリマアプリで最も人気。
+      %br
+      出品・購入回数も業界最多です！
+      %br
+      ほしかったあの商品に出会えるかもしれません。
+    .mcontent-btn
+      = link_to '#' do
+        = image_tag 'appDL.svg', class: 'appdl'
+      = link_to '#' do
+        = image_tag 'gglDL.svg', class: 'appdl'
+
+
+.subtitle
+  FURIMAの特徴
+
+%ul.topfeature
+  %li.list
+    .list-pic
+      = image_tag 'icon-01.png'
+    %h3.list-text
+      簡単に売り買いできる
+    .list-description
+      スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
+  %li.list
+    .list-pic
+      = image_tag 'icon-03.png'
+    %h3.list-text
+      売上金は即日振込みに対応
+    .list-description
+      午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
+  %li.list
+    .list-pic
+      = image_tag 'icon-04.png'
+    %h3.list-text
+      様々な支払いに対応
+    .list-description
+      お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+
 -# contents header の略
 .ctnheader
   %h2.ctnheader-ttl
@@ -68,17 +160,11 @@
           %img.ctnlist-item_img{alt: "商品イメージ", src: "https://images.unsplash.com/photo-1586339392738-65847e399f7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"}
           .ctnlist-item_name
             商品タイトル
-      %li.ctnlist-item
-        =link_to '#' do
-          %img.ctnlist-item_img{alt: "商品イメージ", src: "https://images.unsplash.com/photo-1586339392738-65847e399f7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"}
-          .ctnlist-item_name
-            商品タイトル
 
 
 .ctnheader
-  .ctnheader-ttl
-    %h2
-      人気のブランド
+  %h2.ctnheader-ttl
+    人気のブランド
   .ctnheader-menu
     %ul
       %li.ctnmenu-item
@@ -127,3 +213,15 @@
           %img.ctnlist-item_img{alt: "商品イメージ", src: "https://images.unsplash.com/photo-1586527484765-979a20639316?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"}
           .ctnlist-item_name
             商品タイトル
+
+.appbanner
+  .inner
+    .inner-title
+      だれでもかんたん、人生を変えるフリマアプリ
+    .inner-text
+      今すぐ無料ダウンロード！
+    .inner-icon
+      = link_to '#' do
+        = image_tag 'appDL.svg', class: 'appdl'
+      = link_to '#' do
+        = image_tag 'gglDL.svg', class: 'appdl'
