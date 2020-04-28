@@ -1,103 +1,91 @@
-.background{
-  .main{
+.body{
+  .purchase-main{
     width: 700px;
     background-color: #fff;
     margin: 0 auto;
-    padding: 40px;
     font-size: 14px;
-      .afterPurchase__header{
-        padding: 40px 130px;
+    .purchase-box{
+      padding: 0 50px;
+      .after-purchase-hdr{
+        padding: 30px 70px;
+        font-size: 18px;
         border-bottom: 1px solid #f5f5f5;
         background: #fffacd;
         color: #ff4500;
         font-weight: bold;
         text-align: center;
       }
-      .title{
+      .after-purchase-ttl{
         font-size: 22px;
         text-align: center;
         font-weight: bold;
         border-bottom: 1px solid #f5f5f5;
         padding: 30px;
       }
-      .item__box{
+      .item-cont{
         display: flex;
         justify-content: space-between;
-        padding: 20px 50px;
+        padding: 30px 70px;
+        margin: 0 auto;
         .image{
-          justify-content: center;
           display: flex;
           align-items: center;
           text-align: center;
-          margin: 0 auto;
         }
         .details{
           margin-left: 16px;
           text-align: left;
-          margin: 0 auto;
-          .item_name{
-            padding: 25px 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .item-name{
           }
         }
       }
 
-      .price__box{
-        padding: 30px 130px;
+      .price-cont{
+        padding: 30px 70px;
         border-top: 1px solid #f5f5f5;
         border-bottom: 1px solid #f5f5f5;
         display: flex;
         justify-content: space-between;
         text-align: center;
         font-weight: bold;
-        .price__left{
+        .price-left{
           font-size: 18px;
         }
-        .price__right{
+        .price-right{
           font-size: 20px;
         }
       }
 
-      .payment__box{
-        padding: 30px 130px;
+      .payment-cont{
+        padding: 30px 70px;
         border-top: 1px solid #f5f5f5;
         border-bottom: 1px solid #f5f5f5;
         display: flex;
         justify-content: space-between;
-        .payment__left{
+        .payment-left{
 
-        }
-        .payment__right{
-          text-decoration: none;
-          a {
-            color: #3CCACE;
-            text-decoration: none;
-          }
         }
         
-
       }
 
-      .deliveryDestination__box{
-        padding: 30px 130px;
+      .deliveryDestination-cont{
+        padding: 30px 70px;
         border-top: 1px solid #f5f5f5;
         border-bottom: 1px solid #f5f5f5;
         display: flex;
         justify-content: space-between;
-        .deliveryDestination__left{
+        .deliveryDestination-left{
 
-        }
-        .deliveryDestination__right{
-          a {
-            color: #3CCACE;
-            text-decoration: none;
-          }
         }
       }
 
-      .top__btn{
+      .purchase-btn_top{
         text-align: center;
         padding: 30px 130px;
-        .afterPurchase__btn{
+        .afterpurchase-btn{
           display: block;
           font-weight: bold;
           background: #3CCACE;
@@ -111,5 +99,6 @@
           cursor: pointer;
         }
       }
+    }
   }
 }
