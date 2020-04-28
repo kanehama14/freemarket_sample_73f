@@ -1,0 +1,60 @@
+= link_to '#' do
+  .salebtn
+    .salebtn-name
+      出品
+    .salebtn-icon
+      = icon('fa', 'camera fa-4x')
+
+.pagehierarchy
+  %ul
+    %li<>
+      %a(href="#") FURIMA >
+    %li<> マイページ
+
+.mypagemain
+  .usercontent
+    .usericon
+      .usericon-input
+        .usericon-input-image
+          アイコン
+      .username
+        ユーザ名
+
+  .l-side
+    %ul
+      %li マイページ
+      %li お知らせ
+      %li いいね！一覧
+      %li 出品する
+      %li 下書き一覧
+      %li 出品した商品 - 出品中
+      %li 出品した商品 - 取引中
+      %li 出品した商品 - 売却済み
+      %li 購入した商品 - 取引中
+      %li 購入した商品 - 過去の取引
+      %li ニュース一覧
+      %li 評価一覧
+      %li ガイド
+      %li お問い合わせ
+    %h3.mypage-nav-head 設定
+    %ul
+      %li プロフィール
+      %li 発送元・お届け先住所変更
+      %li 支払い方法
+      %li メール/パスワード
+      %li 本人情報
+      %li 電話番号の確認
+      %li ログアウト
+
+
+.appbanner
+  .inner
+    .inner-title
+      だれでもかんたん、人生を変えるフリマアプリ
+    .inner-text
+      今すぐ無料ダウンロード！
+    .inner-icon
+      = link_to '#' do
+        = image_tag 'appDL.svg', class: 'appdl'
+      = link_to '#' do
+        = image_tag 'gglDL.svg', class: 'appdl'
