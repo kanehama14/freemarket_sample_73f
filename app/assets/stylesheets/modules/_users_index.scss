@@ -2,10 +2,10 @@
 //   box-sizing: border-box;
 // }
 
-a:link, a:visited, a:hover, a:active {
-  text-decoration: none;
-  color: #333;
-}
+// a:link, a:visited, a:hover, a:active {
+//   text-decoration: none;
+//   color: #333333;
+// }
 
 .salebtn{
   width: 130px;
@@ -44,6 +44,13 @@ a:link, a:visited, a:hover, a:active {
       text-decoration: none;
       display: inline;
     }
+    a:link, a:visited, a:active {
+      text-decoration: none;
+      color: initial;
+    }
+    a:hover {
+      color: #00FFFF;
+    }
   }
 }
 
@@ -76,14 +83,21 @@ a:link, a:visited, a:hover, a:active {
     .nav-list {
       margin-top: 8px;
     }
-      .nav-list li {
-        border-top: 1px solid #eee;
-        height: 48px;
-        background-color: #ffffff;
-        font-size: 14px;
-        line-height: 48px;
-        padding: 0 16px;
-      }
+    .nav-list li {
+      border-top: 1px solid #eee;
+      height: 48px;
+      background-color: #ffffff;
+      font-size: 14px;
+      line-height: 48px;
+      padding: 0 16px;
+    }
+    .nav-list li:hover {
+      background-color: #C0C0C0;
+    }
+    a:link, a:visited, a:hover, a:active {
+      text-decoration: none;
+      color: #333333;
+    }
   }
 }
 
