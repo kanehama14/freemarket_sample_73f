@@ -85,3 +85,6 @@ gem 'font-awesome-rails'
 gem 'payjp'
 gem 'active_hash'
 gem 'ancestry'
+
+gem 'devise-i18n'
+gem 'devise-i18n-views'
