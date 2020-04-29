@@ -12,14 +12,6 @@
     %li マイページ
 
 .mypagemain
-  .usercontent
-    .usericon
-      .usericon-input
-        .usericon-input-image
-          アイコン
-      .username
-        ユーザ名
-
   .l-side
     %ul.nav-list
       %li
@@ -66,6 +58,15 @@
         %a(href="#") 電話番号の確認
       %li
         %a(href="#") ログアウト
+
+  .usercontent
+    .usericon
+      -# = image_tag 'mypage/dachshund_01.jpg', class: 'usericon-input', size: '100x100'
+      .usericon-input
+        .usericon-input-image
+          アイコン
+      .username
+        ユーザ名
 
 
 .appbanner
