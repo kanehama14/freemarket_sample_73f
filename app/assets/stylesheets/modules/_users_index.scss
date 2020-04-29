@@ -4,6 +4,7 @@
 
 a:link, a:visited, a:hover, a:active {
   text-decoration: none;
+  color: #333;
 }
 
 .salebtn{
@@ -68,9 +69,21 @@ a:link, a:visited, a:hover, a:active {
     margin: 0 40px 0 0;
     // float: left;
     // display: block;
-    .mypage-nav-head {
+    .nav-head {
       margin-top: 40px;
+      font-size: 16px;
     }
+    .nav-list {
+      margin-top: 8px;
+    }
+      .nav-list li {
+        border-top: 1px solid #eee;
+        height: 48px;
+        background-color: #ffffff;
+        font-size: 14px;
+        line-height: 48px;
+        padding: 0 16px;
+      }
   }
 }
 
