@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   belongs_to :condition
   belongs_to :delivery_fee
   belongs_to_active_hash :prefecture
-  belongs_to :delivery_days
+  belongs_to :delivery_day
   belongs_to :status
   belongs_to :user
 end
