@@ -1,0 +1,35 @@
+= link_to '#' do
+  .salebtn
+    .salebtn-name
+      出品
+    .salebtn-icon
+      = icon('fa', 'camera fa-4x')
+
+.pagehierarchy
+  %ul
+    %li
+      %a(href="#") FURIMA > 
+    %li マイページ
+
+.mypagemain
+  = render 'users/side-navbar'
+  .usercontent
+    .usericon
+      .usericon-image
+        = image_tag 'mypage/human-001.jpg', alt: ''
+        -# アイコン
+      .usericon-name
+        ユーザ名
+
+
+.appbanner
+  .inner
+    .inner-title
+      だれでもかんたん、人生を変えるフリマアプリ
+    .inner-text
+      今すぐ無料ダウンロード！
+    .inner-icon
+      = link_to '#' do
+        = image_tag 'appDL.svg', class: 'appdl'
+      = link_to '#' do
+        = image_tag 'gglDL.svg', class: 'appdl'

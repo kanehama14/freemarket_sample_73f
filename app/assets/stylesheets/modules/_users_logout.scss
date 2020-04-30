@@ -1,0 +1,32 @@
+.logoutpagemain {
+  margin: 30px auto;
+  display: flex;
+  margin-left: calc((100vw - 1020px)/2);
+  .l-side {
+    @include sidebar;
+  }
+
+  .logoutcont {
+    width: 700px;
+    height: 200px;
+    background-color: #ffffff;
+    margin-top: 8px;
+    position: relative;
+    &-btn {
+      position: absolute;
+      top: 76px;
+      left: 200px;
+      text-align: center;
+      line-height: 48px;
+      height: 48px;
+      width: 300px;
+      background-color: #3CCACE;
+      color: #ffffff;
+      a:link, a:visited, a:hover, a:active {
+        text-decoration: none;
+        color: #ffffff;
+      }
+    }
+  }
+
+}
