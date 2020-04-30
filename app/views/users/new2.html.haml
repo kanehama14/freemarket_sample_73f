@@ -1,0 +1,66 @@
+%body.maim1
+  .page1
+    .asec.apadmid.auwork
+      .asec.aspacnone.aunav
+        .asec.aspecmed.atexcen
+          = link_to image_tag("http://furima.tokyo/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg"), '#'
+      .asec.centersec
+        .asec.mainsec
+          .asec.aupagecont
+            .asec
+              %form.asnone
+                .abox.aexlarge
+                  .aboxin
+                    %h1.asmall
+                      新規登録フォーム（STEP2)
+                    .arow.abase
+                      %label.aflabel
+                        お名前（全角）
+                      %span.forequire
+                        必須
+                    %input.definput{placeholder: "  例）山田"}
+                    %input.definput{placeholder: "  例）山田"}
+                    .arfmgroup
+                      .arow.abase
+                        %label.aflabel
+                          お名前カナ（全角）
+                        %span.forequire
+                          必須
+                      %input.definput{placeholder: "  例）ヤマダ"}
+                      %input.definput{placeholder: "  例）ジロウ"}
+                    .arfmgroup
+                      .arow.abase
+                        %label.aflabel
+                          生年月日
+                        %span.forequire
+                          必須
+                      .birthselect
+                        .selwrap
+                          %i.iabtn
+                          %select.seldef
+                        %span.mozi
+                          年
+                        .selwrap.swmonth
+                          %i.iabtn
+                          %select.seldef
+                        %span.mozi
+                          月
+                        .selwrap.swday
+                          %i.iabtn
+                          %select.seldef
+                        %span.mozi
+                          日  
+                    %span.abtn.abtnnor.abtn12.abtnpri
+                      %span.abtnin
+                        %span.abtext
+                          STEP3へ進む
+                    .arow
+                      すでにアカウントをお持ちですか?
+                      = link_to '#' do
+                        ログイン
+
+
+
+
+
+

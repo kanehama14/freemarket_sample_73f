@@ -1,0 +1,55 @@
+%body.maim1
+  .page1
+    .asec.apadmid.auwork
+      .asec.aspacnone.aunav
+        .asec.aspecmed.atexcen
+          = link_to image_tag("http://furima.tokyo/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg"), '#'
+      .asec.centersec
+        .asec.mainsec
+          .asec.aupagecont
+            .asec
+              %form.asnone
+                .abox.aexlarge
+                  .aboxin
+                    %h1.asmall
+                      新規登録フォーム（STEP1)
+                    .arow.abase
+                      %label.aflabel
+                        ニックネーム
+                      %span.forequire
+                        必須
+                    %input.aintext.a12.autofocus.aurefield.auinfo{placeholder: "例）FURIMA太郎"}
+                    .arfmgroup
+                      .arow.abase
+                        %label.aflabel
+                          Eメールアドレス
+                      %input.aintext.a12.aurefield.aurefieldma.aurefieldema.aurepassvali{placeholder: "PC・携帯どちらでも可"}
+                    .arfmgroup
+                      .arow.abase
+                        %label.aflabel
+                          パスワード
+                        %span.forequire
+                          必須
+                      %input.aintext.afnormal.a12.aurefield.aurefieldma.aurefieldema.aurechange.acvrinfo{placeholder: "7文字以上の半角英数字"}
+                        .aain.aaininfo.aiimessage.astmini
+                          .aboxin.aacontainer
+                            =fa_icon "exclamation-triangle"
+                            パスワードの長さは最低7文字です。
+                      .arow.abase
+                        %label.aflabel
+                          もう一度パスワードを入力してください
+                      %input.aintext.afnormal.a12.aurefield.aurefieldma.aurefieldema{placeholder: "7文字以上の半角英数字"}
+                    %span.abtn.abtnnor.abtn12.abtnpri
+                      %span.abtnin
+                        %span.abtext
+                          STEP2へ進む
+                    .arow
+                      すでにアカウントをお持ちですか?
+                      = link_to '#' do
+                        ログイン
+
+
+
+
+
+
