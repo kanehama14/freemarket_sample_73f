@@ -1,0 +1,47 @@
+.mypagemain {
+  margin: 30px auto;
+  display: flex;
+  margin-left: calc((100vw - 1020px)/2);
+  .l-side {
+    @include sidebar;
+  }
+
+  .creditregist {
+    width: 700px;
+    height: 100%;
+    background-color: #ffffff;
+    margin-top: 8px;
+    &-head {
+      border-bottom: 1px solid #eee;
+      padding: 8px 24px;
+      font-size: 24px;
+      text-align: center;
+      font-weight: bold;
+    }
+    &-inner {
+      padding: 64px;
+      .credit-list {
+        max-width: 320px;
+        margin: 0 auto;
+        font-weight: bold;
+      }
+      .creditadd {
+        max-width: 320px;
+        margin: 0 auto;
+        border-bottom: 1px solid #eee;
+        padding: 24px 0;
+        &-btn {
+          text-align: center;
+          line-height: 48px;
+          background-color: #3CCACE;
+          color: #ffffff;
+        }
+        a:link, a:visited, a:hover, a:active {
+          text-decoration: none;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+}

@@ -7,4 +7,10 @@ class UsersController < ApplicationController
   
   def new3
   end
+  def new
+  end
+
+  def logout
+  end
+
 end

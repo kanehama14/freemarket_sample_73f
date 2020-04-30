@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
-  root 'users#new1'
+  devise_for :users
+  root 'users#new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get "users", to: "users#new1"
-  resources :users do
-    collection do
-      get 'new1'
-      post 'new2'
-      # post 'step3'  #入力が全て完了
-      # get 'complete_signup'  #登録完了後
+  resources :items do
+    resources :purchases, only: [:index] do
+      collection do
+        get 'done', to: 'purchases#done'
+      end
+    end
+  end 
+  
+  resources :users, only: [:new, :index, :edit, :update] do
+    resources :items, only: [:new, :index, :show] do
+
     end
   end
+  
 end
