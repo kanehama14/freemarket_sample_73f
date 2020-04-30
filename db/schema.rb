@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_150401) do
     t.bigint "condition_id", null: false
     t.bigint "delivery_fee_id", null: false
     t.integer "prefecture_id", null: false
-    t.bigint "delivery_days_id", null: false
+    t.bigint "delivery_day_id"
     t.integer "price", null: false
     t.bigint "status_id", null: false
     t.bigint "user_id", null: false
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_150401) do
     t.index ["brand_name"], name: "index_items_on_brand_name"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["condition_id"], name: "index_items_on_condition_id"
-    t.index ["delivery_days_id"], name: "index_items_on_delivery_days_id"
+    t.index ["delivery_day_id"], name: "index_items_on_delivery_day_id"
     t.index ["delivery_fee_id"], name: "index_items_on_delivery_fee_id"
     t.index ["explanation"], name: "index_items_on_explanation"
     t.index ["name"], name: "index_items_on_name"
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_150401) do
   add_foreign_key "images", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "conditions"
-  add_foreign_key "items", "delivery_days", column: "delivery_days_id"
+  add_foreign_key "items", "delivery_days"
   add_foreign_key "items", "delivery_fees"
   add_foreign_key "items", "statuses"
   add_foreign_key "items", "users"
