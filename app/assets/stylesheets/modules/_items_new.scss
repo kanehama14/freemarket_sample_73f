@@ -8,16 +8,6 @@
   display: block;
 }
 
-html {
-  height: 100%;
-  max-width: 700px;  //ベースの横幅を変更
-  margin: 40px auto 0;
-}
-
-body {
-  height: 100%;
-}
-
 label {
   font-size: 14px;
   font-weight: 600;
@@ -47,6 +37,8 @@ hr {
 }
 
 .selmain {
+  max-width: 700px;
+  margin: 0 auto;
   background-color: rgb(255, 255, 255);
   &-form {
     &_box {
