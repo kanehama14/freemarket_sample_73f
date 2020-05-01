@@ -48,8 +48,8 @@
           .selname-function
             .selname-function_input
               -# %input.selexplanation-text{:placeholder => '1,000文字以内', :type => 'text'}
-              = form.text_area :explanation, :placeholder => '1,000文字以内', :class => 'selexplanation-text'
-          %p 0/1000
+              = form.text_area :explanation, :placeholder => '1,000文字以内', :class => 'selexplanation-text js-text'
+              %p.js-text-count 0/1000
           %p.selexplanation-error 入力してください
       %hr
       .selmain-form_box
