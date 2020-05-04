@@ -7,13 +7,13 @@ class UsersController < ApplicationController
   
   def new3
   end
+
   def new
   end
 
   def logout
   end
-
-  def create
+  
+  def credit_regist
   end
-
 end

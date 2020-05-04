@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # devise_for :users
-  root 'users#create'
+  root 'items#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :items do
     resources :purchases, only: [:index] do
@@ -9,11 +9,15 @@ Rails.application.routes.draw do
       end
     end
   end 
-  
   resources :users, only: [:new, :index, :edit, :update] do
+    collection do
+      get 'logout'
+      get 'credit_regist'
+      get 'new1'
+      get 'new2'
+      get 'new3'
+    end
     resources :items, only: [:new, :index, :show] do
-
     end
   end
-  
 end
