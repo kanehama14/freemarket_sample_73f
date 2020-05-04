@@ -1,0 +1,80 @@
+.o3appban {
+  background-image: url(http://furima.tokyo/assets/bg-appBanner-pict-ce684a4c4d5fa2da43c30a3839923591af75a642a3a906ad975065771ef3d72f.jpg);
+  padding: 100px 40px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  .o3inn {
+    color: #fff;
+    text-align: center;
+    .o3inti {
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+    .o3intex {
+      font-size: 35px;
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+    }
+    .o3inic {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 20px auto 0;
+    }
+  }
+}
+
+a.o3abtn {
+  width: 180px;
+  margin-right: 10px;
+}
+
+.o3footer {
+  padding: 60px 0;
+  color: #fff;
+  background-color: #272727;
+  text-align: center;
+  .o3conts {
+    max-width: 840px;
+    margin: 0 auto;
+    display: flex;
+    .o3cont {
+      display: flex;
+      flex-direction: column;
+      width: calc(1 / 3 * 100%);
+      margin: 0 2% 0 0;
+      .o3conhead {
+        margin: 0 0 20px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      ul {
+        li {
+          a.o3koumoku {
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            line-height: 32px;
+          }
+        }
+      }
+    }
+  }
+  p.o3footfoot {
+    font-size: 14px;
+  }
+}
+
+.o3logo {
+  max-width: 160px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+img.o3footimg {
+  width: 100%;
+  vertical-align: bottom;
+}
+
