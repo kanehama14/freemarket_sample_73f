@@ -63,6 +63,7 @@ hr {
         }
         &-function {
           margin-top: 16px;
+          overflow: auto;
           &_input {
             display: flex;
             flex-wrap: wrap;
@@ -70,7 +71,7 @@ hr {
               height: 150px;
               flex: 1 1 0%;
               border-width: 1px;
-              border-style: dashed;
+              // border-style: dashed;
               cursor:pointer;
               &-input {
                 width:100%;

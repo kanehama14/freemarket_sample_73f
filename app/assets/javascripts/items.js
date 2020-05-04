@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', ()=> {
                     id="item_images_attributes_${index}_src"><br>
                     <div class="js-remove">削除</div>
                   </div>`;
-    return html;
+                  return html;
   }
   // プレビュー用のimgタグを生成する関数
   const buildImg = (index, url)=> {

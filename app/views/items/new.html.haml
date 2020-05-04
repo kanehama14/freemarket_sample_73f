@@ -9,23 +9,21 @@
             %span.required 必須
           %p 最大10枚までアップロードできます
           #previews
-            - if @item.persisted?
-              - @item.images.each_with_index do |image, i|
-                = image_tag image.image.url, data: { index: i },class: 'tmpimg'
+            -# - if @item.persisted?
+            -#   - @item.images.each_with_index do |image, i|
+            -#     = image_tag image.image.url, data: { index: i },class: 'tmpimg'
           .selimage-function
             .selimage-function_input
               %label.clkarea#image-box
-                %input.clkarea-input{:type => 'file'}
-                = icon('fa', 'camera', class: 'clkarea-icon')
-                %p.clkarea-text クリックしてファイルをアップロード
+                -# = form.fields_for :images do |i|
+                -#   %input.clkarea-input.js-file{:type => 'file'}
+                -#   = icon('fa', 'camera', class: 'clkarea-icon')
+                -#   %p.clkarea-text クリックしてファイルをアップロード
 
                 = form.fields_for :images do |i|
-                  -# #previews
-                  -#   - if @item.persisted?
-                  -#     - @item.images.each_with_index do |image, i|
-                  -#       = image_tag image.image.url, data: { index: i },class: 'tmpimg'
                   .js-file_group{"data-index" => "#{i.index}"}
                     = i.file_field :image ,:class => 'js-file'
+                    -# = icon('fa', 'camera', class: 'clkarea-icon')
                     %br/
                     %span.js-remove 削除
 
