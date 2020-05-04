@@ -37,7 +37,6 @@
             %span.required 必須
           .selname-function
             .selname-function_input
-              -# %input.selname-text{:placeholder => '40文字まで', :type => 'text'}
               = form.text_field :name, :placeholder => '40文字まで', :class => 'selname-text'
           %p.selname-error 入力してください
         .selspace
@@ -47,7 +46,6 @@
             %span.required 必須
           .selname-function
             .selname-function_input
-              -# %input.selexplanation-text{:placeholder => '1,000文字以内', :type => 'text'}
               = form.text_area :explanation, :placeholder => '1,000文字以内', :class => 'selexplanation-text js-text'
               %p.js-text-count 0/1000
           %p.selexplanation-error 入力してください
@@ -62,6 +60,7 @@
             .seldetail-function_input
               = form.select :category_id, Category.all.map { |category|[category.name, category.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "selcategory-select" }
           %p.selcategory-error 選択してください
+        -# ↓カテゴリによって表示する内容、ひとまず条件なしで表示
         .selspace
           .seldetail-title
             %label サイズ
@@ -77,7 +76,6 @@
             %span.discretion 任意
           .seldetail-function
             .seldetail-function_input
-              -# %input.selbrand-text{:placeholder => '例）シャネル', :type => 'text'}
               = form.text_field :brand_name, :placeholder => '例）シャネル', :class => 'selbrand-text'
         .selspace
         .seldetail
@@ -97,8 +95,6 @@
             %span.required 必須
           .seldelovery-function
             .seldelovery-function_input
-              -# %select.seldelfee-select
-              -#   %option{:value => '0'}選択してください
               = form.select :delivery_fee_id, DeliveryFee.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "seldelfee-select" }
           %p.seldelfee-error 選択してください
         .selspace
@@ -108,8 +104,6 @@
             %span.required 必須
           .seldelovery-function
             .seldelovery-function_input
-              -# %select.selshiori-select
-              -#   %option{:value => '0'}選択してください
               = form.select :prefecture_id, Prefecture.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "selshiori-select" }
           %p.selshiori-error 選択してください
         .selspace
@@ -119,8 +113,6 @@
             %span.required 必須
           .seldelovery-function
             .seldelovery-function_input
-              -# %select.selshiday-select
-              -#   %option{:value => '0'}選択してください
               = form.select :delivery_day_id, DeliveryDay.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "selshiori-select" }
           %p.selshiday-error 選択してください
       %hr
@@ -132,7 +124,6 @@
             %span.required 必須
           .selprice-function
             .selprice-function_input
-              -# %input.selprice-text{:placeholder => '0', :type => 'text'}
               = form.text_field :price, :placeholder => '0', :class => 'selprice-text'
           %p.selprice-error 300以上9999999以下で入力してください
       %hr
