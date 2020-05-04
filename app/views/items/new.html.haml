@@ -1,5 +1,6 @@
 .selmain
   = form_with model: @item, class: :form, local: true do |form|
+    = render 'layouts/error_messages', model: form.object  
     %form.selmain-form
       .selmain-form_box
         .selimage
@@ -7,10 +8,10 @@
             %label 出品画像
             %span.required 必須
           %p 最大10枚までアップロードできます
-          -# #previews
-          -#   - if @item.persisted?
-          -#     - @item.images.each_with_index do |image, i|
-          -#       = image_tag image.image.url, data: { index: i },class: 'tmpimg'
+          #previews
+            - if @item.persisted?
+              - @item.images.each_with_index do |image, i|
+                = image_tag image.image.url, data: { index: i },class: 'tmpimg'
           .selimage-function
             .selimage-function_input
               %label.clkarea#image-box
@@ -19,10 +20,10 @@
                 %p.clkarea-text クリックしてファイルをアップロード
 
                 = form.fields_for :images do |i|
-                  #previews
-                    - if @item.persisted?
-                      - @item.images.each_with_index do |image, i|
-                        = image_tag image.image.url, data: { index: i },class: 'tmpimg'
+                  -# #previews
+                  -#   - if @item.persisted?
+                  -#     - @item.images.each_with_index do |image, i|
+                  -#       = image_tag image.image.url, data: { index: i },class: 'tmpimg'
                   .js-file_group{"data-index" => "#{i.index}"}
                     = i.file_field :image ,:class => 'js-file'
                     %br/
@@ -132,7 +133,7 @@
           .selsubmit-button
             = form.submit '出品する', :class => 'selsubmit-button_sell'
             -# %input.selsubmit-button_sell{type: "submit", value: "出品する"} 
-            = form.submit '下書きに保存', :class => 'selsubmit-button_save'
+            -# = form.submit '下書きに保存', :class => 'selsubmit-button_save'
             -# %input.selsubmit-button_save{type: "submit", value: "下書きに保存"} 
             
             -# ↓一覧画面にもどるではなく、全画面にもどるに修正したい
