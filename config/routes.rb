@@ -16,4 +16,11 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :categories, only: :index do
+    collection do
+      get 'category1'
+      get 'category2'
+      get 'category3'
+    end
+  end
 end
