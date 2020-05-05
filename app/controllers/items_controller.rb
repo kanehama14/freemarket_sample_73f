@@ -1,5 +1,10 @@
 class ItemsController < ApplicationController
+  before_action :index_category_set, only: :index
+
   def index
+    @images = Image.all
+    @categories = Category.where('ancestry IS NULL')
+    @items = Item.where(status: 1).order('created_at ASC')
   end
 
   def show
@@ -28,4 +33,20 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :explanation, :category_id, :size, :brand_name, :condition_id, :status_id, :delivery_fee_id, :prefecture_id, :delivery_day_id, :price, images_attributes: [:image]).merge(user_id: 1,status_id: @stauts) 
   end
 
+  def index_category_set
+    search_anc = Category.where('ancestry IS NULL')
+    array = []
+    search_anc.each do |i|
+      array << i[:id]
+    end
+    for num in array do
+      search_anc = Category.where('ancestry LIKE(?)', "#{num}%")
+      ids = []
+      search_anc.each do |i|
+        ids << i[:id]
+      end
+      items = Item.where(category_id: ids).order("id DESC").limit(10)
+      instance_variable_set("@cat_no#{num}", items)
+    end
+  end
 end
