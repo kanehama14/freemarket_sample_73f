@@ -1,0 +1,34 @@
+.categorymain
+  %h2.categrymainlist カテゴリー一覧
+  .catg1area.clearfix
+    - @parents.each do |parent|
+      .catgindex
+        = link_to '#', class: 'catg1box' do
+          = parent.name
+
+  .catgbox
+    = link_to '#', class: 'catgbox__title' do
+      レディース
+    .catgcontents
+      .catgcontent
+        = link_to '#', class: 'catgsubtitle' do
+          トップス
+      .catgitems.clearfix
+        .catgitem
+          = link_to '#', class: 'itemtitle' do
+            Tシャツ/カットソー(半袖/袖なし)
+        .catgitem
+          = link_to '#', class: 'itemtitle' do
+            Tシャツ/カットソー(七分/長袖)
+        .catgitem
+          = link_to '#', class: 'itemtitle' do
+            シャツ/ブラウス(半袖/袖なし)
+        .catgitem
+          = link_to '#', class: 'itemtitle' do
+            シャツ/ブラウス(七分/長袖)
+
+  -# - @parents.children.each do |child|
+  -#   =child.name
+
+  -# - @parents.children.each do |grandchild|
+  -#   =grandchild.name
