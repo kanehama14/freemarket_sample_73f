@@ -1,5 +1,6 @@
 .selmain
   = form_with model: @item, class: :form, local: true do |form|
+    = render 'layouts/error_messages', model: form.object  
     %form.selmain-form
       .selmain-form_box
         .selimage
@@ -7,28 +8,24 @@
             %label 出品画像
             %span.required 必須
           %p 最大10枚までアップロードできます
+          #previews
+            -# - if @item.persisted?
+            -#   - @item.images.each_with_index do |image, i|
+            -#     = image_tag image.image.url, data: { index: i },class: 'tmpimg'
           .selimage-function
             .selimage-function_input
               %label.clkarea#image-box
-                -# %input.clkarea-input{:type => 'file'}
-                -# = icon('fa', 'camera', class: 'clkarea-icon')
-                -# %p.clkarea-text クリックしてファイルをアップロード
-                -# #previews
-                -#   - if @item.persisted?
-                -#     - @item.images.each_with_index do |image, i|
-                -#       = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
+                -# = form.fields_for :images do |i|
+                -#   %input.clkarea-input.js-file{:type => 'file'}
+                -#   = icon('fa', 'camera', class: 'clkarea-icon')
+                -#   %p.clkarea-text クリックしてファイルをアップロード
+
                 = form.fields_for :images do |i|
                   .js-file_group{"data-index" => "#{i.index}"}
                     = i.file_field :image ,:class => 'js-file'
+                    -# = icon('fa', 'camera', class: 'clkarea-icon')
                     %br/
                     %span.js-remove 削除
-
-                -# = f.fields_for :images do |image|
-                -#   .js-file_group{"data-index" => "#{image.index}"}
-                -#     = image.file_field :src, class: 'js-file'
-                -#     %br/
-                -#     %span.js-remove 削除
-
 
           %p.selimage-error 入力してください
       %hr
@@ -39,7 +36,6 @@
             %span.required 必須
           .selname-function
             .selname-function_input
-              -# %input.selname-text{:placeholder => '40文字まで', :type => 'text'}
               = form.text_field :name, :placeholder => '40文字まで', :class => 'selname-text'
           %p.selname-error 入力してください
         .selspace
@@ -49,9 +45,8 @@
             %span.required 必須
           .selname-function
             .selname-function_input
-              -# %input.selexplanation-text{:placeholder => '1,000文字以内', :type => 'text'}
-              = form.text_area :explanation, :placeholder => '1,000文字以内', :class => 'selexplanation-text'
-          %p 0/1000
+              = form.text_area :explanation, :placeholder => '1,000文字以内', :class => 'selexplanation-text js-text'
+              %p.js-text-count 0/1000
           %p.selexplanation-error 入力してください
       %hr
       .selmain-form_box
@@ -64,6 +59,7 @@
             .seldetail-function_input
               = form.select :category_id, Category.all.map { |category|[category.name, category.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "selcategory-select" }
           %p.selcategory-error 選択してください
+        -# ↓カテゴリによって表示する内容、ひとまず条件なしで表示
         .selspace
           .seldetail-title
             %label サイズ
@@ -79,7 +75,6 @@
             %span.discretion 任意
           .seldetail-function
             .seldetail-function_input
-              -# %input.selbrand-text{:placeholder => '例）シャネル', :type => 'text'}
               = form.text_field :brand_name, :placeholder => '例）シャネル', :class => 'selbrand-text'
         .selspace
         .seldetail
@@ -99,8 +94,6 @@
             %span.required 必須
           .seldelovery-function
             .seldelovery-function_input
-              -# %select.seldelfee-select
-              -#   %option{:value => '0'}選択してください
               = form.select :delivery_fee_id, DeliveryFee.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "seldelfee-select" }
           %p.seldelfee-error 選択してください
         .selspace
@@ -110,8 +103,6 @@
             %span.required 必須
           .seldelovery-function
             .seldelovery-function_input
-              -# %select.selshiori-select
-              -#   %option{:value => '0'}選択してください
               = form.select :prefecture_id, Prefecture.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "selshiori-select" }
           %p.selshiori-error 選択してください
         .selspace
@@ -121,8 +112,6 @@
             %span.required 必須
           .seldelovery-function
             .seldelovery-function_input
-              -# %select.selshiday-select
-              -#   %option{:value => '0'}選択してください
               = form.select :delivery_day_id, DeliveryDay.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "selshiori-select" }
           %p.selshiday-error 選択してください
       %hr
@@ -134,7 +123,6 @@
             %span.required 必須
           .selprice-function
             .selprice-function_input
-              -# %input.selprice-text{:placeholder => '0', :type => 'text'}
               = form.text_field :price, :placeholder => '0', :class => 'selprice-text'
           %p.selprice-error 300以上9999999以下で入力してください
       %hr
@@ -143,7 +131,7 @@
           .selsubmit-button
             = form.submit '出品する', :class => 'selsubmit-button_sell'
             -# %input.selsubmit-button_sell{type: "submit", value: "出品する"} 
-            = form.submit '下書きに保存', :class => 'selsubmit-button_save'
+            -# = form.submit '下書きに保存', :class => 'selsubmit-button_save'
             -# %input.selsubmit-button_save{type: "submit", value: "下書きに保存"} 
             
             -# ↓一覧画面にもどるではなく、全画面にもどるに修正したい
