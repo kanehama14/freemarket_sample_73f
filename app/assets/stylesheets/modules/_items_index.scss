@@ -2,18 +2,21 @@
 @mixin ctnmarginauto() {
   // コンテンツ幅
   width: 1020px;
-  //「margin: 0 auto」がなぜか効かないため計算して中央寄せ
-  margin-left: calc((100vw - 1020px)/2);
+  margin: 0 auto; //がなぜか効かないため計算して中央寄せ
+  // margin-left: calc((100vw - 1020px)/2);
 }
 
 .mctnarea{
   margin: 0 auto;
 }
 
-a:link, a:visited, a:hover, a:active {
-  text-decoration: none;
+a:link {
+  color: red($color: #000000);;
 }
 
+a:visited  {
+  color: green($color: #000000);;
+}
 
 .salebtn{
   width: 130px;
@@ -43,7 +46,7 @@ a:link, a:visited, a:hover, a:active {
 .mainvisual{
   width: 100vw;
   height: 560px;
-  background-image: url(bg-mainVisual-pict_pc.jpg);
+  background-image: image-url('bg-mainVisual-pict_pc.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: top center;
@@ -140,7 +143,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .topmiddledl{
-  background-image: url(bg-topMiddleDl-pict.jpg);
+  background-image: image-url('bg-topMiddleDl-pict.jpg');
   background-size: 100%;
   width: 100vw;
   height: 50vh;
@@ -223,20 +226,46 @@ a:link, a:visited, a:hover, a:active {
     }
   }
   &-list{
+    height: 350px;
     margin: 0 auto;
     ul{
+      height: inherit;
       display: grid;
       grid-template-columns: 20% 20% 20% 20% 20%;
-      li{
+      .ctnlist-item {
         grid-column-end: auto;
-        height: 250px;
+        height: 300px;
         margin: 10px;
+        display: inline-block;
         background-color: #ffffff;
-        .ctnlist-item{
+        .ctnlist-item {
           &_img{
             width: 100%;
             height: 80%;
             object-fit: cover;
+          }
+          &_name {
+            background-color: #ffffff;
+            padding: 5px;
+            .ctn-item_name {
+              overflow: hidden;
+              line-height: 1.5;
+              font-size: 16px;
+              text-align: left;
+            }
+            .ctn-item_detail {
+              font-size: 16px;
+              .ctn-price_box {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                list-style: none;
+                .ctn-item_price {
+                  display: list-item;
+                }
+              }
+              
+            }
           }
         }
       }
@@ -245,7 +274,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .appbanner{
-  background-image: url(bg-appBanner-pict.jpg);
+  background-image: image-url('bg-appBanner-pict.jpg');
   background-size: 100%;
   width: 100vw;
   height: 300px;

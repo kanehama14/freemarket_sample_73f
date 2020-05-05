@@ -8,12 +8,15 @@
       padding: 0 50px;
       .after-purchase-hdr{
         padding: 30px 70px;
-        font-size: 18px;
         border-bottom: 1px solid #f5f5f5;
         background: #fffacd;
+        text-align: center;
+      }
+      .after-purchase-msg {
+        font-size: 18px;
         color: #ff4500;
         font-weight: bold;
-        text-align: center;
+        
       }
       .after-purchase-ttl{
         font-size: 22px;
