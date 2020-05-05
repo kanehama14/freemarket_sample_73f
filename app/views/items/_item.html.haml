@@ -1,0 +1,17 @@
+%li.ctnlist-item
+  -# - @cat_no1.each do |item|
+  -# -@items.each do |item| 
+  = link_to item_path(id: item.id) ,class: "ctnlist-item_link" do
+    - ft_image = item.images.first
+    = image_tag ft_image.image.url, class: "ctnlist-item_img"
+    .ctnlist-item_name
+      %h3.ctn-item_name
+        = item.name
+      .ctn-item_detail
+        %ul.ctn-price_box
+          %li.ctn-item_price
+            = item.price
+            円
+          %li.ctn-item_price
+            = icon('fa', 'star', class: 'clkarea-icon')
+            0
