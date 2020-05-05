@@ -10,24 +10,24 @@
           .selimage-function
             .selimage-function_input
               %label.clkarea#image-box
-                -# %input.clkarea-input{:type => 'file'}
-                -# = icon('fa', 'camera', class: 'clkarea-icon')
-                -# %p.clkarea-text クリックしてファイルをアップロード
-                -# #previews
-                -#   - if @item.persisted?
-                -#     - @item.images.each_with_index do |image, i|
-                -#       = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
+                %input.clkarea-input{:type => 'file'}
+                = icon('fa', 'camera', class: 'clkarea-icon')
+                %p.clkarea-text クリックしてファイルをアップロード
+                #previews
+                  - if @item.persisted?
+                    - @item.images.each_with_index do |image, i|
+                      = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
                 = form.fields_for :images do |i|
                   .js-file_group{"data-index" => "#{i.index}"}
                     = i.file_field :image ,:class => 'js-file'
                     %br/
                     %span.js-remove 削除
 
-                -# = f.fields_for :images do |image|
-                -#   .js-file_group{"data-index" => "#{image.index}"}
-                -#     = image.file_field :src, class: 'js-file'
-                -#     %br/
-                -#     %span.js-remove 削除
+                = form.fields_for :images do |image|
+                  .js-file_group{"data-index" => "#{image.index}"}
+                    = image.file_field :src, class: 'js-file'
+                    %br/
+                    %span.js-remove 削除
 
 
           %p.selimage-error 入力してください

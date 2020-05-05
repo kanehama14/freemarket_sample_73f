@@ -1,4 +1,4 @@
-%body.maim3
+%body.main3
   .page1
     .asec.apadmid.auwork
       .asec.aspacnone.aunav
@@ -9,10 +9,12 @@
           .asec.aupagecont
             .asec
               %form.asnone
+                = form_for @address do |f|
+                  = render "devise/shared/error_messages", resource: @address
                 .abox.aexlarge
                   .aboxin
                     %h1.asmall
-                      新規登録フォーム（STEP3)
+                      新規登録フォーム (STEP2)
                     .arfmgroup
                       .arow.abase
                         %label.aflabel
@@ -20,7 +22,7 @@
                         %span.forequire
                           必須
                       .selwrap
-                        %input.indef{placeholder: "例）12345678"}
+                        = f.text_field :postal_code, placeholder: "例）1234567"
                     .arfmgroup
                       .arow.abase
                         %label.aflabel
@@ -28,7 +30,7 @@
                         %span.forequire
                           必須
                       .selwrap
-                        %i.ibbot
+                        = fields.collection_select :prefecture_id, Prefecture.all, :id, :name,{prompt: "--",selected: session[:address]["prefecture_id"]}, {class: "prefecture_id"}
                         %select.seldef
                     .arfmgroup
                       .arow.abase
@@ -37,6 +39,7 @@
                         %span.forequire
                           必須
                       .selwrap
+                        = f.text_field :city, placeholder: "例）横浜市緑区"
                         %input.indef{placeholder: "例）横浜市緑区"}
                     .arfmgroup
                       .arow.abase
@@ -45,7 +48,7 @@
                         %span.forequire
                           必須
                       .selwrap
-                        %input.indef{placeholder: "例）青山1-1-1"}
+                        = f.text_field :house_number, placeholder: "例）青山1-1-1"
                     .arfmgroup
                       .arow.abase
                         %label.aflabel
@@ -53,7 +56,7 @@
                         %span.anyany
                           任意
                       .selwrap
-                        %input.indef{placeholder: "例）林ビル913"}
+                        = f.text_field :shouse_name, placeholder: "例）林ビル913"
                     .arfmgroup
                       .arow.abase
                         %label.aflabel

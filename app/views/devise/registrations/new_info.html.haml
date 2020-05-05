@@ -1,4 +1,4 @@
-%body.maim1
+%body.main2
   .page1
     .asec.apadmid.auwork
       .asec.aspacnone.aunav
@@ -9,40 +9,55 @@
           .asec.aupagecont
             .asec
               %form.asnone
+              = form_for @info do |f|
+                = render "devise/shared/error_messages", resource: @info
                 .abox.aexlarge
                   .aboxin
                     %h1.asmall
-                      新規登録フォーム（STEP1)
+                      新規登録フォーム STEP2
                     .arow.abase
                       %label.aflabel
-                        ニックネーム
+                        お名前（全角）
                       %span.forequire
                         必須
-                    %input.aintext.a12.autofocus.aurefield.auinfo{placeholder: "例）FURIMA太郎"}
+                    %input.definput{placeholder: "  例）山田"}
+                    %input.definput{placeholder: "  例）次郎"}
                     .arfmgroup
                       .arow.abase
                         %label.aflabel
-                          Eメールアドレス
-                      %input.aintext.a12.aurefield.aurefieldma.aurefieldema.aurepassvali{placeholder: "PC・携帯どちらでも可"}
-                    .arfmgroup
-                      .arow.abase
-                        %label.aflabel
-                          パスワード
+                          お名前カナ（全角）
                         %span.forequire
                           必須
-                      %input.aintext.afnormal.a12.aurefield.aurefieldma.aurefieldema.aurechange.acvrinfo{placeholder: "7文字以上の半角英数字"}
-                        .aain.aaininfo.aiimessage.astmini
-                          .aboxin.aacontainer
-                            =fa_icon "exclamation-triangle"
-                            パスワードの長さは最低7文字です。
+                      %input.definput{placeholder: "  例）ヤマダ"}
+                      %input.definput{placeholder: "  例）ジロウ"}
+                    .arfmgroup
                       .arow.abase
                         %label.aflabel
-                          もう一度パスワードを入力してください
-                      %input.aintext.afnormal.a12.aurefield.aurefieldma.aurefieldema{placeholder: "7文字以上の半角英数字"}
+                          生年月日
+                        %span.forequire
+                          必須
+                        %br        
+                        != sprintf(form.date_select(:birthday, prefix:'birthday',with_css_classes:'user-main__contents__form__group__item__input', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')
+                      .birthselect
+                        .selwrap
+                          %i.iabtn
+                          %select.seldef
+                        %span.mozi
+                          年
+                        .selwrap.swmonth
+                          %i.iabtn
+                          %select.seldef
+                        %span.mozi
+                          月
+                        .selwrap.swday
+                          %i.iabtn
+                          %select.seldef
+                        %span.mozi
+                          日  
                     %span.abtn.abtnnor.abtn12.abtnpri
                       %span.abtnin
                         %span.abtext
-                          STEP2へ進む
+                          STEP3へ進む
                     .arow
                       すでにアカウントをお持ちですか?
                       = link_to '#' do

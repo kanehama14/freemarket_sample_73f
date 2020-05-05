@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname, :first_name, :last_name, :first_name_kana, :last_name_kana, :birthday ,presence: true
+  validates :name, :first_name, :last_name, :first_name_kana, :last_name_kana, :birthday ,presence: true
   validates :first_name,:last_name,
             format: {
               with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/,
@@ -18,6 +18,6 @@ class User < ApplicationRecord
 
   has_many :cards
   has_many :items
-  has_many :addresses
+  has_one :addresses
   
 end
