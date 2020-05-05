@@ -85,7 +85,7 @@
     text-align: center;
     margin-top: 8px;
     .usericon {
-      background-image: url(mypage/user_icon_back_01.jpeg);
+      background-image: image-url('mypage/user_icon_back_01.jpeg');
       background-size: 100%;
       height: 200px;
       &-image img {
@@ -95,43 +95,6 @@
         border-radius: 50%;
         background-position: center center;
         margin-top: 30px;
-      }
-    }
-  }
-}
-
-// ====以下は共通部分へ============================
-.appbanner{
-  background-image: url(bg-appBanner-pict.jpg);
-  background-size: 100%;
-  width: 100vw;
-  height: 300px;
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  color:#ffffff;
-  .inner{
-    text-align: center;
-    &-title{
-      text-shadow: 0 0 5px rgba(0,0,0,0.4);
-      font-size: 24px;
-      font-weight: bold;
-      line-height: 1.4;
-    }
-    &-text{
-      font-size: 35px;
-      text-shadow: 0 0 5px rgba(0,0,0,0.4);
-      margin: 16px 0 0 60px;
-    }
-    &-icon{
-      margin: 0 60px;
-      img{
-        width: 200px;
-      }
-      .appdl{
-      }
-      .appdl:hover{
-        opacity: 0.6;
       }
     }
   }
