@@ -16,6 +16,7 @@ class ItemsController < ApplicationController
     @item = Item.new
     @item.images.new
     # @item.users << current_user
+    @category_parents = Category.where('ancestry IS NULL')
   end
 
   def create
