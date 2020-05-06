@@ -27,6 +27,11 @@
                     = i.file_field :image ,:class => 'js-file'
                     %br/
                     %span.js-remove 削除
+                -# 編集画面で新規画像を追加できるように添付ファイルフォームを追加
+                - if @item.persisted?
+                  .js-file_group{"data-index" => "#{@item.images.count}"}
+                    = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
+                  .js-remove 削除
 
           %p.selimage-error 入力してください
       %hr
