@@ -9,12 +9,14 @@
             %span.required 必須
           %p 最大10枚までアップロードできます
           #previews
-            -# - if @item.persisted?
-            -#   - @item.images.each_with_index do |image, i|
-            -#     = image_tag image.image.url, data: { index: i },class: 'tmpimg'
+            - if @item.persisted?
+              - @item.images.each_with_index do |image, i|
+                = image_tag image.image.url, data: { index: i },class: 'tmpimg'
+            
           .selimage-function
             .selimage-function_input
               %label.clkarea#image-box
+                -# いったんコメントアウト。余裕があれば下記のデザインにイメージ添付機能を当てはめたい
                 -# = form.fields_for :images do |i|
                 -#   %input.clkarea-input.js-file{:type => 'file'}
                 -#   = icon('fa', 'camera', class: 'clkarea-icon')
@@ -23,7 +25,6 @@
                 = form.fields_for :images do |i|
                   .js-file_group{"data-index" => "#{i.index}"}
                     = i.file_field :image ,:class => 'js-file'
-                    -# = icon('fa', 'camera', class: 'clkarea-icon')
                     %br/
                     %span.js-remove 削除
 
