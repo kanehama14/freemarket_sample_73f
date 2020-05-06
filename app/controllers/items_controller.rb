@@ -13,6 +13,8 @@ class ItemsController < ApplicationController
   end
 
   def new
+    # 登録ボタン名
+    @submit_btn = '出品する'
     @item = Item.new
     @item.images.new
     # @item.users << current_user
@@ -30,6 +32,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    # 登録ボタン名
+    @submit_btn = '更新する'
   end
 
   def update
