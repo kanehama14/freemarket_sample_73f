@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :index_category_set, only: :index
-  before_action :set_item, only: [:edit, :update]
+  before_action :set_item, only: [:edit, :update, :destroy]
 
 
   def index
@@ -46,6 +46,11 @@ class ItemsController < ApplicationController
     end
   end
   
+  def destroy
+    @item.destroy
+    redirect_to root_path
+  end
+
   private
   def item_params
     params

@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   has_one :address
-  has_many :images
+  has_many :images, dependent: :destroy
   belongs_to :category
   belongs_to :condition
   belongs_to :delivery_fee

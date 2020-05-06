@@ -143,3 +143,4 @@
             -# ↓一覧画面にもどるではなく、全画面にもどるに修正したい
             = link_to items_path, class: "selsubmit-button_back" do
               もどる
+            = link_to '削除', item_path(@item), method: :delete
