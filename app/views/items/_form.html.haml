@@ -9,12 +9,14 @@
             %span.required 必須
           %p 最大10枚までアップロードできます
           #previews
-            -# - if @item.persisted?
-            -#   - @item.images.each_with_index do |image, i|
-            -#     = image_tag image.image.url, data: { index: i },class: 'tmpimg'
+            - if @item.persisted?
+              - @item.images.each_with_index do |image, i|
+                = image_tag image.image.url, data: { index: i },class: 'tmpimg'
+            
           .selimage-function
             .selimage-function_input
               %label.clkarea#image-box
+                -# いったんコメントアウト。余裕があれば下記のデザインにイメージ添付機能を当てはめたい
                 -# = form.fields_for :images do |i|
                 -#   %input.clkarea-input.js-file{:type => 'file'}
                 -#   = icon('fa', 'camera', class: 'clkarea-icon')
@@ -23,7 +25,6 @@
                 = form.fields_for :images do |i|
                   .js-file_group{"data-index" => "#{i.index}"}
                     = i.file_field :image ,:class => 'js-file'
-                    -# = icon('fa', 'camera', class: 'clkarea-icon')
                     %br/
                     %span.js-remove 削除
 
@@ -57,7 +58,7 @@
             %span.required 必須
           .seldetail-function
             .seldetail-function_input
-              = form.select :category_id, Category.all.map { |category|[category.name, category.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "selcategory-select" }
+              = form.select :category_id, Category.all.map { |category|[category.name, category.id] }, { include_blank: "選択して下さい", selected: @item.category_id }, { class: "selcategory-select" }
           %p.selcategory-error 選択してください
         -# ↓カテゴリによって表示する内容、ひとまず条件なしで表示
         .selspace
@@ -83,7 +84,7 @@
             %span.required 必須
           .seldetail-function
             .seldetail-function_input
-              = form.select :condition_id, Status.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "selstatus-select" }
+              = form.select :condition_id, Status.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.condition_id }, { class: "selstatus-select" }
           %p.selstatus-error 選択してください
       %hr
       .selmain-form_box
@@ -94,7 +95,7 @@
             %span.required 必須
           .seldelovery-function
             .seldelovery-function_input
-              = form.select :delivery_fee_id, DeliveryFee.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "seldelfee-select" }
+              = form.select :delivery_fee_id, DeliveryFee.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.delivery_fee_id }, { class: "seldelfee-select" }
           %p.seldelfee-error 選択してください
         .selspace
         .seldelovery
@@ -103,7 +104,7 @@
             %span.required 必須
           .seldelovery-function
             .seldelovery-function_input
-              = form.select :prefecture_id, Prefecture.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "selshiori-select" }
+              = form.select :prefecture_id, Prefecture.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.prefecture_id }, { class: "selshiori-select" }
           %p.selshiori-error 選択してください
         .selspace
         .seldelovery
@@ -112,7 +113,7 @@
             %span.required 必須
           .seldelovery-function
             .seldelovery-function_input
-              = form.select :delivery_day_id, DeliveryDay.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "selshiori-select" }
+              = form.select :delivery_day_id, DeliveryDay.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.delivery_day_id }, { class: "selshiori-select" }
           %p.selshiday-error 選択してください
       %hr
       .selmain-form_box

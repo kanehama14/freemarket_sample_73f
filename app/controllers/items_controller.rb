@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
   private
   def item_params
     # 仮でユーザーIDを１にしている
-    params.require(:item).permit(:name, :explanation, :category_id, :size, :brand_name, :condition_id, :status_id, :delivery_fee_id, :prefecture_id, :delivery_day_id, :price, images_attributes: [:image]).merge(user_id: 1,status_id: @status) 
+    params.require(:item).permit(:name, :explanation, :category_id, :size, :brand_name, :condition_id, :status_id, :delivery_fee_id, :prefecture_id, :delivery_day_id, :price, images_attributes: [:image, :id]).merge(user_id: 1,status_id: @status) 
   end
 
   def index_category_set
