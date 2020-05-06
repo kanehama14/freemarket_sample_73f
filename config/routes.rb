@@ -20,4 +20,6 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :index, :show] do
     end
   end
+  resources :cards, only: [:new, :create] do
+  end
 end
