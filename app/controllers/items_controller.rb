@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
     @item = Item.new
     @item.images.new
     # @item.users << current_user
-    @category_parents = Category.where('ancestry IS NULL')
+    @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.name] }
   end
 
   def create
@@ -43,6 +43,17 @@ class ItemsController < ApplicationController
     end
   end
   
+  # 親カテゴリーが選択された際に動く(Ajax)
+  def get_category_children
+    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+  end
+
+  # 子カテゴリーが選択された際に動く(Ajax)
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
+  end
+
+
   private
   def item_params
     # 仮でユーザーIDを１にしている
