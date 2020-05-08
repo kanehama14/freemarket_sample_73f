@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :index_category_set, only: :index
+  before_action :set_item, only: [:edit, :update, :destroy]
+
 
   def index
     @images = Image.all
@@ -12,6 +14,8 @@ class ItemsController < ApplicationController
   end
 
   def new
+    # 登録ボタン名
+    @submit_btn = '出品する'
     @item = Item.new
     @item.images.new
     # @item.users << current_user
@@ -19,7 +23,7 @@ class ItemsController < ApplicationController
 
   def create
     # ステータスの状態を「出品中：１」にして登録する
-    @stauts = 1
+    @status = 1
     @item = Item.new(item_params)
     if @item.save
       redirect_to items_path
@@ -27,11 +31,55 @@ class ItemsController < ApplicationController
       render 'new'
     end
   end
+
+  def edit
+    # 登録ボタン名
+    @submit_btn = '更新する'
+  end
+
+  def update
+    # ステータスの状態を「出品中：１」にして登録する
+    @status = 1
+    if @item.update(item_params)
+      redirect_to item_path(@item), notice: '出品情報を更新しました'
+    else
+      render :edit
+    end
+  end
   
+  def destroy
+    if @item.destroy
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   private
   def item_params
-    # 仮でユーザーIDを１にしている
-    params.require(:item).permit(:name, :explanation, :category_id, :size, :brand_name, :condition_id, :status_id, :delivery_fee_id, :prefecture_id, :delivery_day_id, :price, images_attributes: [:image]).merge(user_id: 1,status_id: @stauts) 
+    params
+    .require(
+      :item
+    )
+    .permit(
+      :name, 
+      :explanation, 
+      :category_id, 
+      :size, 
+      :brand_name, 
+      :condition_id, 
+      :status_id, 
+      :delivery_fee_id, 
+      :prefecture_id, 
+      :delivery_day_id, 
+      :price, 
+      images_attributes: [:image, :_destroy, :id]
+    )
+    .merge(
+      # 仮でユーザーIDを１にしている
+      user_id: 1,
+      status_id: @status
+    ) 
   end
 
   def index_category_set
@@ -49,5 +97,9 @@ class ItemsController < ApplicationController
       items = Item.where(category_id: ids).order("id DESC").limit(10)
       instance_variable_set("@cat_no#{num}", items)
     end
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
