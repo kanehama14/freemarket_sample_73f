@@ -12,9 +12,12 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @o3item = Item.find(params[:id])
   end
 
   def new
+    # 登録ボタン名
+    @submit_btn = ['new','出品する']
     @item = Item.new
     @item.images.new
     # @item.users << current_user
@@ -22,12 +25,27 @@ class ItemsController < ApplicationController
 
   def create
     # ステータスの状態を「出品中：１」にして登録する
-    @stauts = 1
+    @status = 1
     @item = Item.new(item_params)
     if @item.save
       redirect_to items_path
     else
       render 'new'
+    end
+  end
+
+  def edit
+    # 登録ボタン名
+    @submit_btn = ['edit','更新する']
+  end
+
+  def update
+    # ステータスの状態を「出品中：１」にして登録する
+    @status = 1
+    if @item.update(item_params)
+      redirect_to item_path(@item), notice: '出品情報を更新しました'
+    else
+      render :edit
     end
   end
   
@@ -61,13 +79,40 @@ class ItemsController < ApplicationController
       )
     else
       redirect_to product_path(@product)
+
+  def destroy
+    if @item.destroy
+      redirect_to root_path
+    else
+      render :edit
     end
   end
 
   private
   def item_params
-    # 仮でユーザーIDを１にしている
-    params.require(:item).permit(:name, :explanation, :category_id, :size, :brand_name, :condition_id, :status_id, :delivery_fee_id, :prefecture_id, :delivery_day_id, :price, images_attributes: [:image]).merge(user_id: 1,status_id: @stauts) 
+    params
+    .require(
+      :item
+    )
+    .permit(
+      :name, 
+      :explanation, 
+      :category_id, 
+      :size, 
+      :brand_name, 
+      :condition_id, 
+      :status_id, 
+      :delivery_fee_id, 
+      :prefecture_id, 
+      :delivery_day_id, 
+      :price, 
+      images_attributes: [:image, :_destroy, :id]
+    )
+    .merge(
+      # 仮でユーザーIDを１にしている
+      user_id: 1,
+      status_id: @status
+    ) 
   end
 
   def set_item

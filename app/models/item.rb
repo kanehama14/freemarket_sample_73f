@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   has_one :address
-  has_many :images
+  has_many :images, dependent: :destroy
   belongs_to :category
   belongs_to :condition
   belongs_to :delivery_fee
@@ -20,4 +20,6 @@ class Item < ApplicationRecord
   # validates :size, presence: true
 
   accepts_nested_attributes_for :images, allow_destroy: true
+
+  mount_uploader :image, ImageUploader
 end
