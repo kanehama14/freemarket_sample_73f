@@ -1,11 +1,10 @@
 .canema
   .canema-title
     クレジットカード情報照会
-  = image_tag "visa-card.png"
   .canema-content-title
     カード番号
-  %input{type: "text", class: "card-wrapper__input-text disabled", disabled: true, value: "**** **** **** " + "#{@default_card_information[:number].last(4)}"}
+  %input{type: "text", class: "canema-content-text disabled", disabled: true, value: "**** **** **** " + "#{@card.last4}"}
     .canema-content-title
       有効期限
-    %input{type: "text", class: "canema-content-text input_half disabled", disabled: true, value: @default_card_information[:exp_month]}
-    %input{type: "text", class: "canema-content-text input_half disabled", disabled: true, value: @default_card_information[:exp_year]}
+    %input{type: "text", class: "canema-content-text input_half disabled", disabled: true, value: @card[:exp_month]}
+    %input{type: "text", class: "canema-content-text input_half disabled", disabled: true, value: @card[:exp_year]}

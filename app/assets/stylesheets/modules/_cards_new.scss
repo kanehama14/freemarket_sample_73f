@@ -1,6 +1,7 @@
 .canema {
   max-width: 700px;
   margin: 0 auto;
+  padding: 30px;
   background-color: rgb(255, 255, 255);
   &-title {
     text-align: center;
@@ -32,17 +33,11 @@
   .submit_btn{
     color: white;
     margin-top: 30px;
-    margin-bottom: 30px;
     border-radius: 0px;
     background-color: red;
     border: 0px solid #000;
   }
   .disabled{
     background-color: #f0f0f0;
-  }
-  img{
-    margin-top: 20px;
-    margin-left: 130px;
-    width: 200px;
   }
 }

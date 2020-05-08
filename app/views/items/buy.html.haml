@@ -1,0 +1,59 @@
+.body
+  .purchase-main
+    .purchase-box
+      %h2.purchase-ttl
+        購入内容の確認
+      .item-cont
+        .image
+          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", size: '100x100', class: 'item__image'
+        .details
+          .item-name
+            = "商品の名前"
+            %p.price
+              = @item.price
+              円
+              %span.tax (税込) 送料込み
+
+      .price-cont
+        .price-left
+          支払い金額
+        .price-right
+          = @item.price
+          円
+
+      .payment-cont
+        %h3.payment-left
+          .payment-method
+            支払い方法
+            .card-info
+            -# - if Card.where(user: current_user).exists?
+            - if Card.where(user: 1).exists?
+              .card-num
+                = "**** **** **** " + "#{@card.last4}"
+            - else
+              = link_to new_card_path, class: "link-blue" do
+                登録して下さい
+            .expiration-date
+              有効期限
+              = @card.exp_month
+              = @card.exp_year
+        .payment-right
+          = link_to "変更する", "#", calss:"update-btn"
+          
+            
+      .deliveryDestination-cont
+        %h3.deliveryDestination-left
+          配送先
+          .postalcode
+            〒123-4567
+          .address
+            東京都新宿区西新宿2丁目8-1
+          .username
+            山田太郎
+        .deliveryDestination-right
+          = link_to "変更する", "#", calss:"update-btn"
+
+      .purchase-btn
+        = link_to pay_item_path(@item), class: "purchase-btn" do
+          購入を確定する
+        -# %input.submit-btn{type: 'submit', name: 'purchase-btn', value: '購入する'}

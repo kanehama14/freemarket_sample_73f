@@ -1,8 +1,10 @@
 .body
   .purchase-main
     .purchase-box
-      %h2.purchase-ttl
-        購入内容の確認
+      .after-purchase-hdr
+        %span.after-purchase-msg 発送をお待ちください
+      %h2.after-purchase-ttl
+        購入が完了しました
       .item-cont
         .image
           = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", size: '100x100', class: 'item__image'
@@ -10,17 +12,19 @@
           .item-name
             = "商品の名前"
             %p.price
-              = "¥1,000"
+              = @item.price
+              円
               %span.tax (税込) 送料込み
 
       %form.price-cont
         .price-left
           支払い金額
         .price-right
-          = "¥1,000"
+          = @item.price
+          円
 
       .payment-cont
-        %h3.payment-left
+        .payment-left
           .payment-method
             支払い方法
             .card-info
@@ -29,8 +33,6 @@
               = "************1234"
             .expiration-date
               = "有効期限 01/12"
-        .payment-right
-          = link_to "変更する", "#", calss:"update-btn"
           
             
       .deliveryDestination-cont
@@ -42,8 +44,6 @@
             東京都新宿区西新宿2丁目8-1
           .username
             山田太郎
-        .deliveryDestination-right
-          = link_to "変更する", "#", calss:"update-btn"
-
-      .purchase-btn
-        %input.submit-btn{type: 'submit', name: 'purchase-btn', value: '購入する'}
+        
+      .purchase-btn_top
+        = link_to "トップページへ戻る", root_path, class:"afterpurchase-btn"
