@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @o3item = Item.find(params[:id])
   end
 
   def new
