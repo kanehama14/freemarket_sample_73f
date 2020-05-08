@@ -58,24 +58,9 @@
             %span.required 必須
           .seldetail-function
             .seldetail-function_input
-              = form.select :category_id, Category.all.map { |category|[category.name, category.id] }, { include_blank: "選択して下さい", selected: @item.category_id }, { class: "selcategory-select" }
-              -# = form.select :category_id, Category.all.map { |category|[category.name, category.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "selcategory-select" }
-              = form.select :parent_id, @category_parents.map{ |category|[category.name, category.id] }, { include_blank: "選択して下さい", selected: 0 }, { class: "selcategory-select", id: "parent_category" }
-              -# = f.collection_select :category_ids, @category_parents.map{ |category|[category.name, category.id] }, :id, :name, {include_blank: "選択して下さい"}, class: "selcategory-select", id: "parent-form", name: 'item[category_ids][]'
-
-          -# .seldetail-function#children
-          -#   .seldetail-function_input
-          -#     = f.select :child_id, options_for_select(@category_children_array.map{|b|[b.name, b.id, {data:{category: b.id}}]}, {include_blank: "選択して下さい", selected: @item.category.parent.id}),{}, {class: "selcategory-select", id: "child_category"}
-          -# .seldetail-function#grandchildren
-          -#   .seldetail-function_input
-          -#     = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b|[b.name, b.id, {data:{category: b.id}}]}, {include_blank: "選択して下さい", selected: @item.category.id}),{}, {class: "selcategory-select", id: "grandchild_category"}
-
-          -# .seldetail-function#children
-          -#   .seldetail-function_input
-          -#     = f.select :child_id, {}, :id, :name, {include_blank: "選択して下さい"),{}, {class: "selcategory-select", id: "child_category"}
-          -# .seldetail-function#grandchildren
-          -#   .seldetail-function_input
-          -#     = f.select :category_id, {}, :id, :name, {include_blank: "選択して下さい"),{}, {class: "selcategory-select", id: "grandchild_category"}
+              = form.select :category, @category_parents, { include_blank: "選択して下さい", selected: @item.category_id }, { class: "selcategory-select", id: 'parent_category' }
+              -# = form.select :category, @category_child, { include_blank: "選択して下さい", selected: @item.category_id }, { class: "selcategory-select", id: 'child_category' }
+              -# = form.select :category, @category_grandchild, { include_blank: "選択して下さい", selected: @item.category_id }, { class: "selcategory-select", id: 'grandchild_category' }
 
           %p.selcategory-error 選択してください
         -# ↓カテゴリによって表示する内容、ひとまず条件なしで表示
