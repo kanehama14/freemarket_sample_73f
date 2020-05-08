@@ -16,7 +16,7 @@ $(function(){
                           <select>
                         </div>
                       </div>`;
-    $('.seldetail').append(childSelectHtml);
+    $('.seldetail.categ').append(childSelectHtml);
   }
   // 孫カテゴリーの表示作成
   function appendGrandchidrenBox(insertHTML){
@@ -29,7 +29,7 @@ $(function(){
                                 </select>
                               </div>
                             </div>`;
-    $('.seldetail').append(grandchildSelectHtml);
+    $('.seldetail.categ').append(grandchildSelectHtml);
   }
   // 親カテゴリー選択後のイベント
   $('#parent_category').on('change', function(){
@@ -67,7 +67,7 @@ $(function(){
     }
   });
   // 子カテゴリー選択後のイベント
-  $('.seldetail').on('change', '#child_category', function(){
+  $('.seldetail.categ').on('change', '#child_category', function(){
     var childId = $('#child_category option:selected').data('category'); //選択された子カテゴリーのidを取得
     if (childId != "選択して下さい"){ //子カテゴリーが初期値でないことを確認
       $.ajax({
