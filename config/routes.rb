@@ -8,6 +8,11 @@ Rails.application.routes.draw do
         get 'done', to: 'purchases#done'
       end
     end
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+      # get 'get_size', defaults: { format: 'json' }
+    end
   end 
   resources :users, only: [:new, :index, :edit, :update] do
     collection do
