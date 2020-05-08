@@ -1,3 +1,4 @@
+- console
 .main
   .content
     .left
@@ -9,17 +10,11 @@
           .item-body
             %ul
               %li
-                - @item.images.each do |img|
-                  = image_tag img.image.url
-                  
-                -# = image_tag src="https://www.ashikagagourmet.com/wp-content/uploads/2013/05/cc5990f7bf95e48d9eeb9f9d6629728e-550x400.jpg"
-                %ul
-                  %li
-                    = image_tag src="https://tyoumiryouuriba.up.seesaa.net/image/IMG_4686.JPG", size: "75x75"
-                  %li
-                    = image_tag src="https://www.ashikaga-kankou.jp/files/topics/276_ext_08_0.jpg", size: "75x75"
-                  %li
-                    = image_tag src="https://media-cdn.tripadvisor.com/media/photo-s/0e/77/86/65/caption.jpg", size: "75x75"
+                = image_tag @item.images.first.image.url, class: "o3mainimg"
+                %ul.o3imglists
+                  - @item.images.each do |img|
+                    %li.o3img10
+                      = image_tag img.image.url, class: "o3imglist"
           .item-price
             %span.o3detail
               = @item.price
@@ -44,15 +39,63 @@
                   %th
                     カテゴリー
                   %td
-                    = render "category"
-                    -# %a
-                    -#   = link_to @item.category.name, '#'
+                    -# = @item.category.name
                     -# %br
-                    -# %a
-                    -# = link_to "ジャケット/アウター", '#'
+                    -# = @item.category.children
+                    -# = @item.category.children.name
+                    -# = @item.category.child_ids
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    -# = @item.category.name
                     -# %br
-                    -# %a
-                    -# = link_to "ノーカラージャケット", '#'
+                    -# - @item.category.children.each do |child_category|
+                    -#   = child_category.name
+                    -#   %br
+                    -#   - child_category.children.each do |grand_category|
+                    -#     = grand_category.name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    = @item.category.parent.parent.name
+                    %br
+                    = @item.category.parent.name
+                    %br
+                    = @item.category.name
+
+
+
+
+
+
                 %tr
                   %th
                     ブランド
@@ -77,8 +120,7 @@
                   %th
                     配送元の地域
                   %td
-                    %a
-                      = @item.prefecture.name
+                    = @item.prefecture.name
                 %tr
                   %th
                     発送日の目安
