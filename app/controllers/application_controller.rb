@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     ## profile_imageはカラムとしては用意していますがサインアップ時には必要ないので除いています。
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :first_name, :last_name, :first_name_kana, :last_name_kana, :birthday])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :first_name, :last_name, :first_name_kana, :last_name_kana, :birthday])
   end
 
 end
