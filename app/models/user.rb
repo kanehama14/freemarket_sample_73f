@@ -18,6 +18,6 @@ class User < ApplicationRecord
 
   has_many :cards
   has_many :items
-  has_one :addresses
+  has_one :address
   
 end
