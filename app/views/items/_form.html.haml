@@ -142,6 +142,6 @@
             -# %input.selsubmit-button_save{type: "submit", value: "下書きに保存"} 
             - if @submit_btn[0] == 'edit'
               = link_to '商品を削除する', item_path, method: :delete , :class => 'selsubmit-button_delete'
-            -# ↓詳細画面にもどるに修正
-            = link_to item_path, class: "selsubmit-button_back" do
+            -# 前回画面にもどる
+            = link_to :back, class: "selsubmit-button_back" do
               もどる
