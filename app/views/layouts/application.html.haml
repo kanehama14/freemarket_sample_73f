@@ -9,8 +9,8 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    - if (request.path != new_user_path) && (request.path != new1_users_path) && (request.path != new2_users_path) && (request.path != new3_users_path)
+    - if (request.path != new_user_path) &&(request.path != new_user_registration_path) && (request.path != addresses_path)
       = render "layouts/header"
     = yield
-    - if (request.path != new_user_path) && (request.path != new1_users_path) && (request.path != new2_users_path) && (request.path != new3_users_path)
+    - if (request.path != new_user_path) &&(request.path != new_user_registration_path) && (request.path != addresses_path)
       = render "layouts/footer"

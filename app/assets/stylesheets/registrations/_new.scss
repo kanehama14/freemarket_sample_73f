@@ -1,0 +1,222 @@
+.main1 {
+  font-size: 13px;
+  line-height: 19px;
+  color: #111;
+  font-family: "Hiragino Kaku Gothic Pro W3","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+  padding: 0;
+  background: #fff;
+  min-height: 100%;
+  box-sizing: border-box;
+  display: block;
+  width: 100vw;
+  height: 80vh;
+  .page1 {
+    .asec{
+      margin-bottom: 22px;
+      .aspacnone {
+        margin-bottom: 0;
+        .atexcen {
+          text-align: center;
+        }
+        .aspecmed {
+          margin-bottom: 18px;
+          a {
+            text-decoration: none;
+            color: #0066c0;
+            cursor: pointer;
+            img {
+              background-position: -5px -130px;
+              height: 50px;
+              width: 100px;
+              background-size: 400px 750px;
+              background-repeat: no-repeat;
+              display: inline-block;
+              vertical-align: top;
+            }
+          }
+        }
+      }
+      .centersec {
+        width: 700px;
+        margin: auto;
+        .mainsec {
+          .aupagecont {
+            width: 350px;
+            margin: 0 auto;
+            .asec {
+              margin-bottom: 0;
+              .asnone {
+                margin-bottom: 0;
+                .aexlarge {
+                  margin-bottom: 26px;
+                }
+                .abox {
+                  display: block;
+                  border-radius: 4px;
+                  border: 1px #ddd solid;
+                  background-color: #fff;
+                  .aboxin {
+                    border-radius: 4px;
+                    position: relative;
+                    padding: 14px 18px;
+                    .asmall {
+                      margin-bottom: 10px;
+                    }
+                    h1 {
+                      font-weight: 400;
+                      font-size: 24px;
+                      line-height: 1.2;
+                    }
+                    .abase {
+                      margin-bottom: 14px;
+                      display: flex;
+                      label {
+                        display: block;
+                        padding-left: 2px;
+                        padding-bottom: 2px;
+                        font-weight: 700;
+                        margin-right: 10px;
+                      }
+                      .form_require {
+                        background: #ea352d;
+                        margin: 0 0 0 8px;
+                        padding: 1px 4px;
+                        border-radius: 2px;
+                        color: #fff;
+                        font-size: 12px;
+                        vertical-align: top;
+                      }
+                    }
+                    .a12 {
+                      width: 95%;
+                      margin-right: 0;
+                    }
+                    .aintext {
+                      background-color: #fff;
+                      height: 20px;
+                      padding: 3px 7px;
+                      line-height: normal;
+                    }
+                    .arow {
+                      width: 100%;
+                    }
+                    .arow:before {
+                      display: table;
+                      content: "";
+                      line-height: 0;
+                      font-size: 0;
+                    }
+                    .arow:after {
+                      display: table;
+                      content: "";
+                      line-height: 0;
+                      font-size: 0;
+                    }
+                    .arfmgroup {
+                      .abase {
+                        margin-bottom: 14px;
+                      }
+                      .arow {
+                        width: 100%;
+                        .field {
+                          display: block;
+                          padding-left: 2px;
+                          padding-bottom: 2px;
+                          font-weight: 700;
+                        }
+                        .a12 {
+                          width: 95%;
+                          margin-right: 0;
+                        }
+                      }
+                    }
+                    .arfmgroup {
+                      .abase {
+                        margin-bottom: 14px;
+                        label {
+                          display: block;
+                          padding-left: 2px;
+                          padding-bottom: 2px;
+                          font-weight: 700;
+                        }
+                        .a12 {
+                          width: 95%;
+                          margin-right: 0;
+                        }
+                        .aintext {
+                          background-color: #fff;
+                          height: 20px;
+                          padding: 3px 7px;
+                          line-height: normal;
+                        }
+                        .aiimessage {
+                          display: inline-block;
+                        }
+                        .aain {
+                          border: none;
+                          vertical-align: middle;
+                          background-color: transparent;
+                          .aacontainer {
+                            padding: 0;
+                          }
+                        }
+                        .astmini {
+                          margin-top: 6px;
+                        }
+                        .aaininfo {
+                          .aacontainer {
+                            padding-left: 16px;
+                            color: #2b2b2b;
+                            .fa {
+                              color: red;
+                            }
+                          }
+                        }
+                      }
+                    }
+                    .abtnin{
+                      .actions{
+                        .abtn{
+                          display: block;
+                          width: 100%;
+                          font-size: 14px;
+                          background-color: #ea352d;
+                          color: white;
+                          line-height: 40px;
+                          text-align: center;
+                          margin-top: 32px;
+                        }
+                      }
+                    }
+                    
+                    .arow {
+                      margin-top: 40px;
+                      width: 100%;
+                      margin-bottom: 10px;
+                      a {
+                        position: relative;
+                        padding-right: 9px;
+                        text-decoration: none;
+                        color: #0066c0;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.aaininfo {
+  .aacontainer {
+    padding-left: 16px;
+    color: #2b2b2b;
+    .fa {
+      color: red;
+    }
+  }
+}
