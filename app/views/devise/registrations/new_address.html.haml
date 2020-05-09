@@ -8,72 +8,53 @@
         .asec.mainsec
           .asec.aupagecont
             .asec
-              %form.asnone
-                = form_for @address do |f|
+              .asnone
+                = form_for(@address) do |f|
                   = render "devise/shared/error_messages", resource: @address
-                .abox.aexlarge
-                  .aboxin
-                    %h1.asmall
-                      新規登録フォーム (STEP2)
-                    .arfmgroup
-                      .arow.abase
-                        %label.aflabel
-                          送付先郵便番号
-                        %span.forequire
-                          必須
-                      .selwrap
+                  .abox.aexlarge
+                    .aboxin
+                      %h1.asmall
+                        新規登録フォーム (STEP2)
+                      .arfmgroup
+                        .arow.abase
+                          .field
+                          = f.label :postal_code,"送付先郵便番号"
+                          %span.forequire
+                            必須
                         = f.text_field :postal_code, placeholder: "例）1234567"
-                    .arfmgroup
-                      .arow.abase
-                        %label.aflabel
-                          送付先都道府県
-                        %span.forequire
-                          必須
-                      .selwrap
-                        = fields.collection_select :prefecture_id, Prefecture.all, :id, :name,{prompt: "--",selected: session[:address]["prefecture_id"]}, {class: "prefecture_id"}
-                        %select.seldef
-                    .arfmgroup
-                      .arow.abase
-                        %label.aflabel
-                          送付先市区町村
-                        %span.forequire
-                          必須
-                      .selwrap
+                      .arfmgroup
+                        .arow.abase
+                          = f.label :prefecture_id,"送付先都道府県"
+                          %span.forequire
+                            必須
+                        = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "--"
+                      .arfmgroup
+                        .arow.abase
+                          = f.label :city,"送付先市区町村"
+                          %span.forequire
+                            必須
                         = f.text_field :city, placeholder: "例）横浜市緑区"
-                        %input.indef{placeholder: "例）横浜市緑区"}
-                    .arfmgroup
-                      .arow.abase
-                        %label.aflabel
-                          送付先番地
-                        %span.forequire
-                          必須
-                      .selwrap
+                      .arfmgroup
+                        .arow.abase
+                          = f.label :house_number,"送付先番地"
+                          %span.forequire
+                            必須
                         = f.text_field :house_number, placeholder: "例）青山1-1-1"
-                    .arfmgroup
-                      .arow.abase
-                        %label.aflabel
-                          送付先建物名、部屋番号
-                        %span.anyany
-                          任意
-                      .selwrap
-                        = f.text_field :shouse_name, placeholder: "例）林ビル913"
-                    .arfmgroup
-                      .arow.abase
-                        %label.aflabel
-                          送付先電話番号
-                        %span.anyany
-                          任意
-                      .selwrap
-                        %input.indef{placeholder: "例）02099999999"}
-                    %span.abtn.abtnnor.abtn12.abtnpri
-                      %span.abtnin
-                        %span.abtext
-                          新規登録を完了する
-                    .arow
-                      新規登録を完了することにより、当社の利用規約およびプライバシー規約に同意したものとみなされます。
-
-
-
-
-
-
+                      .arfmgroup
+                        .arow.abase
+                          = f.label :house_name,"送付先建物名、部屋番号"
+                          %span.anyany
+                            任意
+                        = f.text_field :house_name, placeholder: "例）林ビル913"
+                      /追加実装の際に再検討
+                      /.arfmgroup
+                      /  .arow.abase
+                      /    = f.label :phone_number,"送付先電話番号"
+                      /    %span.anyany
+                      /      任意
+                      /    = f.text_field :phone_number, placeholder: "例）02099999999"
+                      .abtnin
+                        .actions
+                          = f.submit "新規登録を完了する",class: "abtn"
+                      .arow
+                        新規登録を完了することにより、当社の利用規約およびプライバシー規約に同意したものとみなされます。

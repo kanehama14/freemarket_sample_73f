@@ -8,7 +8,7 @@
 .caxl {
   width: 700px;
   margin: 0px auto;
-  padding: 8px 0px 0px;
+  padding: 8px 0px;
 }
 
 .seou {
@@ -110,6 +110,8 @@ button {
   -webkit-box-pack: justify;
   justify-content: space-between;
   margin-top: 8px;
+  -webkit-align-items: center;
+  align-items: center;
 }
 
 .jezi {
@@ -171,11 +173,11 @@ button {
 
 .ftie {
   display: flex;
-}
-
-.davj {
+  justify-content: space-between;
   text-align: center;
 }
+
+
 
 .hleh {
   background-color: rgb(234, 53, 45);
@@ -190,11 +192,6 @@ button {
   padding: 8px 10px;
 }
 
-.flxl {
-  text-align: center;
-  margin-left: 11px;
-}
-
 .davx {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 149, 238);
@@ -207,4 +204,5 @@ button {
   border-radius: 4px;
   padding: 8px 10px;
   transition: all 0.3s ease-out 0s;
+  margin-left: 11px;
 }

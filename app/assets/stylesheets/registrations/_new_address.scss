@@ -185,48 +185,22 @@
                         }
                       }
                     }
-                    .abtn12 {
-                      width: 100%;
-                      margin-top: 20px;
-                    }
-                    .abtnpri {
-                      background: #f0c14b;
-                      border-color: #a88734 #9c7e31 #846a29;
-                      color: #111;
-                      .abtnin {
-                        box-shadow: 0 1px 0 rgba(255,255,255,.4) inset;
-                        background: linear-gradient(to bottom,#f7dfa5,#f0c14b);
-                        display: block;
-                        position: relative;
-                        overflow: hidden;
-                        height: 29px;
-                        border-radius: 2px;
-                        .abtext {
-                          background-color: transparent;
-                          border: 0;
+
+                    .abtnin{
+                      .actions{
+                        .abtn{
                           display: block;
-                          font-family: "Hiragino Kaku Gothic Pro W3","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
-                          font-size: 13px;
-                          line-height: 29px;
-                          margin: 0;
-                          outline: 0;
-                          padding: 0 10px 0 11px;
+                          width: 100%;
+                          font-size: 14px;
+                          background-color: #ea352d;
+                          color: white;
+                          line-height: 40px;
                           text-align: center;
+                          margin-top: 32px;
                         }
                       }
                     }
-                    .abtn {
-                      border-radius: 3px;
-                      border-style: solid;
-                      border-width: 1px;
-                      cursor: pointer;
-                      display: inline-block;
-                      padding: 0;
-                      text-align: center;
-                      text-decoration: none!important;
-                      vertical-align: middle;
-                      margin-top: 30px;
-                    }
+                    
                     .arow {
                       margin-top: 10px;
                       width: 100%;
