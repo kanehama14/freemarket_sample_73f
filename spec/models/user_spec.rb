@@ -1,10 +1,16 @@
 require 'rails_helper'
 describe User do
   describe '#create' do
-    # it "nicknameがない場合は登録できないこと" do
-    #   user = User.new(nickname: "test", email: "kkk@gmail.com", password: "00000000", password_confirmation: "00000000")
-    #  user.valid?
-    #  expect(user.errors[:nickname]).to include("can't be blank")
-    # end
+    it "nameがない場合は登録できないこと" do
+      user = FactoryBot.build(:user, name: "")
+      user.valid?
+      expect(user.errors[:name]).to include("を入力してください")
+    end
+    
+    #it "全ての必須項目が入力されている場合出品できる" do
+    #  item = FactoryBot.build(:item)
+    #  expect(item).to be_valid
+    #end
+
   end
 end

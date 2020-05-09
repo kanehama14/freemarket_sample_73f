@@ -2,5 +2,4 @@
   = render 'users/side-navbar'
   .logoutcont
     .logoutcont-btn
-      = link_to "" do
-        ログアウト
+      = link_to "ログアウト", destroy_user_session_path, method: :delete
