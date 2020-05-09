@@ -5,18 +5,18 @@
       .top
         .item
           %h2.item-name
-            = @o3item.name
+            = @item.name
           .item-body
             %ul
               %li
-                = image_tag @o3item.images.first.image.url, class: "o3mainimg"
+                = image_tag @item.images.first.image.url, class: "o3mainimg"
                 %ul.o3imglists
-                  - @o3item.images.each do |img|
+                  - @item.images.each do |img|
                     %li.o3img10
                       = image_tag img.image.url, class: "o3imglist"
           .item-price
             %span.o3detail
-              = @o3item.price
+              = @item.price
               %span.o3en
                 円
             .item-price_detail
@@ -25,7 +25,7 @@
               %span.o3komi
                 送料込み
           .idetail
-            = @o3item.explanation
+            = @item.explanation
           .table
             %table
               %tbody
@@ -33,46 +33,48 @@
                   %th
                     出品者
                   %td
-                    = @o3item.user.name
+                    = @item.user.name
                 %tr
                   %th
                     カテゴリー
                   %td
-                    = @o3item.category.parent.parent.name
+                    = @item.category.parent.parent.name
                     %br
-                    = @o3item.category.parent.name
+                    = @item.category.parent.name
                     %br
-                    = @o3item.category.name
+                    = @item.category.name
                 %tr
                   %th
                     ブランド
                   %td
-                    = @o3item.brand_name
+                    = @item.brand_name
                 %tr
                   %th
                     商品のサイズ
                   %td
-                    = @o3item.size
+                    = @item.size
                 %tr
                   %th
                     商品の状態
                   %td
-                    = @o3item.condition.name
+                    = @item.condition.name
                 %tr
                   %th
                     配送料の負担
                   %td
-                    = @o3item.delivery_fee.name
+                    = @item.delivery_fee.name
                 %tr
                   %th
                     配送元の地域
                   %td
-                    = @o3item.prefecture.name
+                    = @item.prefecture.name
                 %tr
                   %th
                     発送日の目安
                   %td
-                    = @o3item.delivery_day.name
+                    = @item.delivery_day.name
+          = link_to items_path, class: "o3btnin" do
+            この商品を購入する              
           .option
             %ul
               %li.opbtn.libtn
