@@ -22,7 +22,7 @@ $(function(){
     var grandchildSelectHtml = '';
     grandchildSelectHtml = `<div class='seldetail-function' id= 'grandchildren_wrapper'>
                               <div class='seldetail-function_input'>
-                                <select class="selcategory-select" id="grandchild_category" name="category_id">
+                                <select class="selcategory-select" id="grandchild_category" name="item[category_id]">
                                   <option value="選択して下さい" data-category="選択して下さい">選択して下さい</option>
                                   ${insertHTML}
                                 </select>
