@@ -27,6 +27,11 @@
                     = i.file_field :image ,:class => 'js-file'
                     %br/
                     %span.js-remove 削除
+                -# 編集画面で新規画像を追加できるように添付ファイルフォームを追加
+                - if @item.persisted?
+                  .js-file_group{"data-index" => "#{@item.images.count}"}
+                    = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
+                  .js-remove 削除
 
           %p.selimage-error 入力してください
       %hr
@@ -133,11 +138,12 @@
       .selmain-form_box
         .selsubmit
           .selsubmit-button
-            = form.submit '出品する', :class => 'selsubmit-button_sell'
+            = form.submit @submit_btn[1], :class => 'selsubmit-button_sell'
             -# %input.selsubmit-button_sell{type: "submit", value: "出品する"} 
             -# = form.submit '下書きに保存', :class => 'selsubmit-button_save'
             -# %input.selsubmit-button_save{type: "submit", value: "下書きに保存"} 
-            
+            - if @submit_btn[0] == 'edit'
+              = link_to '商品を削除する', items_path, method: :delete , :class => 'selsubmit-button_delete'
             -# ↓一覧画面にもどるではなく、全画面にもどるに修正したい
             = link_to items_path, class: "selsubmit-button_back" do
               もどる

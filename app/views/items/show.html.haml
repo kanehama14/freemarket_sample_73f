@@ -5,28 +5,27 @@
       .top
         .item
           %h2.item-name
-            ソースカツ丼
+            = @o3item.name
           .item-body
             %ul
               %li
-                = image_tag src="https://www.ashikagagourmet.com/wp-content/uploads/2013/05/cc5990f7bf95e48d9eeb9f9d6629728e-550x400.jpg"
-                %ul
-                  %li
-                    = image_tag src="https://tyoumiryouuriba.up.seesaa.net/image/IMG_4686.JPG", size: "75x75"
-                  %li
-                    = image_tag src="https://www.ashikaga-kankou.jp/files/topics/276_ext_08_0.jpg", size: "75x75"
-                  %li
-                    = image_tag src="https://media-cdn.tripadvisor.com/media/photo-s/0e/77/86/65/caption.jpg", size: "75x75"
+                = image_tag @o3item.images.first.image.url, class: "o3mainimg"
+                %ul.o3imglists
+                  - @o3item.images.each do |img|
+                    %li.o3img10
+                      = image_tag img.image.url, class: "o3imglist"
           .item-price
-            %span
-              ¥20000
+            %span.o3detail
+              = @o3item.price
+              %span.o3en
+                円
             .item-price_detail
-              %span
+              %span.o3zei
                 (税込)
-              %span
+              %span.o3komi
                 送料込み
           .idetail
-            私の地元栃木県足利市が誇る至高のB級グルメ！！
+            = @o3item.explanation
           .table
             %table
               %tbody
@@ -34,50 +33,46 @@
                   %th
                     出品者
                   %td
-                    大岡孝行
+                    = @o3item.user.name
                 %tr
                   %th
                     カテゴリー
                   %td
-                    %a
-                      = link_to "メンズ", '#'
+                    = @o3item.category.parent.parent.name
                     %br
-                    %a
-                    = link_to "ジャケット/アウター", '#'
+                    = @o3item.category.parent.name
                     %br
-                    %a
-                    = link_to "ノーカラージャケット", '#'
+                    = @o3item.category.name
                 %tr
                   %th
                     ブランド
                   %td
-                    足利ブランド
+                    = @o3item.brand_name
                 %tr
                   %th
                     商品のサイズ
                   %td
-                    並盛
+                    = @o3item.size
                 %tr
                   %th
                     商品の状態
                   %td
-                    出来立てほやほや
+                    = @o3item.condition.name
                 %tr
                   %th
                     配送料の負担
                   %td
-                    着払い（購入者負担）
+                    = @o3item.delivery_fee.name
                 %tr
                   %th
                     配送元の地域
                   %td
-                    %a
-                      = link_to "栃木県", '#'
+                    = @o3item.prefecture.name
                 %tr
                   %th
                     発送日の目安
                   %td
-                    1~2日で発送
+                    = @o3item.delivery_day.name
           .option
             %ul
               %li.opbtn.libtn

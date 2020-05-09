@@ -1,3 +1,14 @@
+@mixin btn_design($color:red) {
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 17px;
+  width: 100%;
+  min-height: 48px;            
+  background-color: $color;
+  color: #FFF;
+  padding: 0 24px;
+}
+
 
 label {
   font-size: 14px;
@@ -195,12 +206,13 @@ hr {
         margin: 0 auto;
         &-button {
           &_sell {
-            font-size: 17px;
-            width: 100%;
-            min-height: 48px;            
-            background-color: red;
-            color: #FFF;
-            padding: 0 24px;
+            @include btn_design();
+          }
+          &_delete {
+            text-align: center;
+            line-height: 48px;
+            display: block;
+            @include btn_design(blue);
           }
           &_save {
             font-size: 17px;
