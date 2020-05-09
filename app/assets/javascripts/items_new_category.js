@@ -1,13 +1,12 @@
 $(function(){
   // カテゴリーセレクトボックスのオプションを作成
   function appendOption(category){
-    var html = `<option value="${category.name}" data-category="${category.id}">${category.name}</option>`;
+    var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
     return html;
   }
   // 子カテゴリーの表示作成
   function appendChidrenBox(insertHTML){
     var childSelectHtml = '';
-    // console.log("HTML作成1")
     childSelectHtml = `<div class='seldetail-function' id= 'children_wrapper'>
                         <div class='seldetail-function_input'>
                           <select class="selcategory-select" id="child_category" name="category_id">
@@ -34,7 +33,6 @@ $(function(){
   // 親カテゴリー選択後のイベント
   $('#parent_category').on('change', function(){
     var parentCategory = document.getElementById('parent_category').value; //選択された親カテゴリーの名前を取得
-    // console.log(parentCategory);
     if (parentCategory != "選択して下さい"){ //親カテゴリーが初期値でないことを確認
       $.ajax({
         url: 'get_category_children',
@@ -47,14 +45,11 @@ $(function(){
         $('#grandchildren_wrapper').remove();
         $('#size_wrapper').remove();
         $('#brand_wrapper').remove();
-        // console.log("HTML作成2")
         var insertHTML = '';
         children.forEach(function(child){
-          // console.log(child)
           insertHTML += appendOption(child);
         });
         appendChidrenBox(insertHTML);
-        // console.log(insertHTML);
       })
       .fail(function(){
         alert('カテゴリー取得に失敗しました');
@@ -97,4 +92,13 @@ $(function(){
       $('#brand_wrapper').remove();
     }
   });
+
+  // 孫カテゴリー選択後のイベント
+  // $('.seldetail.categ').on('change', '#grandchild_category', function(){
+  //   var grandchildId = $('#grandchild_category option:selected').data('category'); //選択された孫カテゴリーのidを取得
+  //   if (grandchildId != "選択して下さい"){ //孫カテゴリーが初期値でないことを確認
+  //     
+  //   }
+  // });
+
 });
