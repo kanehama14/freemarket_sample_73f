@@ -29,14 +29,27 @@ class CardsController < ApplicationController
     else
       # 上記で作成したトークンをもとに顧客情報を作成
       customer = Payjp::Customer.create(card: token)
-      # card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-      @card = Card.new(user_id: 1, customer_id: customer.id, card_id: customer.default_card)
-      if @card.save
-        redirect_to action: "show"
+      # @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+      card = Card.new(user_id: 1, customer_id: customer.id, card_id: customer.default_card)
+      if card.save!
+        redirect_to card_path(card)
       else
-        redirect_to action: "create"
+        redirect_to new_card_path
       end
     end
+  end
+
+  def destroy #PayjpとCardデータベースを削除
+    # card = Card.where(user_id: current_user.id).first
+    card = Card.where(user_id: 1).first
+    if card.blank?
+    else
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      customer.delete
+      card.delete
+    end
+      redirect_to action: "new"
   end
 
   def show

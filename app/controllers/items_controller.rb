@@ -70,15 +70,19 @@ class ItemsController < ApplicationController
       # @card = Card.find_by(user_id: current_user.id)
       @card = Card.find_by(user_id: 1)
       @item.status_id = 2
-      @item.save!
+      @item.save
       Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+      # カードトークンを用いて支払いを作成する
       @charge = Payjp::Charge.create(
       amount: @item.price,
       customer: @card.customer_id,
       currency: 'jpy'
       )
+      @card = Payjp::Customer.retrieve(@card.customer_id).cards.data[0]
     else
-      redirect_to product_path(@product)
+      redirect_to item_path(@item)
+    end
+  end
 
   def destroy
     if @item.destroy

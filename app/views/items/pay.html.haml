@@ -30,9 +30,11 @@
             .card-info
             クレジットカード
             .card-num
-              = "************1234"
+              = "**** **** **** " + "#{@card.last4}"
             .expiration-date
-              = "有効期限 01/12"
+              有効期限
+              = @card.exp_month
+              = @card.exp_year
           
             
       .deliveryDestination-cont
