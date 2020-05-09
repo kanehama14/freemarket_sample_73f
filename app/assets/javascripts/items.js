@@ -4,14 +4,15 @@ $(document).on('turbolinks:load', ()=> {
     const html = `<div class="js-file_group" data-index="${index}" >
                     <input class="js-file" type="file"
                     name="item[images_attributes][${index}][image]"
-                    id="item_images_attributes_${index}_src"><br>
+                    id="item_images_attributes_${index}_src">
+                    <br>
                     <div class="js-remove">削除</div>
                   </div>`;
                   return html;
   }
   // プレビュー用のimgタグを生成する関数
   const buildImg = (index, url)=> {
-    const html = `<img data-index="${index}" src="${url}" class="tmpimg">`;
+    const html = `<img data-index="${index}" class="tmpimg" src="${url}">`;
     return html;
   }
   // file_fieldのnameに動的なindexをつける為の配列
