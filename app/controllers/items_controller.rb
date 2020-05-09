@@ -29,11 +29,14 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to items_path
     else
-      @submit_btn = ['new','出品する']
-      @item = Item.new
-      @item.images.new
-      @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.name] }
+      # @submit_btn = ['new','出品する']
+      # @item = Item.new
+      # @item.images.new
+      # @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.name] }
       render 'new'
+      # redirect_to new_item_path
+      # 後で下記に変更しないとアカン??
+      # redirect_to new_user_item_path
     end
   end
 
