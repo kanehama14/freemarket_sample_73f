@@ -20,6 +20,4 @@ class Item < ApplicationRecord
   # validates :size, presence: true
 
   accepts_nested_attributes_for :images, allow_destroy: true
-
-  mount_uploader :image, ImageUploader
 end
