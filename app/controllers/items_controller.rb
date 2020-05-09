@@ -29,6 +29,10 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to items_path
     else
+      @submit_btn = ['new','出品する']
+      @item = Item.new
+      @item.images.new
+      @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.name] }
       render 'new'
     end
   end
