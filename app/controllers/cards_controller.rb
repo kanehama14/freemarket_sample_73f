@@ -25,11 +25,12 @@ class CardsController < ApplicationController
         {'X-Payjp-Direct-Token-Generate': 'true'} 
       )
     rescue Payjp::CardError => e
-      @message = "このカードはご利用になれません。お手数ですが、窓口までお問い合わせください。"
+      @message = "このカードはご利用になれません。入力情報を確認してください。"
       redirect_to new_card_path, alert: @message
     end
     if token.blank?
-      # redirect_to new_card_path
+      @message = "トークンが正しく発行されていません。"
+      redirect_to new_card_path, alert: @message
     else
       # 上記で作成したトークンをもとに顧客情報を作成
       customer = Payjp::Customer.create(card: token)
@@ -42,7 +43,7 @@ class CardsController < ApplicationController
     end
   end
 
-  def destroy #PayjpとCardデータベースを削除
+  def destroy
     card = Card.where(user_id: current_user.id).first
     if card.blank?
     else
@@ -55,7 +56,6 @@ class CardsController < ApplicationController
   end
 
   def show
-    # @card1 = Card.find_by(user_id: current_user.id, id: params[:id])
     @card1 = Card.find_by(user_id: current_user.id)
     if @card1.blank?
       redirect_to action: "create"
