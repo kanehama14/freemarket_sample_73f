@@ -26,12 +26,13 @@
                   .js-file_group{"data-index" => "#{i.index}"}
                     = i.file_field :image ,:class => 'js-file'
                     %br/
-                    %span.js-remove 削除
+                    .js-remove 削除
                 -# 編集画面で新規画像を追加できるように添付ファイルフォームを追加
                 - if @item.persisted?
                   .js-file_group{"data-index" => "#{@item.images.count}"}
                     = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
-                  .js-remove 削除
+                    %br/
+                    .js-remove 削除
 
           %p.selimage-error 入力してください
       %hr
@@ -92,7 +93,7 @@
             %span.required 必須
           .seldetail-function
             .seldetail-function_input
-              = form.select :condition_id, Status.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.condition_id }, { class: "selstatus-select" }
+              = form.select :condition_id, Condition.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.condition_id }, { class: "selstatus-select" }
           %p.selstatus-error 選択してください
       %hr
       .selmain-form_box
@@ -143,7 +144,7 @@
             -# = form.submit '下書きに保存', :class => 'selsubmit-button_save'
             -# %input.selsubmit-button_save{type: "submit", value: "下書きに保存"} 
             - if @submit_btn[0] == 'edit'
-              = link_to '商品を削除する', items_path, method: :delete , :class => 'selsubmit-button_delete'
-            -# ↓一覧画面にもどるではなく、全画面にもどるに修正したい
-            = link_to items_path, class: "selsubmit-button_back" do
+              = link_to '商品を削除する', item_path, method: :delete , :class => 'selsubmit-button_delete'
+            -# 前回画面にもどる
+            = link_to :back, class: "selsubmit-button_back" do
               もどる

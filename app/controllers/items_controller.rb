@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :index_category_set, only: :index
-  before_action :set_item, only: [:edit, :update, :destroy]
+  before_action :set_item, only: [:edit, :update, :destroy, :show]
 
 
   def index
@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @o3item = Item.find(params[:id])
   end
 
   def new
@@ -23,20 +22,17 @@ class ItemsController < ApplicationController
   end
 
   def create
-    # ステータスの状態を「出品中：１」にして登録する
+    @submit_btn = ['new','出品する']
+    # バリデーションチェックで引っかかって出品画面に戻ったとき、上の変数がないとエラーになる。
     @status = 1
+    # ステータスの状態を「出品中：１」にして登録する
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_path
+      redirect_to item_path(@item)
     else
-      # @submit_btn = ['new','出品する']
-      # @item = Item.new
-      # @item.images.new
-      # @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.name] }
-      render 'new'
-      # redirect_to new_item_path
-      # 後で下記に変更しないとアカン??
-      # redirect_to new_user_item_path
+      render :new
+      # 「render :new」ではなく「redirect_to」でnew画面を呼び出したいがエラーメッセージが表示されなくなってしまう
+      # redirect_toにしてエラーメッセージをセッションで表示する方法に修正したい。
     end
   end
 
@@ -46,6 +42,7 @@ class ItemsController < ApplicationController
   end
 
   def update
+    @submit_btn = ['edit','更新する']
     # ステータスの状態を「出品中：１」にして登録する
     @status = 1
     if @item.update(item_params)
@@ -94,8 +91,7 @@ class ItemsController < ApplicationController
       images_attributes: [:image, :_destroy, :id]
     )
     .merge(
-      # 仮でユーザーIDを１にしている
-      user_id: 1,
+      user_id: current_user.id,
       status_id: @status
     ) 
   end
