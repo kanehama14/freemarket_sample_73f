@@ -1,8 +1,43 @@
+# このファイルはターミナル上で　bundle exec rails r db/seeds.rb　を実行すると各環境に反映されます。
+
 # カテゴリーデータを全削除した上でデータ投入する
 Category.delete_all
+# コンディションデータを全削除した上でデータ投入する
+Condition.delete_all
+# 配送日数データを全削除した上でデータ投入する
+DeliveryDay.delete_all
+# 配送料データを全削除した上でデータ投入する
+DeliveryFee.delete_all
+# statusデータを全削除した上でデータ投入する
+Status.delete_all
 
 # mysqlのautoincrementを初期化してid=1からデータを作成
 ActiveRecord::Base.connection.execute "ALTER TABLE `categories` auto_increment = 1"
+ActiveRecord::Base.connection.execute "ALTER TABLE `conditions` auto_increment = 1"
+ActiveRecord::Base.connection.execute "ALTER TABLE `delivery_days` auto_increment = 1"
+ActiveRecord::Base.connection.execute "ALTER TABLE `delivery_fees` auto_increment = 1"
+ActiveRecord::Base.connection.execute "ALTER TABLE `statuses` auto_increment = 1"
+
+# コンディションカラム
+Condition.create(name: "新品、未使用")
+Condition.create(name: "未使用に近い")
+Condition.create(name: "目立った傷や汚れなし")
+Condition.create(name: "やや傷や汚れあり")
+Condition.create(name: "傷や汚れあり")
+Condition.create(name: "全体的に状態が悪い")
+
+# 配送日数カラム
+DeliveryDay.create(name: "１〜２日で発送")
+DeliveryDay.create(name: "２〜３日で発送")
+DeliveryDay.create(name: "３〜４日で発送")
+
+# 配送料カラム
+DeliveryFee.create(name: "送料込み（出品者負担）")
+DeliveryFee.create(name: "着払い（購入者負担）")
+
+# statusカラム
+Status.create(name: "出品中")
+Status.create(name: "SOLD OUT")
 
 # 親カテゴリー
 lady = Category.create(:name=>'レディース')

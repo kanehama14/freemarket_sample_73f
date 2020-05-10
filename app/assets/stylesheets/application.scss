@@ -5,9 +5,6 @@
 @import "registrations/new";
 @import "registrations/new_info";
 @import "registrations/new_address";
-//@import "modules/users_new_signup";
-//@import "modules/users_new_info";
-//@import "modules/users_new_address";
 @import "modules/items_index";
 @import "modules/items_new";
 @import "modules/items_show";
@@ -20,3 +17,5 @@
 @import "base/header";
 @import "base/footer";
 @import "base/_error_messages";
+@import "modules/cards_new";
+@import "categories/_categories_index";

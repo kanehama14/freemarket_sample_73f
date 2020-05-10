@@ -1,0 +1,15 @@
+.mypagemain
+  = render 'users/side-navbar'
+  .canema
+    .canema-title
+      クレジットカード情報照会
+    .canema-content-title
+      カード番号
+    %input{type: "text", class: "canema-content-text disabled", disabled: true, value: "**** **** **** " + "#{@card.last4}"}
+      .canema-content-title
+        有効期限
+      %input{type: "text", class: "canema-content-text input_half disabled", disabled: true, value: @card[:exp_month]}
+      %input{type: "text", class: "canema-content-text input_half disabled", disabled: true, value: @card[:exp_year]}
+    .canema-content-title
+      = link_to card_path(@card1), method: :delete, class: "canema-content-text submit_btn" do
+        削除する
