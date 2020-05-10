@@ -4,7 +4,8 @@
     = form_with model: @card, local: true do |f|
       .canema-title
         クレジットカード情報登録
-      = alert if alert.present?
+      .canema-error
+        = alert if alert.present?
       .canema-content-title
         カード番号
         %span{class:"canema-content-title_require"}
