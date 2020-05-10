@@ -74,7 +74,7 @@
                   %td
                     = @item.delivery_day.name
           - if current_user == @item.user
-            = link_to edit_item_path, class: "o3btninedit" do
+            = link_to edit_item_path, class: "o3btninedit", data: {"turbolinks" => false} do
               商品の情報を編集する
           - else
             = link_to items_path, class: "o3btninbuy" do
