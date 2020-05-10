@@ -24,15 +24,6 @@ class CardsController < ApplicationController
         }},
         {'X-Payjp-Direct-Token-Generate': 'true'} 
       )
-    rescue Payjp::CardError => e
-      @message = "このカードはご利用になれません。入力情報を確認してください。"
-      redirect_to new_card_path, alert: @message
-    end
-    if token.blank?
-      @message = "トークンが正しく発行されていません。"
-      redirect_to new_card_path, alert: @message
-    else
-      # 上記で作成したトークンをもとに顧客情報を作成
       customer = Payjp::Customer.create(card: token)
       card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if card.save!
@@ -40,6 +31,9 @@ class CardsController < ApplicationController
       else
         redirect_to new_card_path
       end
+    rescue Payjp::CardError => e
+      @message = "このカードはご利用になれません。入力情報を確認してください。"
+      redirect_to new_card_path, alert: @message
     end
   end
 
