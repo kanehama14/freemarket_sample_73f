@@ -39,6 +39,9 @@ class ItemsController < ApplicationController
   def edit
     # 登録ボタン名
     @submit_btn = ['edit','更新する']
+    # @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.name] }
+    # @category_childs = @item.category_id.parent.parent.children.map{ |category|[category.name, category.id] }
+    # @category_grandchilds = @item.category_id.parent.children.map{ |category|[category.name, category.id] }
   end
 
   def update
