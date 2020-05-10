@@ -57,15 +57,26 @@
           %p.selexplanation-error 入力してください
       %hr
       .selmain-form_box
-        .seldetail
+        .seldetail.categ
           %p.seldetail-main 商品の詳細
           .seldetail-title
             %label カテゴリー
             %span.required 必須
-          .seldetail-function
-            .seldetail-function_input
-              = form.select :category_id, Category.all.map { |category|[category.name, category.id] }, { include_blank: "選択して下さい", selected: @item.category_id }, { class: "selcategory-select" }
-          %p.selcategory-error 選択してください
+          - if @submit_btn[0] == 'new'
+            .seldetail-function
+              .seldetail-function_input
+                = form.select :parent_id, @category_parents, { include_blank: "選択して下さい"}, { class: "selcategory-select", id: 'parent_category' }
+          - if @submit_btn[0] == 'edit'
+            -# .seldetail-function
+            -#   .seldetail-function_input
+            -#     = form.select parent_id, @category_parents, { include_blank: "選択して下さい", selected: @item.category_id.parent.parent.id }, { class: "selcategory-select", id: 'parent_category' }
+            -# -# .seldetail-function
+            -#   .seldetail-function_input
+            -#     = form.select :child_id, @category_childs, { include_blank: "選択して下さい", selected: @item.category_id.parent.id }, { class: "selcategory-select", id: 'child_category' }
+            -# .seldetail-function
+            -#   .seldetail-function_input
+            -#     = form.select :category_id, @category_grandchilds, { include_blank: "選択して下さい", selected: @item.category_id }, { class: "selcategory-select", id: 'grandchild_category' }
+        %p.selcategory-error 選択してください
         -# ↓カテゴリによって表示する内容、ひとまず条件なしで表示
         .selspace
           .seldetail-title

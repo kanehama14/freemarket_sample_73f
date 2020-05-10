@@ -23,12 +23,25 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :index, :show] do
     end
   end
+  
+  resources :categories, only: :index do
+    collection do
+      get 'parent_list'
+      get 'child_list'
+      get 'grandchild_list'
+    end
+  end
 
   resources :items do
     resources :purchases, only: [:index] do
       collection do
         get 'done', to: 'purchases#done'
       end
+    end
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+      # get 'get_size', defaults: { format: 'json' }
     end
   end 
   
