@@ -1,7 +1,6 @@
 %li.ctnlist-item
   -# - @cat_no1.each do |item|
   -# -@items.each do |item| 
-  -# = link_to edit_item_path(id: item.id) ,class: "ctnlist-item_link" do
   = link_to item_path(id: item.id) ,class: "ctnlist-item_link" do
     - ft_image = item.images.first
     = image_tag ft_image.image.url, class: "ctnlist-item_img"

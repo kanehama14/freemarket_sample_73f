@@ -22,13 +22,17 @@ class ItemsController < ApplicationController
   end
 
   def create
-    # ステータスの状態を「出品中：１」にして登録する
+    @submit_btn = ['new','出品する']
+    # バリデーションチェックで引っかかって出品画面に戻ったとき、上の変数がないとエラーになる。
     @status = 1
+    # ステータスの状態を「出品中：１」にして登録する
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_path
+      redirect_to item_path(@item)
     else
-      render 'new'
+      render :new
+      # 「render :new」ではなく「redirect_to」でnew画面を呼び出したいがエラーメッセージが表示されなくなってしまう
+      # redirect_toにしてエラーメッセージをセッションで表示する方法に修正したい。
     end
   end
 
@@ -38,6 +42,7 @@ class ItemsController < ApplicationController
   end
 
   def update
+    @submit_btn = ['edit','更新する']
     # ステータスの状態を「出品中：１」にして登録する
     @status = 1
     if @item.update(item_params)
