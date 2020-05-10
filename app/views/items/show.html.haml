@@ -73,8 +73,12 @@
                     発送日の目安
                   %td
                     = @item.delivery_day.name
-          = link_to items_path, class: "o3btnin" do
-            この商品を購入する              
+          - if current_user == @item.user
+            = link_to edit_item_path, class: "o3btninedit" do
+              商品の情報を編集する
+          - else
+            = link_to items_path, class: "o3btninbuy" do
+              この商品を購入する
           .option
             %ul
               %li.opbtn.libtn
