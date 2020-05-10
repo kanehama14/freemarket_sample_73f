@@ -4,15 +4,15 @@ class CategoriesController < ApplicationController
     @parents = Category.all.order("id ASC").limit(13)
   end
 
-  def parentlist
+  def parent_list
     @parents = Category.all.order("id ASC").limit(13)
   end
   
-  def childlist
+  def child_list
     @parents = Category.all.order("id ASC").limit(13)
   end
 
-  def grandchildlist
+  def grandchild_list
     @parents = Category.all.order("id ASC").limit(13)
   end
 

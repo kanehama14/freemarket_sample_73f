@@ -26,9 +26,9 @@ Rails.application.routes.draw do
   
   resources :categories, only: :index do
     collection do
-      get 'parentlist'
-      get 'childlist'
-      get 'grandchildlist'
+      get 'parent_list'
+      get 'child_list'
+      get 'grandchild_list'
     end
   end
 
