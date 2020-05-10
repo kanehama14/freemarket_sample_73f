@@ -1,25 +1,15 @@
-.canema
-  .canema-title
-    クレジットカード情報照会
-  .canema-content-title
-    カード番号
-  %input{type: "text", class: "canema-content-text disabled", disabled: true, value: "**** **** **** " + "#{@card.last4}"}
+.mypagemain
+  = render 'users/side-navbar'
+  .canema
+    .canema-title
+      クレジットカード情報照会
     .canema-content-title
-      有効期限
-    %input{type: "text", class: "canema-content-text input_half disabled", disabled: true, value: @card[:exp_month]}
-    %input{type: "text", class: "canema-content-text input_half disabled", disabled: true, value: @card[:exp_year]}
-  .card-group
-    .card-group__title
-      %label クレジットカード一覧
-      %br
-      = "**** **** **** " + @card.last4
-      %br
-      - exp_month = @card.exp_month.to_s
-      - exp_year = @card.exp_year.to_s.slice(2,3)
-      = exp_month + " / " + exp_year
-      = link_to card_path, method: :delete, class: "destroy__function__link__btn" do 
+      カード番号
+    %input{type: "text", class: "canema-content-text disabled", disabled: true, value: "**** **** **** " + "#{@card.last4}"}
+      .canema-content-title
+        有効期限
+      %input{type: "text", class: "canema-content-text input_half disabled", disabled: true, value: @card[:exp_month]}
+      %input{type: "text", class: "canema-content-text input_half disabled", disabled: true, value: @card[:exp_year]}
+    .canema-content-title
+      = link_to card_path(@card1), method: :delete, class: "canema-content-text submit_btn" do
         削除する
-      -# = link_to '商品を削除する', cards_path, method: :delete , :class => 'selsubmit-button_delete'
-      -# = form_with url:( delete_cards_path, method: :post, id: 'charge-form',  name: "inputForm") do
-      -#   %input{ type: "hidden", name: "card_id", value: "" }
-      -#   %button.btn_delate  削除する

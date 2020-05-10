@@ -1,27 +1,30 @@
-.canema
-  = form_with model: @card, local: true do |f|
-    .canema-title
-      クレジットカード情報登録
-    .canema-content-title
-      カード番号
-      %span{class:"canema-content-title_require"}
-        必須
-    = f.text_field :number, {class: "canema-content-text", placeholder: "ハイフンなし、半角数字のみ", value:"4242424242424242"}
-    .canema-content-title
-      有効期限
-      %span{class:"canema-content-title_require"}
-        必須
-    - month = [["月",""]]
-    - for num in 1..12
-      - month << num
-    = f.select :exp_month, month, {}, {class: "canema-content-text input_half"}
-    - year = [["年",""]]
-    - for num in 0..20
-      - year << 2040-num
-    = f.select :exp_year, year, {}, {class: "canema-content-text input_half"}
-    .card-wrapper__content-title
-      セキュリティーコード
-      %span{class:"canema-content-title_require"}
-        必須
-    = f.text_field :cvc, {class: "canema-content-text", placeholder: "3〜4文字、半角数字のみ"}
-    = f.submit "登録する", {class: "canema-content-text submit_btn"}
+.mypagemain
+  = render 'users/side-navbar'
+  .canema
+    = form_with model: @card, local: true do |f|
+      .canema-title
+        クレジットカード情報登録
+      = alert if alert.present?
+      .canema-content-title
+        カード番号
+        %span{class:"canema-content-title_require"}
+          必須
+      = f.text_field :number, {class: "canema-content-text", placeholder: "ハイフンなし、半角数字のみ", value:"4242424242424242"}
+      .canema-content-title
+        有効期限
+        %span{class:"canema-content-title_require"}
+          必須
+      - month = [["月",""]]
+      - for num in 1..12
+        - month << num
+      = f.select :exp_month, month, {}, {class: "canema-content-text input_half"}
+      - year = [["年",""]]
+      - for num in 0..20
+        - year << 2040-num
+      = f.select :exp_year, year, {}, {class: "canema-content-text input_half"}
+      .card-wrapper__content-title
+        セキュリティーコード
+        %span{class:"canema-content-title_require"}
+          必須
+      = f.text_field :cvc, {class: "canema-content-text", placeholder: "3〜4文字、半角数字のみ"}
+      = f.submit "登録する", {class: "canema-content-text submit_btn"}
