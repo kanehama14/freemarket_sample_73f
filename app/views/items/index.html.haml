@@ -1,9 +1,10 @@
-= link_to new_item_path do
-  .salebtn
-    .salebtn-name
-      出品
-    .salebtn-icon
-      = icon('fa', 'camera fa-4x')
+- if user_signed_in?
+  = link_to new_item_path do
+    .salebtn
+      .salebtn-name
+        出品
+      .salebtn-icon
+        = icon('fa', 'camera fa-4x')
 
 .mainvisual
   .mcontent
