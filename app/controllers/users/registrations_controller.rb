@@ -7,8 +7,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-
-    #params[:user][:birthday] = birthday_join
     @user = User.new(sign_up_params)
     unless @user.valid?
       flash.now[:alert] = @user.errors.full_messages
@@ -19,11 +17,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @address = @user.build_address
     render :new_address
   end
-
-  #def new_address
-  #  #@user = User.new
-  #  @address = Address.new
-  #end
 
   def create_address
     @user = User.new(session["devise.regist_data"]["user"])
@@ -68,15 +61,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :first_name, :last_name, :first_name_kana, :last_name_kana, :birthday])
   end
-
-  #def birthday_join
-  #  date = params[:user][:birthday]
-  #  if date["birthday(1i)"].empty? && date["birthday(2i)"].empty? && date["birthday(3i)"].empty?
-  #    return
-  #  end
-  #  # 年月日別々できたものを結合して新しいDate型変数を作って返す
-  #  Date.new date["birthday(1i)"].to_i,date["birthday(2i)"].to_i,date["birthday(3i)"].to_i
-  #end
 
   def address_params
     params.require(:address).permit(:postal_code, :prefecture_id, :city, :house_number, :house_name)
