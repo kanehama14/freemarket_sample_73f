@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :index_category_set, only: :index
   before_action :set_item, only: [:edit, :update, :destroy, :show]
-
+  before_action :ensure_correct_user, only: [:edit]
+  # before_action :a, only: [:new]
 
   def index
     @images = Image.all
@@ -119,4 +120,17 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def ensure_correct_user
+    if current_user != @item.user
+      redirect_to new_user_session_path
+    end
+  end
+
+  # def a
+  #   if !user_signed_in?
+  #     redirect_to items_path
+  #   end
+  # end
+
 end
