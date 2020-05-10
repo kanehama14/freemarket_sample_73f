@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :index_category_set, only: :index
-  before_action :set_item, only: [:edit, :update, :destroy, :buy, :pay]
+  before_action :set_item, only: [:edit, :update, :destroy, :show, :buy, :pay]
 
   # payjpをロード
   require "payjp"
@@ -12,7 +12,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @o3item = Item.find(params[:id])
   end
 
   def new
@@ -21,6 +20,7 @@ class ItemsController < ApplicationController
     @item = Item.new
     @item.images.new
     # @item.users << current_user
+    @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.name] }
   end
 
   def create
@@ -41,6 +41,9 @@ class ItemsController < ApplicationController
   def edit
     # 登録ボタン名
     @submit_btn = ['edit','更新する']
+    # @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.name] }
+    # @category_childs = @item.category_id.parent.parent.children.map{ |category|[category.name, category.id] }
+    # @category_grandchilds = @item.category_id.parent.children.map{ |category|[category.name, category.id] }
   end
 
   def update
@@ -72,8 +75,7 @@ class ItemsController < ApplicationController
 
   def pay
     if @item.status_id != 2
-      # @card = Card.find_by(user_id: current_user.id)
-      @card = Card.find_by(user_id: 1)
+      @card = Card.find_by(user_id: current_user.id)
       @item.status_id = 2
       @item.save
       Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
@@ -87,6 +89,16 @@ class ItemsController < ApplicationController
     else
       redirect_to item_path(@item)
     end
+  end
+
+  # 親カテゴリーが選択された際に動く(Ajax)
+  def get_category_children
+    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+  end
+
+  # 子カテゴリーが選択された際に動く(Ajax)
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
   def destroy
@@ -118,8 +130,7 @@ class ItemsController < ApplicationController
       images_attributes: [:image, :_destroy, :id]
     )
     .merge(
-      # 仮でユーザーIDを１にしている
-      user_id: 1,
+      user_id: current_user.id,
       status_id: @status
     ) 
   end

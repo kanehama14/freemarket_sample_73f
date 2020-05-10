@@ -19,11 +19,11 @@ Rails.application.routes.draw do
       get "buy"
       get "pay"
     end
-    # collection do
-    #   get ‘get_category_children’, defaults: { format: ‘json’ }
-    #   get ‘get_category_grandchildren’, defaults: { format: ‘json’ }
-    #   # get ‘get_size’, defaults: { format: ‘json’ }
-    # end
+    collection do
+      get ‘get_category_children’, defaults: { format: ‘json’ }
+      get ‘get_category_grandchildren’, defaults: { format: ‘json’ }
+      get ‘get_size’, defaults: { format: ‘json’ }
+    end
   end
   resources :cards, only: [:new, :create, :show, :destroy] do
   end 
