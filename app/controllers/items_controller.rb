@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :index_category_set, only: :index
-  before_action :set_item, only: [:edit, :update, :destroy]
+  before_action :set_item, only: [:edit, :update, :destroy, :show]
 
 
   def index
@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @o3item = Item.find(params[:id])
   end
 
   def new
@@ -81,8 +80,7 @@ class ItemsController < ApplicationController
       images_attributes: [:image, :_destroy, :id]
     )
     .merge(
-      # 仮でユーザーIDを１にしている
-      user_id: 1,
+      user_id: current_user.id,
       status_id: @status
     ) 
   end

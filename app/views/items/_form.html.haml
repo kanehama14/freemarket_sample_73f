@@ -90,7 +90,7 @@
             %span.required 必須
           .seldetail-function
             .seldetail-function_input
-              = form.select :condition_id, Status.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.condition_id }, { class: "selstatus-select" }
+              = form.select :condition_id, Condition.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.condition_id }, { class: "selstatus-select" }
           %p.selstatus-error 選択してください
       %hr
       .selmain-form_box
