@@ -10,8 +10,13 @@
             %p
               アカウントをお持ちでない方はこちら
               =link_to "新規会員登録", new_user_registration_path 
+              = link_to 'Facebookで登録', user_facebook_omniauth_authorize_path, method: :post
+              = link_to 'Googleで登録', user_google_oauth2_omniauth_authorize_path, method: :post
           .form
             .inlogin
+              .logsubmit
+                = link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post, class: "mslogin"
+                = link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, class: "mslogin"
               .guform
                 = f.email_field :email, autofocus: true, autocomplete: "email", class: "definput", placeholder: "Eメールアドレス"
                 /%input.intexlogin.definput{name: "email", placeholder: "メールアドレス", type: "email", value: ""}
@@ -19,7 +24,8 @@
                 = f.password_field :password, autocomplete: "current-password", class: "definput", placeholder: "パスワード"
               .logsubmit
                 = f.submit "ログイン", class: "mslogin"
-              =link_to "パスワードをお忘れの方", '#', class: "forget"
+              = link_to "パスワードをお忘れの方", '#', class: "forget"
+              
     .footer
       %nav
         %ul
