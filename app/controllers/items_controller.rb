@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
     @item = Item.new
     @item.images.new
     # @item.users << current_user
-    @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.name] }
+    @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.id] }
   end
 
   def create
@@ -42,9 +42,10 @@ class ItemsController < ApplicationController
   def edit
     # 登録ボタン名
     @submit_btn = ['edit','更新する']
-    # @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.name] }
-    # @category_childs = @item.category_id.parent.parent.children.map{ |category|[category.name, category.id] }
-    # @category_grandchilds = @item.category_id.parent.children.map{ |category|[category.name, category.id] }
+    @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.id] }
+    @category_childs = @item.category.parent.parent.children.map{ |category|[category.name, category.id] }
+    @category_grandchilds = @item.category.parent.children.map{ |category|[category.name, category.id] }
+    # binding.pry
   end
 
   def update
@@ -94,7 +95,7 @@ class ItemsController < ApplicationController
 
   # 親カテゴリーが選択された際に動く(Ajax)
   def get_category_children
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+    @category_children = Category.find_by(id: "#{params[:parent_id]}", ancestry: nil).children
   end
 
   # 子カテゴリーが選択された際に動く(Ajax)
