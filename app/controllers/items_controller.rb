@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :index_category_set, only: :index
-  before_action :ensure_correct_user, only: [:edit]
   before_action :set_item, only: [:edit, :update, :destroy, :show, :buy, :pay]
+  before_action :ensure_correct_user, only: [:edit]
+
   # payjpをロード
   require "payjp"
 
