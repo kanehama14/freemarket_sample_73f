@@ -12,7 +12,16 @@ $(document).on('turbolinks:load', ()=> {
   }
   // プレビュー用のimgタグを生成する関数
   const buildImg = (index, url)=> {
-    const html = `<img data-index="${index}" class="tmpimg" src="${url}">`;
+    // const html = `<img data-index="${index}" class="tmpimg" src="${url}">
+    //               <br>
+    //               <div class="js-remove">削除</div>`;
+    const html = `<div class="prepic">
+                    <img data-index="${index}" class="tmpimg" src="${url}">
+                    <div class="js-file_group" data-index="${index}">
+                      <br>
+                      <div class="js-remove">削除</div>
+                    </div>
+                  </div>`;
     return html;
   }
   // file_fieldのnameに動的なindexをつける為の配列
@@ -20,7 +29,7 @@ $(document).on('turbolinks:load', ()=> {
   // 既に使われているindexを除外
   lastIndex = $('.js-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);
-  $('.hidden-destroy').hide();
+  // $('.hidden-destroy').hide();
 
   $('#image-box').on('change', '.js-file', function(e) {
     const targetIndex = $(this).parent().data('index');
@@ -41,6 +50,7 @@ $(document).on('turbolinks:load', ()=> {
     }
   });
 
+  // 写真削除
   $('#image-box').on('click', '.js-remove', function() {
     const targetIndex = $(this).parent().data('index');
     // 該当indexを振られているチェックボックスを取得する
@@ -48,9 +58,12 @@ $(document).on('turbolinks:load', ()=> {
     // もしチェックボックスが存在すればチェックを入れる
     if (hiddenCheck) hiddenCheck.prop('checked', true);
 
-    $(this).parent().remove();
-    $(`img[data-index="${targetIndex}"]`).remove();
-    
+    // $(this).parent().remove();
+    // $(`<div class = "js-file_group" data-index="${targetIndex}">`).remove();
+    $(`<div class = "prepic" data-index="${targetIndex}">`).remove();
+    $(`<div data-index="${targetIndex}" class = "prepic">`).remove();
+
+
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
   });

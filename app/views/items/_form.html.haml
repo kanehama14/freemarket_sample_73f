@@ -17,27 +17,30 @@
               %label.clkarea#image-box
                 #previews
                   - if @item.persisted?
-                    - @item.images.each_with_index do |image, i|
-                      = image_tag image.image.url, data: { index: i },class: 'tmpimg'
-                -# いったんコメントアウト。余裕があれば下記のデザインにイメージ添付機能を当てはめたい
-                -# = form.fields_for :images do |i|
-                -#   %input.clkarea-input.js-file{:type => 'file'}
-                -#   = icon('fa', 'camera', class: 'clkarea-icon')
-                -#   %p.clkarea-text クリックしてファイルをアップロード
+                    -# - @item.images.each_with_index do |image, i|
+                      -# = image_tag image.image.url, data: { index: i },class: 'tmpimg'
 
                 = form.fields_for :images do |i|
-                  .js-file_group{"data-index" => "#{i.index}"}
-                    = i.file_field :image ,:class => 'js-file'
-                    %br/
-                    .js-remove 削除
-                  - if @item.persisted?
-                    = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+                  .prepic
+                    - if @item.persisted?
+                      = image_tag @item.images[i.index].image.url, data: { index: i.index },class: 'tmpimg'
+                      .js-file_group{"data-index" => "#{i.index}"}
+                        = i.file_field :image ,:class => 'js-file'
+                        %br/
+                        .js-remove 削除
+                    - if @item.persisted?
+                      = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
                 -# 編集画面で新規画像を追加できるように添付ファイルフォームを追加
                 - if @item.persisted?
                   .js-file_group{"data-index" => "#{@item.images.count}"}
                     = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
                     %br/
                     .js-remove 削除
+                -# いったんコメントアウト。余裕があれば下記のデザインにイメージ添付機能を当てはめたい
+                -# = form.fields_for :images do |i|
+                -#   %input.clkarea-input.js-file{:type => 'file'}
+                -#   = icon('fa', 'camera', class: 'clkarea-icon')
+                -#   %p.clkarea-text クリックしてファイルをアップロード
 
           %p.selimage-error 入力してください
       %hr
