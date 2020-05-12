@@ -8,39 +8,36 @@
             %label 出品画像
             %span.required 必須
           %p 最大10枚までアップロードできます
-          -# #previews
-          -#   - if @item.persisted?
-          -#     - @item.images.each_with_index do |image, i|
-          -#       = image_tag image.image.url, data: { index: i },class: 'tmpimg'
           .selimage-function
             .selimage-function_input
               %label.clkarea#image-box
-                #previews
-                  - if @item.persisted?
-                    -# - @item.images.each_with_index do |image, i|
-                      -# = image_tag image.image.url, data: { index: i },class: 'tmpimg'
-
-                = form.fields_for :images do |i|
-                  .prepic
-                    - if @item.persisted?
-                      = image_tag @item.images[i.index].image.url, data: { index: i.index },class: 'tmpimg'
+                -# - if @item.persisted?
+                -#   - @item.images.each_with_index do |image, i|
+                -#     = image_tag image.image.url, data: { index: i },class: 'tmpimg'
+                .hidden-content#previews
+                  = form.fields_for :images do |i|
+                    .prepic{"data-index" => "#{i.index}"}
+                      - if @item.persisted?
+                        = image_tag @item.images[i.index].image.url, data: { index: i.index },class: 'tmpimg'
                       .js-file_group{"data-index" => "#{i.index}"}
+                      - if @item.persisted?
+                        = i.file_field :image ,:class => 'js-file hidden-field'
+                        .js-remove 削除 aaa
+                        = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+                      - else
                         = i.file_field :image ,:class => 'js-file'
-                        %br/
-                        .js-remove 削除
-                    - if @item.persisted?
-                      = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
-                -# 編集画面で新規画像を追加できるように添付ファイルフォームを追加
+                  -# 編集画面で新規画像を追加できるように添付ファイルフォームを追加
+                  -# %label.clkarea
                 - if @item.persisted?
                   .js-file_group{"data-index" => "#{@item.images.count}"}
                     = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
-                    %br/
-                    .js-remove 削除
-                -# いったんコメントアウト。余裕があれば下記のデザインにイメージ添付機能を当てはめたい
-                -# = form.fields_for :images do |i|
-                -#   %input.clkarea-input.js-file{:type => 'file'}
-                -#   = icon('fa', 'camera', class: 'clkarea-icon')
-                -#   %p.clkarea-text クリックしてファイルをアップロード
+                    .js-remove 削除 bbb
+
+                  -# いったんコメントアウト。余裕があれば下記のデザインにイメージ添付機能を当てはめたい
+                  -# = form.fields_for :images do |i|
+                  -#   %input.clkarea-input.js-file{:type => 'file'}
+                  -#   = icon('fa', 'camera', class: 'clkarea-icon')
+                  -#   %p.clkarea-text クリックしてファイルをアップロード
 
           %p.selimage-error 入力してください
       %hr

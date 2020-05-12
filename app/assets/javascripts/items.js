@@ -2,25 +2,30 @@ $(document).on('turbolinks:load', ()=> {
   // 画像用のinputを生成する関数
   const buildFileField = (index)=> {
     const html = `<div class="js-file_group" data-index="${index}" >
-                    <input class="js-file" type="file"
+                    <input class="js-file hidden-field" type="file"
                     name="item[images_attributes][${index}][image]"
                     id="item_images_attributes_${index}_src">
                     <br>
-                    <div class="js-remove">削除</div>
+                    <div class="js-remove">削除 ccc</div>
                   </div>`;
                   return html;
   }
   // プレビュー用のimgタグを生成する関数
   const buildImg = (index, url)=> {
-    // const html = `<img data-index="${index}" class="tmpimg" src="${url}">
-    //               <br>
-    //               <div class="js-remove">削除</div>`;
-    const html = `<div class="prepic">
+    // const html = `<img data-index="${index}" class="tmpimg" src="${url}">`;
+    // const html = `<div class="js-file_group" data-index="${index}">
+    //                 <img data-index="${index}" class="tmpimg" src="${url}">
+    //                 <br>
+    //                 <div class="js-remove">削除 ddd</div>
+    //               </div>`;
+    const html = `<div class="prepic" data-index="0">
                     <img data-index="${index}" class="tmpimg" src="${url}">
                     <div class="js-file_group" data-index="${index}">
-                      <br>
-                      <div class="js-remove">削除</div>
+                    <input class="js-file hidden-field" type="file" name="item[images_attributes][${index}][image]" id="item_images_attributes_${index}_image">
+                    <div class="js-remove">削除 aaa</div>
                     </div>
+                    <input name="item[images_attributes][${index}][_destroy]" type="hidden" value="0">
+                    <input data-index="${index}" class="hidden-destroy" type="checkbox" value="1" name="item[images_attributes][${index}][_destroy]" id="item_images_attributes_${index}__destroy">
                   </div>`;
     return html;
   }
@@ -36,21 +41,24 @@ $(document).on('turbolinks:load', ()=> {
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
+    console.log(targetIndex);
 
     // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('image', blobUrl);
-    } else {  // 新規画像追加の処理
+    } else {  
+      // 新規画像追加の処理
       $('#previews').append(buildImg(targetIndex, blobUrl));
       // fileIndexの先頭の数字を使ってinputを作る
       $('#image-box').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
+      $(`<input type="file" name="item[images_attributes][${targetIndex}][image]" id="src" class="js-file">`).hide();
+      
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
   });
 
-  // 写真削除
   $('#image-box').on('click', '.js-remove', function() {
     const targetIndex = $(this).parent().data('index');
     // 該当indexを振られているチェックボックスを取得する
@@ -58,12 +66,10 @@ $(document).on('turbolinks:load', ()=> {
     // もしチェックボックスが存在すればチェックを入れる
     if (hiddenCheck) hiddenCheck.prop('checked', true);
 
-    // $(this).parent().remove();
-    // $(`<div class = "js-file_group" data-index="${targetIndex}">`).remove();
-    $(`<div class = "prepic" data-index="${targetIndex}">`).remove();
-    $(`<div data-index="${targetIndex}" class = "prepic">`).remove();
-
-
+    $(this).parent().remove();
+    $(`img[data-index="${targetIndex}"]`).remove();
+    // $(`div class="js-file_group" data-index="${targetIndex}"`).remove();
+    
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
   });
