@@ -12,7 +12,7 @@ class CardsController < ApplicationController
 
   def create
     # 秘密鍵を設定
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
     begin
       # トークンを作成 
       token = Payjp::Token.create({
@@ -54,7 +54,7 @@ class CardsController < ApplicationController
     if @card1.blank?
       redirect_to action: "create"
     else
-      Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       customer = Payjp::Customer.retrieve(@card1.customer_id)
       @card = Payjp::Customer.retrieve(@card1.customer_id).cards.data[0]
     end

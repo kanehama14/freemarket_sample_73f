@@ -70,7 +70,7 @@ class ItemsController < ApplicationController
       if card.exists?
         # @card = Card.find_by(user_id: current_user.id)
         @card = Card.find_by(user_id: 1)
-        Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+        Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
         customer = Payjp::Customer.retrieve(@card.customer_id)
         @card = Payjp::Customer.retrieve(@card.customer_id).cards.data[0]
       end
@@ -84,7 +84,7 @@ class ItemsController < ApplicationController
       @card = Card.find_by(user_id: current_user.id)
       @item.status_id = 2
       @item.save
-      Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       # カードトークンを用いて支払いを作成する
       @charge = Payjp::Charge.create(
       amount: @item.price,
