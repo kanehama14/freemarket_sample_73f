@@ -12,12 +12,6 @@ $(document).on('turbolinks:load', ()=> {
   }
   // プレビュー用のimgタグを生成する関数
   const buildImg = (index, url)=> {
-    // const html = `<img data-index="${index}" class="tmpimg" src="${url}">`;
-    // const html = `<div class="js-file_group" data-index="${index}">
-    //                 <img data-index="${index}" class="tmpimg" src="${url}">
-    //                 <br>
-    //                 <div class="js-remove">削除 ddd</div>
-    //               </div>`;
     const html = `<div class="prepic" data-index="0">
                     <img data-index="${index}" class="tmpimg" src="${url}">
                     <div class="js-file_group" data-index="${index}">
@@ -52,8 +46,8 @@ $(document).on('turbolinks:load', ()=> {
       // fileIndexの先頭の数字を使ってinputを作る
       $('#image-box').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
-      $(`<input type="file" name="item[images_attributes][${targetIndex}][image]" id="src" class="js-file">`).hide();
-      
+      //新規画面で画像追加したら添付ボタンにhiddenクラスを追加して非表示にする 
+      $('#item_images_attributes_0_image').addClass("hidden-field");
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
@@ -66,8 +60,8 @@ $(document).on('turbolinks:load', ()=> {
     // もしチェックボックスが存在すればチェックを入れる
     if (hiddenCheck) hiddenCheck.prop('checked', true);
 
-    $(this).parent().remove();
-    $(`img[data-index="${targetIndex}"]`).remove();
+    // $(this).parent().remove();
+    // $(`img[data-index="${targetIndex}"]`).remove();
     // $(`div class="js-file_group" data-index="${targetIndex}"`).remove();
     
     // 画像入力欄が0個にならないようにしておく

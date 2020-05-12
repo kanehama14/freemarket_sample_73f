@@ -11,9 +11,6 @@
           .selimage-function
             .selimage-function_input
               %label.clkarea#image-box
-                -# - if @item.persisted?
-                -#   - @item.images.each_with_index do |image, i|
-                -#     = image_tag image.image.url, data: { index: i },class: 'tmpimg'
                 .hidden-content#previews
                   = form.fields_for :images do |i|
                     .prepic{"data-index" => "#{i.index}"}
@@ -26,12 +23,14 @@
                         = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
                       - else
                         = i.file_field :image ,:class => 'js-file'
+                        -# .js-remove 削除 ddd
+                        -# = i.file_field :image ,:class => 'js-file', id: 'elmFile', onchange: 'selectFile()'
                   -# 編集画面で新規画像を追加できるように添付ファイルフォームを追加
                   -# %label.clkarea
                 - if @item.persisted?
                   .js-file_group{"data-index" => "#{@item.images.count}"}
-                    = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
-                    .js-remove 削除 bbb
+                  = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
+                  .js-remove 削除 bbb
 
                   -# いったんコメントアウト。余裕があれば下記のデザインにイメージ添付機能を当てはめたい
                   -# = form.fields_for :images do |i|
