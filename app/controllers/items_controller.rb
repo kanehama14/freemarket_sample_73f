@@ -1,9 +1,11 @@
 class ItemsController < ApplicationController
   before_action :index_category_set, only: :index
   before_action :set_item, only: [:edit, :update, :destroy, :show, :buy, :pay]
-  before_action :url_edit_dame, only: [:edit]
+  # before_action :url_edit_dame, only: [:edit]
   # before_action :url_buy_dame, only: [:buy, :pay]
   # before_action :url_new_dame, only: [:new]
+  before_action :login_siro, only: [:edit, :buy, :new]
+
 
   # payjpをロード
   require "payjp"
@@ -164,13 +166,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def url_edit_dame
-    if current_user != @item.user
-      redirect_to new_user_session_path
-    # else
-    #   redirect_to items_path
-    end
-  end
+  # def url_edit_dame
+  #   if current_user != @item.user
+  #     redirect_to new_user_session_path
+  #   end
+  # end
 
   # def url_buy_dame
   #   if current_user == @item.user
@@ -180,8 +180,26 @@ class ItemsController < ApplicationController
 
   # def url_new_dame
   #   if !user_signed_in?
-  #     redirect_to new_user_session_path
+  #     redirect_to items_path
   #   end
   # end
+
+
+  
+  # - if (request.path != new_user_path) 
+
+
+  def login_siro
+    if user_signed_in?
+      @trueitem = Item.find_by(id: params[:id])
+      if current_user == @trueitem_user
+        redirect_to edit_item_path(id: current_user.id)
+      # else
+      #   redirect_to new_item_path
+      end
+    else
+      redirect_to new_user_session_path
+    end
+  end
 
 end
