@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
   before_action :index_category_set, only: :index
   before_action :set_item, only: [:edit, :update, :destroy, :show, :buy, :pay]
+  before_action :login_siyou, only: [:new, :buy, :edit]
+  before_action :url_buy_dame, only: [:buy]
+  before_action :url_edit_dame, only: [:edit]
 
   # payjpをロード
   require "payjp"
@@ -65,11 +68,11 @@ class ItemsController < ApplicationController
   
   def buy
     if @item.status_id != 2
-      # card = Card.where(user_id: current_user.id)
-      card = Card.where(user_id: 1)
+      card = Card.where(user_id: current_user.id)
+      # card = Card.where(user_id: 1)
       if card.exists?
-        # @card = Card.find_by(user_id: current_user.id)
-        @card = Card.find_by(user_id: 1)
+        @card = Card.find_by(user_id: current_user.id)
+        # @card = Card.find_by(user_id: 1)
         Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
         customer = Payjp::Customer.retrieve(@card.customer_id)
         @card = Payjp::Customer.retrieve(@card.customer_id).cards.data[0]
@@ -161,4 +164,27 @@ class ItemsController < ApplicationController
       instance_variable_set("@cat_no#{num}", items)
     end
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def login_siyou
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+  end
+
+  def url_buy_dame
+    if current_user == @item.user
+      redirect_to items_path
+    end
+  end
+
+  def url_edit_dame
+    if current_user != @item.user
+      redirect_to items_path
+    end
+  end
+
 end
