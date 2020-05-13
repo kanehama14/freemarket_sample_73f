@@ -2,11 +2,9 @@ $(document).on('turbolinks:load', ()=> {
   // 画像用のinputを生成する関数
   const buildFileField = (index)=> {
     const html = `<div class="js-file_group" data-index="${index}" >
-                    <input class="js-file hidden-field" type="file"
+                    <input class="js-file" type="file"
                     name="item[images_attributes][${index}][image]"
                     id="item_images_attributes_${index}_src">
-                    <br>
-                    <div class="js-remove">削除 ccc</div>
                   </div>`;
                   return html;
   }
@@ -35,7 +33,7 @@ $(document).on('turbolinks:load', ()=> {
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
-    console.log(targetIndex);
+    // console.log(targetIndex);
 
     // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
@@ -44,12 +42,26 @@ $(document).on('turbolinks:load', ()=> {
       // 新規画像追加の処理
       $('#previews').append(buildImg(targetIndex, blobUrl));
       // fileIndexの先頭の数字を使ってinputを作る
-      $('#image-box').append(buildFileField(fileIndex[0]));
+      $('#previews').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
+
       //新規画面で画像追加したら添付ボタンにhiddenクラスを追加して非表示にする 
-      $('#item_images_attributes_0_image').addClass("hidden-field");
+      // $('#item_images_attributes_0_image').addClass("hidden-field");
+      $(`#data-index-0`).addClass("hidden-field");
+
+      //編集画面の添付ボタン。画像が追加されたら非表示にする
+      // $('#src').addClass("hidden-field");
+      // $(`div[data-index="${fileIndex[0]-2}"]`).addClass("hidden-field");
+
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+
+      // 画像追加して呼び出された添付ボタンを非表示
+      $(`input[name="item[images_attributes][${fileIndex[0]-2}][image]"]`).addClass("hidden-field");
+      $(`div[edit="new"]`).addClass("hidden-field");
+      // $(`#data-index-${fileIndex[0]-2}`).addClass("hidden-field");
+      console.log(fileIndex[0]);
+      console.log(`div[data-index="${fileIndex[0]-1}]"`);
     }
   });
 

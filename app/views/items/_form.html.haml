@@ -18,19 +18,21 @@
                         = image_tag @item.images[i.index].image.url, data: { index: i.index },class: 'tmpimg'
                       .js-file_group{"data-index" => "#{i.index}"}
                       - if @item.persisted?
+                        -#編集画面のプレビューの下の添付ボタン 
                         = i.file_field :image ,:class => 'js-file hidden-field'
                         .js-remove 削除 aaa
                         = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
                       - else
+                        -# 新規画面で最初に表示されている添付ボタン
                         = i.file_field :image ,:class => 'js-file'
-                        -# .js-remove 削除 ddd
-                        -# = i.file_field :image ,:class => 'js-file', id: 'elmFile', onchange: 'selectFile()'
-                  -# 編集画面で新規画像を追加できるように添付ファイルフォームを追加
-                  -# %label.clkarea
-                - if @item.persisted?
-                  .js-file_group{"data-index" => "#{@item.images.count}"}
-                  = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
-                  .js-remove 削除 bbb
+                        -# %p sss
+                  -# 編集画面で新規画像を追加できるように添付ボタンを追加
+                  - if @item.persisted?
+                    .js-file_group{"data-index" => "#{@item.images.count}","edit" => "new"}
+                      %label.tmpphoto
+                        = icon('fa', 'camera', class: 'clkarea-icon')
+                        = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
+                        .js-remove 削除 bbb
 
                   -# いったんコメントアウト。余裕があれば下記のデザインにイメージ添付機能を当てはめたい
                   -# = form.fields_for :images do |i|
