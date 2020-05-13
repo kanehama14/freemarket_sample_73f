@@ -19,9 +19,11 @@
                       .js-file_group{"data-index" => "#{i.index}"}
                       - if @item.persisted?
                         -#編集画面のプレビューの下の添付ボタン 
-                        = i.file_field :image ,:class => 'js-file hidden-field'
-                        .js-remove 削除 aaa
-                        = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+                        %label
+                          = i.file_field :image ,:class => 'js-file hidden-field'
+                        %label
+                          = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+                          .js-remove 削除
                       - else
                         -# 新規画面で最初に表示されている添付ボタン
                         %label.tmpphoto{"new"=>"new"}
@@ -34,7 +36,6 @@
                       %label.tmpphoto
                         = icon('fa', 'camera', class: 'clkarea-icon')
                         = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
-                        .js-remove 削除 bbb
 
                   -# いったんコメントアウト。余裕があれば下記のデザインにイメージ添付機能を当てはめたい
                   -# = form.fields_for :images do |i|

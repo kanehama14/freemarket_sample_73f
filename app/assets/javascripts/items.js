@@ -15,8 +15,10 @@ $(document).on('turbolinks:load', ()=> {
     const html = `<div class="prepic" data-index="${index}">
                     <img data-index="${index}" class="tmpimg" src="${url}">
                     <br>
-                    <div class="js-remove">削除 eee</div>
-                    <input data-index="${index}" class="hidden-destroy" type="checkbox" value="1" name="item[images_attributes][${index}][_destroy]" id="item_images_attributes_${index}__destroy">
+                    <label>
+                     <input data-index="${index}" class="hidden-destroy" type="checkbox" value="1" name="item[images_attributes][${index}][_destroy]" id="item_images_attributes_${index}__destroy">
+                      <div class="js-remove">削除 aaa</div>
+                    </label>
                   </div>`;
     return html;
   }
@@ -25,7 +27,7 @@ $(document).on('turbolinks:load', ()=> {
   // 既に使われているindexを除外
   lastIndex = $('.js-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);
-  // $('.hidden-destroy').hide();
+  $('.hidden-destroy').hide();
 
   $('#image-box').on('change', '.js-file', function(e) {
     const targetIndex = $(this).parent().data('index');
@@ -54,6 +56,7 @@ $(document).on('turbolinks:load', ()=> {
       $(`input[name="item[images_attributes][${fileIndex[0]-2}][image]"]`).addClass("hidden-field");
       $(`div[edit="new"]`).addClass("hidden-field");
       $(`label[data-index="${fileIndex[0]-2}"]`).addClass("hidden-field");
+      $('.hidden-destroy').hide();
       // $(`#data-index-${fileIndex[0]-2}`).addClass("hidden-field");
       console.log(fileIndex[0]);
       console.log(`div[data-index="${fileIndex[0]-1}]"`);
@@ -67,7 +70,7 @@ $(document).on('turbolinks:load', ()=> {
     // もしチェックボックスが存在すればチェックを入れる
     if (hiddenCheck) hiddenCheck.prop('checked', true);
 
-    // $(this).parent().remove();
+    $(this).parent().parent().addClass("hidden-field");
     // $(this).remove();
     // $(`img[data-index="${targetIndex}"]`).remove();
     // $(`div class="js-file_group" data-index="${targetIndex}"`).remove();
