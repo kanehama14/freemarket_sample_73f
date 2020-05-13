@@ -39,9 +39,44 @@ hr {
 }
 
 .tmpimg{
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 160px;
   object-fit: cover;
+  margin-right: 3px;
+}
+
+  //file_fieldのcss
+  .hidden-content {
+    display: flex;
+    -webkit-flex-wrap: wrap;          /* Safari etc. */
+    -ms-flex-wrap    : wrap;          /* IE10        */
+    flex-wrap        : wrap;
+    .hidden-field {
+      display: none;
+    }
+    .hidden-checkbox {
+      display: none;
+    }
+  }
+  .tmpphoto{
+    width: 100%;
+    height: 100%;
+    color: black;  
+    // background-color: red;
+    padding: 6px;
+    border-radius: 12px;
+  }
+  .js-file{
+    // #item_images_attributes_0_image{
+    display: none;
+  }
+.js-file_group{
+  #src{
+    display: none;
+  }
+  #item_images_attributes_0_image{
+    display: none;
+  }
 }
 
 .selmain {
@@ -64,11 +99,14 @@ hr {
             display: flex;
             flex-wrap: wrap;
             .clkarea {
-              height: 150px;
+              // height: 150px;
               flex: 1 1 0%;
               border-width: 1px;
-              // border-style: dashed;
-              cursor:pointer;
+              border-style: dashed;
+              // cursor:pointer;
+              // .prepic{
+              //   width: 150px;
+              // }
               &-input {
                 width:100%;
                 height:100%;

@@ -27,6 +27,8 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.id] }
+
     @submit_btn = ['new','出品する']
     # バリデーションチェックで引っかかって出品画面に戻ったとき、上の変数がないとエラーになる。
     @status = 1
@@ -52,6 +54,9 @@ class ItemsController < ApplicationController
 
   def update
     @submit_btn = ['edit','更新する']
+    @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.id] }
+    @category_childs = @item.category.parent.parent.children.map{ |category|[category.name, category.id] }
+    @category_grandchilds = @item.category.parent.children.map{ |category|[category.name, category.id] }
     # ステータスの状態を「出品中：１」にして登録する
     @status = 1
     if @item.update(item_params)
