@@ -10,15 +10,16 @@ $(document).on('turbolinks:load', ()=> {
   }
   // プレビュー用のimgタグを生成する関数
   const buildImg = (index, url)=> {
-    const html = `<div class="prepic" data-index="0">
-                    <img data-index="${index}" class="tmpimg" src="${url}">
-                    <div class="js-file_group" data-index="${index}">
-                    <input class="js-file hidden-field" type="file" name="item[images_attributes][${index}][image]" id="item_images_attributes_${index}_image">
-                    <div class="js-remove">削除 aaa</div>
-                    </div>
-                    <input name="item[images_attributes][${index}][_destroy]" type="hidden" value="0">
-                    <input data-index="${index}" class="hidden-destroy" type="checkbox" value="1" name="item[images_attributes][${index}][_destroy]" id="item_images_attributes_${index}__destroy">
-                  </div>`;
+    // const html = `<div class="prepic" data-index="${index}">
+    //                 <img data-index="${index}" class="tmpimg" src="${url}">
+    //                 <div class="js-file_group" data-index="${index}">
+    //                 <input class="js-file hidden-field" type="file" name="item[images_attributes][${index}][image]" id="item_images_attributes_${index}_image">
+    //                 <div class="js-remove">削除 aaa</div>
+    //                 </div>
+    //                 <input name="item[images_attributes][${index}][_destroy]" type="hidden" value="0">
+    //                 <input data-index="${index}" class="hidden-destroy" type="checkbox" value="1" name="item[images_attributes][${index}][_destroy]" id="item_images_attributes_${index}__destroy">
+    //               </div>`;
+    const html = `<img data-index="${index}" class="tmpimg" src="${url}">`;
     return html;
   }
   // file_fieldのnameに動的なindexをつける為の配列
