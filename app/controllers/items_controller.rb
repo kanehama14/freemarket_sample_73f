@@ -63,11 +63,11 @@ class ItemsController < ApplicationController
   
   def buy
     if @item.status_id != 2
-      # card = Card.where(user_id: current_user.id)
-      card = Card.where(user_id: 1)
+      card = Card.where(user_id: current_user.id)
+      # card = Card.where(user_id: 1)
       if card.exists?
-        # @card = Card.find_by(user_id: current_user.id)
-        @card = Card.find_by(user_id: 1)
+        @card = Card.find_by(user_id: current_user.id)
+        # @card = Card.find_by(user_id: 1)
         Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
         customer = Payjp::Customer.retrieve(@card.customer_id)
         @card = Payjp::Customer.retrieve(@card.customer_id).cards.data[0]
