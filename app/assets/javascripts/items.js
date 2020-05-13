@@ -17,7 +17,7 @@ $(document).on('turbolinks:load', ()=> {
                     <br>
                     <label>
                      <input data-index="${index}" class="hidden-destroy" type="checkbox" value="1" name="item[images_attributes][${index}][_destroy]" id="item_images_attributes_${index}__destroy">
-                      <div class="js-remove">削除 aaa</div>
+                      <div class="js-remove">削除</div>
                     </label>
                   </div>`;
     return html;
