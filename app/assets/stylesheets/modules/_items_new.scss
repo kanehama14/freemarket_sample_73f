@@ -61,14 +61,18 @@ hr {
   .tmpphoto{
     width: 100%;
     height: 100%;
-    color: white;  
-    background-color: red;
+    color: black;  
+    // background-color: red;
     padding: 6px;
     border-radius: 12px;
   }
+  .js-file{
+    // #item_images_attributes_0_image{
+    display: none;
+  }
 .js-file_group{
   #src{
-    // display: none;
+    display: none;
   }
   #item_images_attributes_0_image{
     display: none;
@@ -109,13 +113,6 @@ hr {
                 visibility: hidden;  // 「ファイルを選択」の見た目を消す
                 display: none;       // 「ファイルを選択」の言葉自体（幅）を消す
               }
-              // input[type="file"]{
-              //   width:100%;
-              //   height:100%;
-              //   // visibility: hidden;
-              //   // display: none;
-              //   background-color: red;
-              // }
               &-icon {
                 font-size: 1.4em;
                 margin-top: 50px;

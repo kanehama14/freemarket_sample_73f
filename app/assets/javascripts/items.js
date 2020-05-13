@@ -1,25 +1,23 @@
 $(document).on('turbolinks:load', ()=> {
   // 画像用のinputを生成する関数
   const buildFileField = (index)=> {
-    const html = `<div class="js-file_group" data-index="${index}" >
+    const html = `<label class="js-file_group" data-index="${index}">
+                    <i class="fa fa-camera clkarea-icon"></i>
                     <input class="js-file" type="file"
                     name="item[images_attributes][${index}][image]"
                     id="item_images_attributes_${index}_src">
-                  </div>`;
+                  </label>`;
+
                   return html;
   }
   // プレビュー用のimgタグを生成する関数
   const buildImg = (index, url)=> {
-    // const html = `<div class="prepic" data-index="${index}">
-    //                 <img data-index="${index}" class="tmpimg" src="${url}">
-    //                 <div class="js-file_group" data-index="${index}">
-    //                 <input class="js-file hidden-field" type="file" name="item[images_attributes][${index}][image]" id="item_images_attributes_${index}_image">
-    //                 <div class="js-remove">削除 aaa</div>
-    //                 </div>
-    //                 <input name="item[images_attributes][${index}][_destroy]" type="hidden" value="0">
-    //                 <input data-index="${index}" class="hidden-destroy" type="checkbox" value="1" name="item[images_attributes][${index}][_destroy]" id="item_images_attributes_${index}__destroy">
-    //               </div>`;
-    const html = `<img data-index="${index}" class="tmpimg" src="${url}">`;
+    const html = `<div class="prepic" data-index="${index}">
+                    <img data-index="${index}" class="tmpimg" src="${url}">
+                    <br>
+                    <div class="js-remove">削除 eee</div>
+                    <input data-index="${index}" class="hidden-destroy" type="checkbox" value="1" name="item[images_attributes][${index}][_destroy]" id="item_images_attributes_${index}__destroy">
+                  </div>`;
     return html;
   }
   // file_fieldのnameに動的なindexをつける為の配列
@@ -47,12 +45,7 @@ $(document).on('turbolinks:load', ()=> {
       fileIndex.shift();
 
       //新規画面で画像追加したら添付ボタンにhiddenクラスを追加して非表示にする 
-      // $('#item_images_attributes_0_image').addClass("hidden-field");
-      $(`#data-index-0`).addClass("hidden-field");
-
-      //編集画面の添付ボタン。画像が追加されたら非表示にする
-      // $('#src').addClass("hidden-field");
-      // $(`div[data-index="${fileIndex[0]-2}"]`).addClass("hidden-field");
+      $(`label[new="new"]`).addClass("hidden-field");
 
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
@@ -60,6 +53,7 @@ $(document).on('turbolinks:load', ()=> {
       // 画像追加して呼び出された添付ボタンを非表示
       $(`input[name="item[images_attributes][${fileIndex[0]-2}][image]"]`).addClass("hidden-field");
       $(`div[edit="new"]`).addClass("hidden-field");
+      $(`label[data-index="${fileIndex[0]-2}"]`).addClass("hidden-field");
       // $(`#data-index-${fileIndex[0]-2}`).addClass("hidden-field");
       console.log(fileIndex[0]);
       console.log(`div[data-index="${fileIndex[0]-1}]"`);
@@ -74,6 +68,7 @@ $(document).on('turbolinks:load', ()=> {
     if (hiddenCheck) hiddenCheck.prop('checked', true);
 
     // $(this).parent().remove();
+    // $(this).remove();
     // $(`img[data-index="${targetIndex}"]`).remove();
     // $(`div class="js-file_group" data-index="${targetIndex}"`).remove();
     

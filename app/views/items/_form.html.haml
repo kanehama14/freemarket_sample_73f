@@ -24,7 +24,9 @@
                         = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
                       - else
                         -# 新規画面で最初に表示されている添付ボタン
-                        = i.file_field :image ,:class => 'js-file'
+                        %label.tmpphoto{"new"=>"new"}
+                          = icon('fa', 'camera', class: 'clkarea-icon')
+                          = i.file_field :image ,:class => 'js-file'
                         -# %p sss
                   -# 編集画面で新規画像を追加できるように添付ボタンを追加
                   - if @item.persisted?
