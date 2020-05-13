@@ -39,8 +39,6 @@
                   -#   %input.clkarea-input.js-file{:type => 'file'}
                   -#   = icon('fa', 'camera', class: 'clkarea-icon')
                   -#   %p.clkarea-text クリックしてファイルをアップロード
-
-          %p.selimage-error 入力してください
       %hr
       .selmain-form_box
         .selname
@@ -50,7 +48,6 @@
           .selname-function
             .selname-function_input
               = form.text_field :name, :placeholder => '40文字まで', :class => 'selname-text'
-          %p.selname-error 入力してください
         .selspace
         .selname
           .selname-title
@@ -60,7 +57,6 @@
             .selname-function_input
               = form.text_area :explanation, :placeholder => '1,000文字以内', :class => 'selexplanation-text js-text'
               %p.js-text-count 0/1000
-          %p.selexplanation-error 入力してください
       %hr
       .selmain-form_box
         .seldetail.categ
@@ -82,7 +78,6 @@
             .seldetail-function#grandchildren_wrapper
               .seldetail-function_input
                 = form.select :category_id, @category_grandchilds, { include_blank: "選択して下さい", selected: @item.category_id }, { class: "selcategory-select", id: 'grandchild_category' }
-        %p.selcategory-error 選択してください
         -# ↓カテゴリによって表示する内容、ひとまず条件なしで表示
         .selspace
           .seldetail-title
@@ -91,7 +86,6 @@
           .seldetail-function
             .seldetail-function_input
               = form.text_field :size, :placeholder => 'サイズ', :class => 'selname-text'
-          %p.selcategory-error 入力して下さい
         .selspace
           .seldetail
           .seldetail-title
@@ -108,7 +102,6 @@
           .seldetail-function
             .seldetail-function_input
               = form.select :condition_id, Condition.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.condition_id }, { class: "selstatus-select" }
-          %p.selstatus-error 選択してください
       %hr
       .selmain-form_box
         .seldelovery
@@ -119,7 +112,6 @@
           .seldelovery-function
             .seldelovery-function_input
               = form.select :delivery_fee_id, DeliveryFee.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.delivery_fee_id }, { class: "seldelfee-select" }
-          %p.seldelfee-error 選択してください
         .selspace
         .seldelovery
           .seldelovery-title
@@ -128,7 +120,6 @@
           .seldelovery-function
             .seldelovery-function_input
               = form.select :prefecture_id, Prefecture.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.prefecture_id }, { class: "selshiori-select" }
-          %p.selshiori-error 選択してください
         .selspace
         .seldelovery
           .seldelovery-title
@@ -137,7 +128,6 @@
           .seldelovery-function
             .seldelovery-function_input
               = form.select :delivery_day_id, DeliveryDay.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.delivery_day_id }, { class: "selshiori-select" }
-          %p.selshiday-error 選択してください
       %hr
       .selmain-form_box
         .selprice
@@ -148,7 +138,7 @@
           .selprice-function
             .selprice-function_input
               = form.text_field :price, :placeholder => '0', :class => 'selprice-text'
-          %p.selprice-error 300以上9999999以下で入力してください
+          -# %p.selprice-error 300以上9999999以下で入力してください
       %hr
       .selmain-form_box
         .selsubmit
