@@ -15,7 +15,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @favorite_find = @item.favorites.find_by(user_id: current_user.id)
+    if user_signed_in?
+      @favorite_find = @item.favorites.find_by(user_id: current_user.id)
+    end
   end
 
   def new
