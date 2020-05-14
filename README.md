@@ -144,3 +144,13 @@ http://18.180.168.239/
 - has_many :items
 - belongs_to_active_hash :prefecture
 - belongs_to :user
+
+
+## sns_credentialsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|references|foreign_key: true|
+|item|references|foreign_key: true|
+
+### Association
+- belongs_to :user
