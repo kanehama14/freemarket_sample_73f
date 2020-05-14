@@ -5,4 +5,4 @@
 - else
   %li.opbtn.libtn.like_on
     %i.fa.fa-star
-      = link_to 'お気に入りに追加', favorites_path(item_id: @item.id), method: :post, remote: true, class: "like_on_btn" unless @item.user_id == current_user.id
+      = link_to 'お気に入りに追加', favorites_path(item_id: @item.id), method: :post, remote: true, class: "like_on_btn" unless user_signed_in? && @item.user_id == current_user.id
