@@ -1,3 +1,63 @@
+.input_default{
+  height: 48px;
+  width: 100%;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+}
+.input_half{
+  width: calc(50% - 10px);
+  margin-right: 5px;
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+}
+.year{
+  display: inline-block;
+  width: calc(30% - 17px);
+  background: #fff;
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+}
+.month{
+  display: inline-block;
+  width: calc(30% - 17px);
+  background: #fff;
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+}
+.day{
+  display: inline-block;
+  width: calc(30% - 17px);
+  background: #fff;
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+
+
 .main1 {
   font-size: 13px;
   line-height: 19px;
@@ -68,7 +128,7 @@
                       line-height: 1.2;
                     }
                     .abase {
-                      margin-bottom: 14px;
+                      margin-bottom: 8px;
                       display: flex;
                       label {
                         display: block;
@@ -114,7 +174,7 @@
                     }
                     .arfmgroup {
                       .abase {
-                        margin-bottom: 14px;
+                        margin-bottom: 8px;
                       }
                       .arow {
                         width: 100%;
@@ -132,7 +192,8 @@
                     }
                     .arfmgroup {
                       .abase {
-                        margin-bottom: 14px;
+                        margin-bottom: 8px;
+                        
                         label {
                           display: block;
                           padding-left: 2px;
@@ -190,7 +251,7 @@
                     }
                     
                     .arow {
-                      margin-top: 40px;
+                      margin-top: 25px;
                       width: 100%;
                       margin-bottom: 10px;
                       a {

@@ -12,12 +12,18 @@
             = link_to new_user_registration_path, class: "registration-btn btn-mail" do
               = icon('fa', 'envelope', class: "btn-icon")
               メールアドレスで登録する
-            = link_to user_facebook_omniauth_authorize_path, method: :post, class: "registration-btn btn-facebook" do
+            = link_to "#", class: "registration-btn btn-facebook" do
               = icon('fa', 'facebook-square', class: "btn-icon")
               Facebookで登録する
-            = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "registration-btn btn-google" do
+            / = link_to user_facebook_omniauth_authorize_path, method: :post, class: "registration-btn btn-facebook" do
+            /   = icon('fa', 'facebook-square', class: "btn-icon")
+            /   Facebookで登録する
+            = link_to "#", class: "registration-btn btn-google" do
               = icon('fa', 'google', class: "btn-icon")
               Googleで登録する
+            / = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "registration-btn btn-google" do
+            / = icon('fa', 'google', class: "btn-icon")
+            / Googleで登録する
     .footer
       %nav
         %ul
