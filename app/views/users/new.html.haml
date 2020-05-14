@@ -1,0 +1,39 @@
+%body
+  .container
+    .header
+      %h1
+        = link_to image_tag("http://furima.tokyo/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg"), '#'
+    .main
+      .signup
+        %h2.registration-head
+          新規会員登録
+        .registration-inner
+          .registration-inner_cont
+            = link_to new_user_registration_path, class: "registration-btn btn-mail" do
+              = icon('fa', 'envelope', class: "btn-icon")
+              メールアドレスで登録する
+            = link_to "#", class: "registration-btn btn-facebook" do
+              = icon('fa', 'facebook-square', class: "btn-icon")
+              Facebookで登録する
+            / = link_to user_facebook_omniauth_authorize_path, method: :post, class: "registration-btn btn-facebook" do
+            /   = icon('fa', 'facebook-square', class: "btn-icon")
+            /   Facebookで登録する
+            = link_to "#", class: "registration-btn btn-google" do
+              = icon('fa', 'google', class: "btn-icon")
+              Googleで登録する
+            / = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "registration-btn btn-google" do
+            / = icon('fa', 'google', class: "btn-icon")
+            / Googleで登録する
+    .footer
+      %nav
+        %ul
+          %li
+            =link_to "プライバシーポリシー", '#'
+          %li
+            =link_to "利用規約", '#'
+          %li
+            =link_to "特定商取引に関する表記", '#'
+        = link_to image_tag("http://furima.tokyo/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg"), '#'
+      %p
+        %small
+          © FURIMA, Inc.

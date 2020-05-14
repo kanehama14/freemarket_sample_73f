@@ -7,6 +7,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+    # params[:sns_auth]が送られて来た時だけDevise.friendly_tokenを使ってパスワードを自動生成する
+    if params[:sns_auth] == 'true'
+      pass = Devise.friendly_token
+      params[:user][:password] = pass
+      params[:user][:password_confirmation] = pass
+    end
     @user = User.new(sign_up_params)
     unless @user.valid?
       flash.now[:alert] = @user.errors.full_messages

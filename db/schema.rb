@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 2020_05_11_103137) do
     t.bigint "condition_id", null: false
     t.bigint "delivery_fee_id", null: false
     t.integer "prefecture_id", null: false
-    t.bigint "delivery_day_id"
+    t.bigint "delivery_days_id", null: false
     t.integer "price", null: false
     t.bigint "status_id", null: false
     t.bigint "user_id", null: false
@@ -95,12 +95,21 @@ ActiveRecord::Schema.define(version: 2020_05_11_103137) do
     t.index ["brand_name"], name: "index_items_on_brand_name"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["condition_id"], name: "index_items_on_condition_id"
-    t.index ["delivery_day_id"], name: "index_items_on_delivery_day_id"
+    t.index ["delivery_days_id"], name: "index_items_on_delivery_days_id"
     t.index ["delivery_fee_id"], name: "index_items_on_delivery_fee_id"
     t.index ["explanation"], name: "index_items_on_explanation"
     t.index ["name"], name: "index_items_on_name"
     t.index ["status_id"], name: "index_items_on_status_id"
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -134,8 +143,9 @@ ActiveRecord::Schema.define(version: 2020_05_11_103137) do
   add_foreign_key "images", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "conditions"
-  add_foreign_key "items", "delivery_days"
+  add_foreign_key "items", "delivery_days", column: "delivery_days_id"
   add_foreign_key "items", "delivery_fees"
   add_foreign_key "items", "statuses"
   add_foreign_key "items", "users"
+  add_foreign_key "sns_credentials", "users"
 end

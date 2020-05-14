@@ -1,3 +1,26 @@
+.input_default{
+  height: 48px;
+  width: 100%;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+}
+.select_default{
+  display: inline-block;
+  width: calc(50% - 10px);
+  background: #fff;
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
 .main3 {
   font-size: 13px;
   line-height: 19px;

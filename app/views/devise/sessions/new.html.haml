@@ -9,17 +9,30 @@
           .noaclogin
             %p
               アカウントをお持ちでない方はこちら
-              =link_to "新規会員登録", new_user_registration_path 
+              = link_to "新規会員登録", new_user_path 
           .form
             .inlogin
+              .logsubmit
+                = link_to "#", class: "registration-btn btn-facebook" do
+                  = icon('fa', 'facebook-square', class: "btn-icon")
+                  Facebookでログインする
+                / = link_to user_facebook_omniauth_authorize_path, method: :post, class: "registration-btn btn-facebook" do
+                /   = icon('fa', 'facebook-square', class: "btn-icon")
+                /   Facebookでログインする
+                = link_to "#", class: "registration-btn btn-google" do
+                  = icon('fa', 'google', class: "btn-icon")
+                  Googleでログインする
+                / = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "registration-btn btn-google" do
+                /   = icon('fa', 'google', class: "btn-icon")
+                /   Googleでログインする
               .guform
-                = f.email_field :email, autofocus: true, autocomplete: "email", class: "definput", placeholder: "Eメールアドレス"
-                /%input.intexlogin.definput{name: "email", placeholder: "メールアドレス", type: "email", value: ""}
+                = f.email_field :email, autofocus: true, autocomplete: "email", class: "input_default", placeholder: "Eメールアドレス"
               .guform
-                = f.password_field :password, autocomplete: "current-password", class: "definput", placeholder: "パスワード"
+                = f.password_field :password, autocomplete: "current-password", class: "input_default", placeholder: "パスワード"
               .logsubmit
                 = f.submit "ログイン", class: "mslogin"
-              =link_to "パスワードをお忘れの方", '#', class: "forget"
+              = link_to "パスワードをお忘れの方", '#', class: "forget"
+              
     .footer
       %nav
         %ul
