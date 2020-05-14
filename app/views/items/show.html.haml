@@ -80,10 +80,11 @@
             = link_to buy_item_path(@item), class: "o3btninbuy" do
               この商品を購入する
           .option
-            %ul
-              %li.opbtn.libtn
-                %i.fa.fa-star
-                  お気に入り 9973               
+            %ul#favorite_btn
+              = render 'favorite_form', item: @item, favorite: @favorite
+              -# %li.opbtn.libtn
+              -#   %i.fa.fa-star
+              -#     お気に入り 9973               
             %ul.optional
               %li.opbtn
                 = link_to '#' do

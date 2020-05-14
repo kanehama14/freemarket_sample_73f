@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @favorite_find = @item.favorites.find_by(user_id: current_user.id)
   end
 
   def new

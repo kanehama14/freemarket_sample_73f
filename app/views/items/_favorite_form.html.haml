@@ -1,0 +1,9 @@
+-# - binding.pry
+- if @favorite_find.present?
+  %li.opbtn.libtn.like_off
+    %i.fa.fa-star
+      = link_to 'お気に入りから削除', favorite_path(id: @item.id), method: :delete, remote: true, class: "like_off_btn" unless @item.user_id == current_user.id
+- else
+  %li.opbtn.libtn.like_on
+    %i.fa.fa-star
+      = link_to 'お気に入りに追加', favorites_path(item_id: @item.id), method: :post, remote: true, class: "like_on_btn" unless @item.user_id == current_user.id
