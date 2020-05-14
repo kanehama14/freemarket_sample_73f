@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
   # お気に入り登録用
   has_many :favorites
-  has_many :users, through: :favorites
+  has_many :favorite_users, through: :favorites, source: :user
 
   # 子モデルのバリデーションチェック
   validates_associated :images
