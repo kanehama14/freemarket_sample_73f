@@ -10,6 +10,10 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
 
+  # お気に入り登録用
+  has_many :favorites
+  has_many :favorite_users, through: :favorites, source: :user
+
   # 子モデルのバリデーションチェック
   validates_associated :images
   validates :images, presence: true

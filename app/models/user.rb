@@ -25,5 +25,9 @@ class User < ApplicationRecord
   has_many :cards
   has_many :items
   has_one :address
+
+  # お気に入り登録用
+  has_many :favorites
+  has_many :fav_items, through: :favorites, source: :item
   
 end
