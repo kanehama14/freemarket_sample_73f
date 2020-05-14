@@ -34,6 +34,6 @@ Rails.application.routes.draw do
   end
   resources :cards, only: [:new, :create, :show, :destroy] do
   end 
-  resources :favorites, only: [:create, :destroy] do
+  resources :favorites, only: [:index, :create, :destroy] do
   end 
 end
