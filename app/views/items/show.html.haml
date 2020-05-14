@@ -74,16 +74,18 @@
                   %td
                     = @item.delivery_day.name
           - if current_user == @item.user
-            = link_to edit_item_path, class: "o3btninedit" do
+            = link_to edit_item_path, class: "o3btninedit", data: {"turbolinks" => false} do
               商品の情報を編集する
           - else
             = link_to buy_item_path(@item), class: "o3btninbuy" do
               この商品を購入する
           .option
-            %ul
-              %li.opbtn.libtn
-                %i.fa.fa-star
-                  お気に入り 9973               
+            - if user_signed_in?
+              %ul#favorite_btn
+                = render 'favorite_form', item: @item, favorite: @favorite
+                -# %li.opbtn.libtn
+                -#   %i.fa.fa-star
+                -#     お気に入り 9973               
             %ul.optional
               %li.opbtn
                 = link_to '#' do

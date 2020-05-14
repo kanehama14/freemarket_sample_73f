@@ -8,33 +8,40 @@
             %label 出品画像
             %span.required 必須
           %p 最大10枚までアップロードできます
-          #previews
-            - if @item.persisted?
-              - @item.images.each_with_index do |image, i|
-                = image_tag image.image.url, data: { index: i },class: 'tmpimg'
-            
           .selimage-function
             .selimage-function_input
               %label.clkarea#image-box
-                -# いったんコメントアウト。余裕があれば下記のデザインにイメージ添付機能を当てはめたい
-                -# = form.fields_for :images do |i|
-                -#   %input.clkarea-input.js-file{:type => 'file'}
-                -#   = icon('fa', 'camera', class: 'clkarea-icon')
-                -#   %p.clkarea-text クリックしてファイルをアップロード
+                .hidden-content#previews
+                  = form.fields_for :images do |i|
+                    .prepic{"data-index" => "#{i.index}"}
+                      - if @item.persisted?
+                        = image_tag @item.images[i.index].image.url, data: { index: i.index },class: 'tmpimg'
+                      .js-file_group{"data-index" => "#{i.index}"}
+                      - if @item.persisted?
+                        -#編集画面のプレビューの下の添付ボタン 
+                        %label
+                          = i.file_field :image ,:class => 'js-file hidden-field'
+                        %label
+                          = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+                          .js-remove 削除
+                      - else
+                        -# 新規画面で最初に表示されている添付ボタン
+                        %label.tmpphoto{"new"=>"new"}
+                          = icon('fa', 'camera', class: 'clkarea-icon')
+                          = i.file_field :image ,:class => 'js-file'
+                        -# %p sss
+                  -# 編集画面で新規画像を追加できるように添付ボタンを追加
+                  - if @item.persisted?
+                    .js-file_group{"data-index" => "#{@item.images.count}","edit" => "new"}
+                      %label.tmpphoto
+                        = icon('fa', 'camera', class: 'clkarea-icon')
+                        = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
 
-                = form.fields_for :images do |i|
-                  .js-file_group{"data-index" => "#{i.index}"}
-                    = i.file_field :image ,:class => 'js-file'
-                    %br/
-                    .js-remove 削除
-                -# 編集画面で新規画像を追加できるように添付ファイルフォームを追加
-                - if @item.persisted?
-                  .js-file_group{"data-index" => "#{@item.images.count}"}
-                    = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
-                    %br/
-                    .js-remove 削除
-
-          %p.selimage-error 入力してください
+                  -# いったんコメントアウト。余裕があれば下記のデザインにイメージ添付機能を当てはめたい
+                  -# = form.fields_for :images do |i|
+                  -#   %input.clkarea-input.js-file{:type => 'file'}
+                  -#   = icon('fa', 'camera', class: 'clkarea-icon')
+                  -#   %p.clkarea-text クリックしてファイルをアップロード
       %hr
       .selmain-form_box
         .selname
@@ -44,7 +51,6 @@
           .selname-function
             .selname-function_input
               = form.text_field :name, :placeholder => '40文字まで', :class => 'selname-text'
-          %p.selname-error 入力してください
         .selspace
         .selname
           .selname-title
@@ -54,7 +60,6 @@
             .selname-function_input
               = form.text_area :explanation, :placeholder => '1,000文字以内', :class => 'selexplanation-text js-text'
               %p.js-text-count 0/1000
-          %p.selexplanation-error 入力してください
       %hr
       .selmain-form_box
         .seldetail.categ
@@ -67,16 +72,15 @@
               .seldetail-function_input
                 = form.select :parent_id, @category_parents, { include_blank: "選択して下さい"}, { class: "selcategory-select", id: 'parent_category' }
           - if @submit_btn[0] == 'edit'
-            -# .seldetail-function
-            -#   .seldetail-function_input
-            -#     = form.select parent_id, @category_parents, { include_blank: "選択して下さい", selected: @item.category_id.parent.parent.id }, { class: "selcategory-select", id: 'parent_category' }
-            -# -# .seldetail-function
-            -#   .seldetail-function_input
-            -#     = form.select :child_id, @category_childs, { include_blank: "選択して下さい", selected: @item.category_id.parent.id }, { class: "selcategory-select", id: 'child_category' }
-            -# .seldetail-function
-            -#   .seldetail-function_input
-            -#     = form.select :category_id, @category_grandchilds, { include_blank: "選択して下さい", selected: @item.category_id }, { class: "selcategory-select", id: 'grandchild_category' }
-        %p.selcategory-error 選択してください
+            .seldetail-function
+              .seldetail-function_input
+                = form.select :parent_id, @category_parents, { include_blank: "選択して下さい", selected: @item.category.parent.parent.id }, { class: "selcategory-select", id: 'parent_category' }
+            .seldetail-function#children_wrapper
+              .seldetail-function_input
+                = form.select :child_id, @category_childs, { include_blank: "選択して下さい", selected: @item.category.parent.id }, { class: "selcategory-select", id: 'child_category' }
+            .seldetail-function#grandchildren_wrapper
+              .seldetail-function_input
+                = form.select :category_id, @category_grandchilds, { include_blank: "選択して下さい", selected: @item.category_id }, { class: "selcategory-select", id: 'grandchild_category' }
         -# ↓カテゴリによって表示する内容、ひとまず条件なしで表示
         .selspace
           .seldetail-title
@@ -85,7 +89,6 @@
           .seldetail-function
             .seldetail-function_input
               = form.text_field :size, :placeholder => 'サイズ', :class => 'selname-text'
-          %p.selcategory-error 入力して下さい
         .selspace
           .seldetail
           .seldetail-title
@@ -102,7 +105,6 @@
           .seldetail-function
             .seldetail-function_input
               = form.select :condition_id, Condition.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.condition_id }, { class: "selstatus-select" }
-          %p.selstatus-error 選択してください
       %hr
       .selmain-form_box
         .seldelovery
@@ -113,7 +115,6 @@
           .seldelovery-function
             .seldelovery-function_input
               = form.select :delivery_fee_id, DeliveryFee.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.delivery_fee_id }, { class: "seldelfee-select" }
-          %p.seldelfee-error 選択してください
         .selspace
         .seldelovery
           .seldelovery-title
@@ -122,7 +123,6 @@
           .seldelovery-function
             .seldelovery-function_input
               = form.select :prefecture_id, Prefecture.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.prefecture_id }, { class: "selshiori-select" }
-          %p.selshiori-error 選択してください
         .selspace
         .seldelovery
           .seldelovery-title
@@ -131,7 +131,6 @@
           .seldelovery-function
             .seldelovery-function_input
               = form.select :delivery_day_id, DeliveryDay.all.map { |status|[status.name, status.id] }, { include_blank: "選択して下さい", selected: @item.delivery_day_id }, { class: "selshiori-select" }
-          %p.selshiday-error 選択してください
       %hr
       .selmain-form_box
         .selprice
@@ -142,7 +141,7 @@
           .selprice-function
             .selprice-function_input
               = form.text_field :price, :placeholder => '0', :class => 'selprice-text'
-          %p.selprice-error 300以上9999999以下で入力してください
+          -# %p.selprice-error 300以上9999999以下で入力してください
       %hr
       .selmain-form_box
         .selsubmit

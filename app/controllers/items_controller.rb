@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
   before_action :index_category_set, only: :index
   before_action :set_item, only: [:edit, :update, :destroy, :show, :buy, :pay]
+  before_action :login_siyou, only: [:new, :buy, :edit]
+  before_action :url_buy_dame, only: [:buy]
+  before_action :url_edit_dame, only: [:edit]
 
   # payjpをロード
   require "payjp"
@@ -12,6 +15,9 @@ class ItemsController < ApplicationController
   end
 
   def show
+    if user_signed_in?
+      @favorite_find = @item.favorites.find_by(user_id: current_user.id)
+    end
   end
 
   def new
@@ -20,10 +26,12 @@ class ItemsController < ApplicationController
     @item = Item.new
     @item.images.new
     # @item.users << current_user
-    @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.name] }
+    @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.id] }
   end
 
   def create
+    @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.id] }
+
     @submit_btn = ['new','出品する']
     # バリデーションチェックで引っかかって出品画面に戻ったとき、上の変数がないとエラーになる。
     @status = 1
@@ -41,13 +49,17 @@ class ItemsController < ApplicationController
   def edit
     # 登録ボタン名
     @submit_btn = ['edit','更新する']
-    # @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.name] }
-    # @category_childs = @item.category_id.parent.parent.children.map{ |category|[category.name, category.id] }
-    # @category_grandchilds = @item.category_id.parent.children.map{ |category|[category.name, category.id] }
+    @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.id] }
+    @category_childs = @item.category.parent.parent.children.map{ |category|[category.name, category.id] }
+    @category_grandchilds = @item.category.parent.children.map{ |category|[category.name, category.id] }
+    # binding.pry
   end
 
   def update
     @submit_btn = ['edit','更新する']
+    @category_parents = Category.where('ancestry IS NULL').map{ |category|[category.name, category.id] }
+    @category_childs = @item.category.parent.parent.children.map{ |category|[category.name, category.id] }
+    @category_grandchilds = @item.category.parent.children.map{ |category|[category.name, category.id] }
     # ステータスの状態を「出品中：１」にして登録する
     @status = 1
     if @item.update(item_params)
@@ -59,12 +71,12 @@ class ItemsController < ApplicationController
   
   def buy
     if @item.status_id != 2
-      # card = Card.where(user_id: current_user.id)
-      card = Card.where(user_id: 1)
+      card = Card.where(user_id: current_user.id)
+      # card = Card.where(user_id: 1)
       if card.exists?
-        # @card = Card.find_by(user_id: current_user.id)
-        @card = Card.find_by(user_id: 1)
-        Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+        @card = Card.find_by(user_id: current_user.id)
+        # @card = Card.find_by(user_id: 1)
+        Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
         customer = Payjp::Customer.retrieve(@card.customer_id)
         @card = Payjp::Customer.retrieve(@card.customer_id).cards.data[0]
       end
@@ -78,7 +90,7 @@ class ItemsController < ApplicationController
       @card = Card.find_by(user_id: current_user.id)
       @item.status_id = 2
       @item.save
-      Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       # カードトークンを用いて支払いを作成する
       @charge = Payjp::Charge.create(
       amount: @item.price,
@@ -93,7 +105,7 @@ class ItemsController < ApplicationController
 
   # 親カテゴリーが選択された際に動く(Ajax)
   def get_category_children
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+    @category_children = Category.find_by(id: "#{params[:parent_id]}", ancestry: nil).children
   end
 
   # 子カテゴリーが選択された際に動く(Ajax)
@@ -155,4 +167,27 @@ class ItemsController < ApplicationController
       instance_variable_set("@cat_no#{num}", items)
     end
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def login_siyou
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+  end
+
+  def url_buy_dame
+    if current_user == @item.user
+      redirect_to items_path
+    end
+  end
+
+  def url_edit_dame
+    if current_user != @item.user
+      redirect_to items_path
+    end
+  end
+
 end

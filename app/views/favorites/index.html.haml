@@ -1,0 +1,15 @@
+.mypagemain
+  = render 'users/side-navbar'
+  .creditregist
+    %h2.creditregist-head
+      お気に入り一覧
+    .creditregist-inner
+      %ui.favorite-list
+        - @favorites.each  do |favorite|
+          %ol.favorite-list-item
+            = link_to item_path(favorite.item_id) do
+              商品名：
+              = favorite.item.name
+              %br/
+              価格：
+              = favorite.item.price

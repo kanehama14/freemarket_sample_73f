@@ -1,0 +1,3 @@
+$("#favorite_btn").html(
+  "<%= escape_javascript(render partial: 'items/favorite_form', locals: { item: @item }) %>"
+)
