@@ -16,8 +16,6 @@
                     .prepic{"data-index" => "#{i.index}"}
                       - if @item.persisted?
                         = image_tag @item.images[i.index].image.url, data: { index: i.index },class: 'tmpimg'
-                      .js-file_group{"data-index" => "#{i.index}"}
-                      - if @item.persisted?
                         -#編集画面のプレビューの下の添付ボタン 
                         %label
                           = i.file_field :image ,:class => 'js-file hidden-field'
