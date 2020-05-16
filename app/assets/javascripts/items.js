@@ -28,6 +28,16 @@ $(document).on('turbolinks:load', ()=> {
   lastIndex = $('.js-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);
   $('.hidden-destroy').hide();
+  // $(`div[data-index="10"]`).remove();
+  $(`label[new="new"]`).css('width', `${120 * 5}`);
+  // $(`div[edit="new"]`).css('width', `${120 * 5}`);
+  if(fileIndex[0]<=5){
+    $(`div[data-index="${fileIndex[0]-1}"]`).css('width', `${120 * (6 - fileIndex[0])}`);
+  }else if(fileIndex[0]<=10){
+    $(`div[data-index="${fileIndex[0]-1}"]`).css('width', `${120 * (11 - fileIndex[0])}`);
+  }else{
+    $(`div[data-index="10"]`).remove();
+  }
 
   $('#image-box').on('change', '.js-file', function(e) {
     const targetIndex = $(this).parent().data('index');
@@ -57,9 +67,19 @@ $(document).on('turbolinks:load', ()=> {
       $(`div[edit="new"]`).addClass("hidden-field");
       $(`label[data-index="${fileIndex[0]-2}"]`).addClass("hidden-field");
       $('.hidden-destroy').hide();
-      // $(`#data-index-${fileIndex[0]-2}`).addClass("hidden-field");
-      console.log(fileIndex[0]);
-      console.log(`div[data-index="${fileIndex[0]-1}]"`);
+
+      // $(`label[data-index="10"]`).remove();
+      if(fileIndex[0]<=5){
+        $(`label[data-index="${fileIndex[0]-1}"]`).css('width', `${120 * (6 - fileIndex[0])}`);
+      }else if(fileIndex[0]<=10){
+        $(`label[data-index="${fileIndex[0]-1}"]`).css('width', `${120 * (11 - fileIndex[0])}`);
+      }else{
+        $(`label[data-index="10"]`).remove();
+      }
+      
+      // $(`label[data-index="5"]`).css('width', '100%');
+
+      // console.log(fileIndex[0]);
     }
   });
 
@@ -75,6 +95,16 @@ $(document).on('turbolinks:load', ()=> {
     // $(`img[data-index="${targetIndex}"]`).remove();
     // $(`div class="js-file_group" data-index="${targetIndex}"`).remove();
     
+    // fileIndex.shift();
+    // console.log(fileIndex);
+    fileIndex.push(fileIndex[fileIndex.length - 1]-1);
+    // console.log(fileIndex);
+    $(`label[data-index="${fileIndex[0]-2}"]`).remove();
+    console.log(fileIndex[0]-2);
+    $('#previews').append(buildFileField(fileIndex[0]-3));
+    // $(`label[data-index="${fileIndex[0]-2}"]`).remove();
+    fileIndex.shift();
+
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
   });
