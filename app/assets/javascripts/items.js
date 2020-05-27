@@ -1,4 +1,3 @@
-$(document).on('turbolinks:load', ()=> {
 $(document).on('turbolinks:load', () => {
   // 画像用のinputを生成する関数
   const buildFileField = (index) => {
@@ -91,6 +90,7 @@ $(document).on('turbolinks:load', () => {
     // もしチェックボックスが存在すればチェックを入れる
     if (hiddenCheck) hiddenCheck.prop('checked', true);
 
+    // 削除ボタンを押したら対象の写真を非表示にする
     $(this).parent().parent().addClass("hidden-field");
     // $(this).remove();
     // $(`img[data-index="${targetIndex}"]`).remove();
@@ -98,12 +98,15 @@ $(document).on('turbolinks:load', () => {
 
     // fileIndex.shift();
     // console.log(fileIndex);
-    fileIndex.push(fileIndex[fileIndex.length - 1]-1);
-    // console.log(fileIndex);
-    $(`label[data-index="${fileIndex[0]-2}"]`).remove();
-    console.log(fileIndex[0]-2);
-    $('#previews').append(buildFileField(fileIndex[0]-3));
-    // $(`label[data-index="${fileIndex[0]-2}"]`).remove();
+    fileIndex.push(fileIndex[fileIndex.length - 1] - 1);
+
+    // 削除ボタンクリックで初期表示の添付エリアを非表示にする
+    $(`div[edit="new"]`).remove();
+
+    console.log(fileIndex[0] - 2);
+    console.log(fileIndex);
+
+    $('#previews').append(buildFileField(fileIndex[0] - 3));
     fileIndex.shift();
 
     // 画像入力欄が0個にならないようにしておく
